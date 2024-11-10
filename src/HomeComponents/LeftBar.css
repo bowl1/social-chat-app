@@ -1,0 +1,81 @@
+/* LeftBar.css */
+
+.sidebar {
+  position: relative; /* 确保 .dropdown 定位时参考 .sidebar */
+  background-color: #fff;
+  box-shadow: -3px 0 50px rgba(169, 222, 249, 0.25);
+  display: flex;
+  max-width: fit-content;
+  flex-direction: column;
+  
+  font-family: Avenir Next, sans-serif;
+  color: #0f191a;
+  padding: 29px 26px 351px;
+}
+
+.profile-image {
+  aspect-ratio: 1.06;
+  object-fit: contain;
+  width: 93px;
+  border-radius: 32px;
+  align-self: center;
+}
+
+.username {
+  font-size: 19px;
+  align-self: center;
+  margin-top: 15px;
+}
+
+.group-title {
+  color: #307278;
+  font-size: 24px;
+  font-weight: 600;
+  margin-top: 68px;
+  word-wrap: break-word; /* 允许在单词中间换行 */
+  white-space: normal; /* 允许正常的换行 */
+ 
+}
+
+.group-switcher {
+  display: flex;
+  margin-top: 20px;
+  gap: 12px;
+  font-size: 16px;
+  align-items: center;
+  border: transparent;
+  justify-content: flex-start;
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+}
+
+.group-icon {
+  aspect-ratio: 1;
+  object-fit: contain;
+  width: 32px;
+}
+
+.dropdown {
+  position:absolute;
+  top: 100%; /* 紧贴按钮下方 */
+  left:0;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 100;
+}
+
+.dropdown-item {
+  padding: 10px 15px;
+  font-size: 16px;
+  cursor: pointer;
+  white-space: wrap;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+  
+}

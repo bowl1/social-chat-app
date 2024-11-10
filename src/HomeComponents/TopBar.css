@@ -1,0 +1,89 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  .dashboard-header {
+    display: flex;
+    flex-direction: column;
+    font-family: Avenir Next, sans-serif;
+  }
+
+
+  .top-bar {
+    background-color: rgb(48, 114, 120);
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+  }
+
+  .welcome-section {
+    display: flex;
+    gap: 40px;
+    color: #fff;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+
+  .greeting-container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+  }
+
+  .welcome-heading {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.2px;
+  }
+
+  .welcome-subheading {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.17px;
+    margin-top: 10px;
+  }
+
+  .upload-section {
+    display: flex;
+    justify-content: center; /* 使按钮在容器内水平分布 */
+    flex: 1; /* 使按钮占据剩余空间 */
+    padding: 0 10px;    /* 根据需要添加内边距  */
+    align-items: center; /* 垂直居中对齐 */
+    gap: 20%;
+  }
+  
+  .upload-section label {
+    display: inline-flex; /* 确保内容水平排列 */
+    flex-direction: column; /* 垂直排列图标和文字 */
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px; /* 控制按钮内边距 */
+    font-size: 14px; /* 设置字体大小 */
+    cursor: pointer;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+}
+
+.upload-section label img {
+    width: 40px; /* 控制图标的大小 */
+    height: 40px;
+    margin-bottom: 10px; /* 图标与文字之间的间距 */
+}
+  
+
+.video-post, .photo-post, .logout-container {
+    background-color: transparent; /* 确保图片的父容器也没有背景色 */
+    border: none; /* 移除父容器的边框 */
+  }
+
+ 
+
+
+
+

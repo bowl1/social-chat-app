@@ -1,0 +1,79 @@
+
+.footer-section {
+    background-color: rgba(48, 114, 120, 1);
+    display: flex;
+    font-family: Avenir Next, sans-serif;
+    flex-wrap: wrap;
+    padding: 1px 40px; /* 减小顶部和侧边的内边距 */
+    justify-content: space-between;
+    bottom: 0;
+    width: 100%;
+    
+    max-height: 8vh;
+    min-height: fit-content;
+    align-items: center;
+  }
+
+  .logo {
+    object-fit: contain;
+    width: 60px;
+    align-self: center;
+  }
+
+  .brand-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .brand-name {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    align-self: center;
+  }
+
+  .copyright {
+    color: #fff;
+    font-size: 14px;
+    font-weight: 400;
+    opacity: 0.5;
+    margin-top: 0px;
+  }
+
+  .back-to-top {
+    align-self: center;
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: linear-gradient(100deg, rgba(255, 255, 255, 0.5) 16.09%, rgba(255, 255, 255, 0.1) 105.27%);
+    backdrop-filter: blur(5px);
+    max-height: 3vmax;
+    font-size: 14px;
+    color: #fff;
+    font-weight: 400;
+    padding: 6px 23px;
+    cursor: pointer;
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+
+  @media (max-width: 991px) {
+    .footer-section {
+      padding: 0 20px;
+    }
+    
+    .back-to-top {
+      padding: 0 20px;
+    }
+  }
