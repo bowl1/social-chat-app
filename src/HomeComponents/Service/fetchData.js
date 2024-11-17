@@ -10,7 +10,7 @@ export const loadPostsFromDatabase = async (groupId) => {
   const groupPointer = new Group();
   groupPointer.id = groupId;
 
-  // 加载关联的 author、avatar 和 group 数据
+  // 加载关联的 author 和 avatar 数据
   query.equalTo("group", groupPointer); // 使用指针进行查询
   query.include("author"); // 包含 author 字段
   query.include("avatar"); // 包含 avatar 字段
@@ -20,33 +20,41 @@ export const loadPostsFromDatabase = async (groupId) => {
     const results = await query.find();
     console.log("Loaded posts for group:", groupId, results);
 
-    return results.map((post) => {
-      // 获取 author 对象
-      const author = post.get("author");
-
-      // 获取 avatar 对象（假设它是指向 User 表的一个文件对象）
-      const avatarUser = post.get("avatar"); // 从 post 中获取 avatar 字段
-      let avatarUrl = "default-avatar-url"; // 设置默认头像 URL
-
-      if (avatarUser && typeof avatarUser.get === 'function') {
-        const avatarFile = avatarUser.get("avatar"); // 获取 User 表中 avatar 文件字段
-        if (avatarFile && typeof avatarFile.url === "function") {
-          avatarUrl = avatarFile.url(); // 获取头像 URL
+    // 检查结果并映射
+    return results
+      .filter((post) => post) // 过滤掉无效的 post 对象
+      .map((post) => {
+        // 获取 author 对象并检查
+        const author = post.get("author");
+        if (!author || typeof author.get !== "function") {
+          console.warn(`Post ${post.id} has no valid author.`);
+          return null; // 跳过没有有效作者的帖子
         }
-      }
 
-      return {
-        objectId: post.id,
-        userName: author.get("username"), // 从 author 中获取用户名
-        userAvatar: avatarUrl, // 使用获取到的 avatar URL
-        content: post.get("content"),
-        likes: post.get("likes"),
-        group: groupId, // 使用传入的 group ID
-      };
-    });
+        // 获取 avatar 对象并检查
+        const avatarUser = post.get("avatar");
+        let avatarUrl = "default-avatar-url"; // 默认头像 URL
+        if (avatarUser && typeof avatarUser.get === "function") {
+          const avatarFile = avatarUser.get("avatar"); // 获取 User 表中 avatar 文件字段
+          if (avatarFile && typeof avatarFile.url === "function") {
+            avatarUrl = avatarFile.url(); // 获取头像 URL
+          }
+        }
+
+        // 返回有效帖子数据
+        return {
+          objectId: post.id,
+          userName: author.get("username") || "Anonymous", // 从 author 中获取用户名，提供默认值
+          userAvatar: avatarUrl, // 使用获取到的 avatar URL
+          content: post.get("content") || {}, // 默认空内容
+          likes: post.get("likes") || 0, // 默认点赞数为 0
+          group: groupId, // 使用传入的 group ID
+        };
+      })
+      .filter((post) => post !== null); // 过滤掉无效的帖子
   } catch (error) {
     console.error("Error loading posts:", error);
-    throw error;
+    throw new Error("Failed to load posts from the database.");
   }
 };
 
