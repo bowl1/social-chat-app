@@ -6,6 +6,7 @@ import Post from "./HomeComponents/Post";
 import useUpload from "./HomeComponents/Posts/upload";
 import {fetchGroupData} from "./HomeComponents/Service/backend";
 import {UserContext} from "./hooks/UserContext";
+import {HomeContainer,ContentContainer,LeftBarContainer,PostContainer} from "./HomeStyles"; 
 
 function Home() {
   const {
@@ -16,7 +17,7 @@ function Home() {
     clearUploads,
   } = useUpload();
 
-  const { setSelectedGroup } = useContext(UserContext);
+  const { setSelectedGroup,selectedGroup } = useContext(UserContext);
   const [groupData, setGroupData] = useState([]); 
 
 
@@ -25,12 +26,19 @@ function Home() {
     const fetchData = async () => {
       try {
         const groups = await fetchGroupData(); // 从后端获取分组数据
-        setGroupData(groups); // 更新分组状态
+        setGroupData(groups);
 
-        // 查找第一个默认组
-        const defaultGroup = groups.find(group => group.isDefault);
-        if (defaultGroup) {
-          setSelectedGroup(defaultGroup); // 设置选定分组为默认组的 objectId
+        // 如果 localStorage 有保存的分组，优先加载保存的分组
+        const savedGroup = localStorage.getItem("selectedGroup");
+        if (savedGroup) {
+          const parsedGroup = JSON.parse(savedGroup);
+          setSelectedGroup(parsedGroup);
+        } else if (!selectedGroup) {
+          // 如果没有保存的分组且未选择分组，选择默认分组
+          const defaultGroup = groups.find((group) => group.isDefault);
+          if (defaultGroup) {
+            setSelectedGroup(defaultGroup);
+          }
         }
       } catch (error) {
         console.error("Error fetching group data:", error);
@@ -38,32 +46,28 @@ function Home() {
     };
 
     fetchData();
-  }, [setSelectedGroup]);
+  }, [setSelectedGroup, selectedGroup]);
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
-      {/* 确保 TopBar 始终在页面顶部 */}
-      <div style={{ flexShrink: 0 }}>
+    <HomeContainer>
         <TopBar
           onPhotoUpload={handlePhotoUpload}
           onVideoUpload={handleVideoUpload}
         />
-      </div>
-      <div style={{ display: "flex", flex: 1, padding: "10px" }}>
-        <LeftBar 
-        groupData={groupData}  
-        />
-        <div style={{ flex: 4}}>
+      <ContentContainer>
+        <LeftBarContainer>
+          <LeftBar groupData={groupData} />
+        </LeftBarContainer>
+        <PostContainer>
           <Post
             uploadedImage={uploadedImage}
             uploadedVideo={uploadedVideo}
             clearUploads={clearUploads}
-            
           />
-        </div>
-      </div>
-      <Footer style={{ marginTop: "auto" }} />
-    </div>
+        </PostContainer>
+      </ContentContainer>
+      <Footer />
+    </HomeContainer>
   );
 }
 

@@ -1,67 +1,87 @@
-import React from "react";
-import "./TopBar.css";
-import { useState,useContext} from "react";
+import React, { useState, useContext } from "react";
+import {DashboardHeader,TopBarContainer,WelcomeSection,GreetingContainer,WelcomeHeading,WelcomeSubheading,
+  UploadSection,UploadLabel,LogoutContainer,} from "./TopBarStyle"; 
 import uploadPhotos from "../Assets/uploadPhotos.png";
 import uploadVideos from "../Assets/uploadVideos.png";
-import { UserContext } from '../hooks/UserContext'; 
+import logoutIcon from "../Assets/logout.png";
+import { UserContext } from "../hooks/UserContext";
+import { useNavigate } from "react-router-dom";
 
-
-function TopBar({ onPhotoUpload, onVideoUpload}) {
-  const { user } = useContext(UserContext); 
-  const [photoInputKey, setPhotoInputKey] = useState(Date.now()); // 单独为图片使用的 inputKey
-  const [videoInputKey, setVideoInputKey] = useState(Date.now()); // 单独为视频使用的 inputKey
+function TopBar({ onPhotoUpload, onVideoUpload }) {
+  const { user, logoutUser } = useContext(UserContext);
+  const [photoInputKey, setPhotoInputKey] = useState(Date.now());
+  const [videoInputKey, setVideoInputKey] = useState(Date.now());
+  const navigate = useNavigate();
 
   const handlePhotoChange = (e) => {
     console.log("Photo selected:", e.target.files[0]);
     onPhotoUpload(e.target.files[0]);
-    setPhotoInputKey(Date.now()); // 上传完成后重置 photoInputKey
+    setPhotoInputKey(Date.now());
   };
 
   const handleVideoChange = (e) => {
     console.log("Video selected:", e.target.files[0]);
     onVideoUpload(e.target.files[0]);
-    setVideoInputKey(Date.now()); // 上传完成后重置 videoInputKey
+    setVideoInputKey(Date.now());
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logoutUser();
+      navigate("/");
+    } catch (error) {
+      console.error("Error logging out:", error);
+      alert("Failed to log out. Please try again.");
+    }
   };
 
   return (
-    <header className="dashboard-header">
-      <div className="top-bar">
-        <section className="welcome-section">
-          <div className="greeting-container">
-            <h1 className="welcome-heading">Welcome back, {user ? user.get("username") : "Guest"} !</h1>
-            <p className="welcome-subheading">Here is what you've missed</p>
-          </div>
-        </section>
+    <DashboardHeader>
+      <TopBarContainer>
+        <WelcomeSection>
+          <GreetingContainer>
+            <WelcomeHeading>
+              Welcome back, {user ? user.get("username") : "Guest"}!
+            </WelcomeHeading>
+            <WelcomeSubheading>Here is what you've missed</WelcomeSubheading>
+          </GreetingContainer>
+        </WelcomeSection>
 
-        <section className="upload-section">
+        <UploadSection>
           <input
-           key={`photo-${photoInputKey}`} // 单独使用 photoInputKey // 使用 key 属性强制重新渲染
+            key={`photo-${photoInputKey}`}
             type="file"
             accept="image/*"
             onChange={handlePhotoChange}
             style={{ display: "none" }}
             id="upload-photo"
           />
-          <label htmlFor="upload-photo">
-            <img src={uploadPhotos} alt="" />
+          <UploadLabel htmlFor="upload-photo">
+            <img src={uploadPhotos} alt="Upload" />
             <span>Upload Photo</span>
-          </label>
+          </UploadLabel>
 
           <input
-            key={`video-${videoInputKey}`}// 使用 key 属性强制重新渲染
+            key={`video-${videoInputKey}`}
             type="file"
             accept="video/*"
             onChange={handleVideoChange}
             style={{ display: "none" }}
             id="upload-video"
           />
-          <label htmlFor="upload-video">
+          <UploadLabel htmlFor="upload-video">
             <img src={uploadVideos} alt="Upload Video" />
             <span>Upload Video</span>
-          </label>
-        </section>
-      </div>
-    </header>
+          </UploadLabel>
+        </UploadSection>
+
+        <LogoutContainer onClick={handleLogout}>
+          <img src={logoutIcon} alt="Log out" />
+          <span>Log out</span>
+        </LogoutContainer>
+      </TopBarContainer>
+    </DashboardHeader>
   );
 }
+
 export default TopBar;
