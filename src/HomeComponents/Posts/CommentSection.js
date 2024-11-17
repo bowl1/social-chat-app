@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Comment from './Comment';
-import './CommentSection.css';
+import {
+  CommentSectionContainer,
+  AddCommentContainer,
+  CommentInput,
+  AddCommentButton,
+  CommentsList,
+  RepliesContainer,
+} from './CommentSectionStyle';
 
 function CommentSection({ comments = [], onAddComment, onReplySubmit, onDelete }) {
   const [newComment, setNewComment] = useState('');
@@ -13,7 +20,6 @@ function CommentSection({ comments = [], onAddComment, onReplySubmit, onDelete }
   };
 
   useEffect(() => {
-    console.log("CommentSection received comments:", comments);
   }, [comments]);
 
   const renderComments = (commentsList) => {
@@ -25,30 +31,25 @@ function CommentSection({ comments = [], onAddComment, onReplySubmit, onDelete }
         onDelete={onDelete}
       >
         {comment.replies && comment.replies.length > 0 && (
-          <div className="replies">
-            {renderComments(comment.replies)}
-          </div>
+          <RepliesContainer>{renderComments(comment.replies)}</RepliesContainer>
         )}
       </Comment>
     ));
   };
 
   return (
-    <div className="comment-section">
-      <div className="add-comment">
-        <input
+    <CommentSectionContainer>
+      <AddCommentContainer>
+        <CommentInput
           type="text"
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
           placeholder="Write your comment..."
         />
-        <button onClick={handleAddComment}>Add Comment</button>
-      </div>
-
-      <div className="comments-list">
-        {renderComments(comments)}
-      </div>
-    </div>
+        <AddCommentButton onClick={handleAddComment}>Add Comment</AddCommentButton>
+      </AddCommentContainer>
+      <CommentsList>{renderComments(comments)}</CommentsList>
+    </CommentSectionContainer>
   );
 }
 

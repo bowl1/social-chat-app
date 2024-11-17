@@ -1,10 +1,11 @@
 import React from "react";
 import cursor from "../Assets/cursor.png";
-import "./PostUI.css";
-import { IconButton, Flex } from "@chakra-ui/react";
-import { FaRegComment, FaTrash } from "react-icons/fa";
 import Like from "./Posts/Like";
 import CommentSection from "./Posts/CommentSection";
+import trashIcon from "../Assets/delete.png";
+import commentIcon from "../Assets/comment.png";
+import {PostArea,PostContainer,InputWrapper,InputField,ActionIcon,PostsList,PostItem,PostHeader,PostAvatar,ContentContainer,
+  PostUsername,PostContent,UploadedMedia,PostActions, IconImage,ActionButton,} from "./PostUIStyle";
 
 function PostUI({
   postContent,
@@ -18,70 +19,53 @@ function PostUI({
   deleteCommentOrReply,
   commentsByPost,
 }) {
-  // 解析和渲染 post 内容
   function renderPostContent(content) {
     const { text, imageUrl, videoUrl } = content || {};
-    
     return (
       <div>
         {text && <p>{text}</p>}
-        {imageUrl && <img src={imageUrl} alt="" className="uploaded-media" />}
-        {videoUrl && <video controls src={videoUrl} className="uploaded-media" />}
+        {imageUrl && <UploadedMedia src={imageUrl} alt="" />}
+        {videoUrl && <UploadedMedia as="video" controls src={videoUrl} />}
       </div>
     );
   }
 
   return (
-    <article className="post-area">
-      <div className="post-container">
-        <div className="input-wrapper">
-          <textarea
+    <PostArea>
+      <PostContainer>
+        <InputWrapper>
+          <InputField
             value={postContent}
             onChange={(e) => setPostContent(e.target.value)}
             placeholder="Write something here..."
-            className="input-field"
             rows={4}
           />
-        </div>
-        <img
-          src={cursor}
-          alt="send post"
-          className="action-icon"
-          onClick={sendPost}
-        />
-      </div>
+        </InputWrapper>
+        <ActionIcon src={cursor} alt="send post" onClick={sendPost} />
+      </PostContainer>
 
-      <div className="posts-list">
+      <PostsList>
         {currentGroupPosts.map((post) => (
-          <div key={post.objectId} className="post-item">
-            <div className="post-header">
-              <img
-               src={post.userAvatar} alt={`${post.userName}'s avatar`} className="post-avatar" />
-              <div className="content-container">
-                <span className="post-username">{post.userName}</span>
-                <div className="post-content">
-                  {renderPostContent(post.content)}
-                </div>
-              </div>
-            </div>
-            <Flex justify="space-between" mt="10px">
+          <PostItem key={post.objectId}>
+            <PostHeader>
+              <PostAvatar src={post.userAvatar} alt={`${post.userName}'s avatar`} />
+              <ContentContainer>
+                <PostUsername>{post.userName}</PostUsername>
+                <PostContent>{renderPostContent(post.content)}</PostContent>
+              </ContentContainer>
+            </PostHeader>
+            <PostActions>
               <Like initialLikes={post.likes} objectId={post.objectId} />
-              <IconButton
-                icon={<FaRegComment />}
-                aria-label="Comment on post"
-                variant="ghost"
-                onClick={() => toggleCommentSection(post.objectId)}
-              />
-              <IconButton
-                icon={<FaTrash />}
-                aria-label="Delete post"
-                variant="ghost"
-                onClick={() => handleDeletePost(post.objectId)}
-              />
-            </Flex>
+              <ActionButton onClick={() => toggleCommentSection(post.objectId)}>
+                <IconImage src={commentIcon} alt="Comment" />
+              </ActionButton>
+              <ActionButton onClick={() => handleDeletePost(post.objectId)}>
+                <IconImage src={trashIcon} alt="Delete" />
+              </ActionButton>
+            </PostActions>
             {showCommentSection[post.objectId] && (
               <CommentSection
-                comments={commentsByPost[post.objectId] || []} // 确保评论传递正确
+                comments={commentsByPost[post.objectId] || []}
                 onAddComment={(content) =>
                   addCommentOrReply(post.objectId, content)
                 }
@@ -93,10 +77,10 @@ function PostUI({
                 }
               />
             )}
-          </div>
+          </PostItem>
         ))}
-      </div>
-    </article>
+      </PostsList>
+    </PostArea>
   );
 }
 

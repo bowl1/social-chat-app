@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useCallback } from "react";
+import React, { useState, useContext, useEffect} from "react";
 import PostUI from "./PostUI"; 
 import { sendPostToDatabase, addCommentToDatabase, deletePostFromDatabase,deleteCommentFromDatabase } from './Service/backend'; 
 import { UserContext } from '../hooks/UserContext'; 
@@ -12,34 +12,54 @@ function Post({ uploadedImage, uploadedVideo, clearUploads }) {
   const [commentsByPost, setCommentsByPost] = useState({});
 
 
-  const fetchPosts = useCallback(async () => {
-    if (selectedGroup?.objectId) {
+  useEffect(() => {
+    if (!selectedGroup?.objectId) {
+      console.log("No selected group. Skipping fetch.");
+      return; // 如果没有选中的分组，直接跳过
+    }
+  
+    const fetchPostsForGroup = async () => {
       try {
         console.log("Fetching posts for group:", selectedGroup.objectId);
+  
+        // 加载当前分组的帖子
         const groupPosts = await loadPostsFromDatabase(selectedGroup.objectId);
         console.log("Loaded posts:", groupPosts);
   
+        // 更新帖子数据到 state
         setPostsByGroup((prev) => ({
           ...prev,
           [selectedGroup.objectId]: groupPosts,
         }));
   
-        const newCommentsByPost = {};
-        for (const post of groupPosts) {
-          const nestedComments = await loadCommentsFromDatabase(post.objectId); // 获取嵌套评论结构
-          newCommentsByPost[post.objectId] = nestedComments; // 直接使用格式化后的评论数据
-        }
+        // 使用 Promise.all 并行加载每个帖子的评论
+        const commentsPromises = groupPosts.map((post) =>
+          loadCommentsFromDatabase(post.objectId).then((nestedComments) => ({
+            postId: post.objectId,
+            comments: nestedComments,
+          }))
+        );
   
-        setCommentsByPost(newCommentsByPost); // 更新 state 中的评论数据
+        // 等待所有评论加载完成
+        const resolvedComments = await Promise.all(commentsPromises);
+  
+        // 格式化评论数据为 { postId: comments[] } 的结构
+        const newCommentsByPost = resolvedComments.reduce((acc, { postId, comments }) => {
+          acc[postId] = comments;
+          return acc;
+        }, {});
+  
+        // 更新评论数据到 state
+        setCommentsByPost(newCommentsByPost);
         console.log("Updated commentsByPost:", newCommentsByPost);
       } catch (error) {
         console.error("Error loading posts or comments:", error);
       }
-    }
-  }, [selectedGroup]);
-  useEffect(() => {
-    fetchPosts();
-  }, [fetchPosts, selectedGroup]);
+    };
+  
+    fetchPostsForGroup(); // 调用加载函数
+  }, [selectedGroup?.objectId]); // 仅在分组 ID 发生变化时重新加载帖子和评论
+
 
   const sendPost = async () => {
     if (postContent.trim() || uploadedImage || uploadedVideo) {
@@ -51,8 +71,7 @@ function Post({ uploadedImage, uploadedVideo, clearUploads }) {
   
       try {
         const savedPost = await sendPostToDatabase(newPostContent, selectedGroup.objectId);
-        console.log("Saved new post:", savedPost);
-  
+
         const newPost = {
           objectId: savedPost.id,
           userName: user.get("username"),
@@ -139,7 +158,6 @@ function Post({ uploadedImage, uploadedVideo, clearUploads }) {
   };
 
   const deleteCommentOrReply = async (postId, commentId) => {
-    console.log("Deleting comment:", commentId, "from post:", postId);
   
     try {
       // 调用数据库删除函数
