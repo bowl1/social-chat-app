@@ -40,7 +40,7 @@ export const UserProvider = ({ children }) => {
       acl.setWriteAccess(newUser, true); // 仅允许用户自己写入
       newUser.setACL(acl);
 
-          // 保存带 ACL 的用户对象
+      // 保存带 ACL 的用户对象
       await savedUser.save();
   
       // 更新全局状态
