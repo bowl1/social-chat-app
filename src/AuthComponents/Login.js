@@ -1,9 +1,16 @@
 import React, { useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import {Wrapper,FormContainer,Heading,Form,InputField,Button,LinkText,} from "./AuthStyle";
+import { useNavigate } from "react-router-dom";
+import {
+  Form,
+  InputField,
+  Button,
+  Header,
+  DescriptionText,
+  FooterText,
+} from "./AuthStyle";
 import { UserContext } from "../hooks/UserContext";
 
-export default function Login() {
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { loginUser } = useContext(UserContext); // 从上下文中获取登录方法
@@ -26,36 +33,35 @@ export default function Login() {
   };
 
   return (
-    <Wrapper>
-      <FormContainer>
-        <Heading>LOGIN</Heading>
-        <Form onSubmit={handleSubmit}>
-          <InputField>
-            <label htmlFor="email">E-Mail</label>
-            <input
-              type="email"
-              id="email"
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </InputField>
-          <InputField>
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </InputField>
-          <Button type="submit">Submit</Button>
-        </Form>
-        <LinkText>
-          Don't have an account? <Link to="/signup">Sign Up</Link>
-        </LinkText>
-      </FormContainer>
-    </Wrapper>
+    <div>
+      <Header>👋 Hello again, GHOST</Header>
+      <DescriptionText> Please log in to continue.</DescriptionText>
+      <Form onSubmit={handleSubmit}>
+        <InputField>
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </InputField>
+        <InputField>
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </InputField>
+        <Button type="submit">Log In</Button>
+      </Form>
+      <FooterText>© 2024 GHOST Team. All rights reserved.</FooterText>
+    </div>
   );
 }
+
+export default Login;

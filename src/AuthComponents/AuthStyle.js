@@ -1,87 +1,131 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #f9f9f9;
+export const Logo = styled.img`
+  width: 200px;
+  height: auto;
 `;
 
 export const FormContainer = styled.div`
-  background: white;
+  max-width: 400px;
+  width: 100%;
+  padding: 30px;
+  background: #dceaf6;
   border-radius: 10px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 40px;
-  width: 400px;
-  max-width: 90%;
-`;
-
-export const Heading = styled.div`
-  font-size: 24px;
-  font-weight: bold;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
-  margin-bottom: 20px;
-  color: #333;
+
+
+  @media (max-width: 768px) {
+    padding: 8px; /* 调整小屏幕上的内边距 */
+    width: 90%; /* 使容器宽度适应小屏幕 */
+  }
+  }
+
 `;
 
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
 `;
 
 export const InputField = styled.div`
+  width: 100%; /* 确保 InputField 的宽度可以适配父级容器 */
   display: flex;
-  flex-direction: column;
-
-  label {
-    font-size: 14px;
-    color: #555;
-    margin-bottom: 8px;
-  }
 
   input {
     padding: 10px;
-    font-size: 14px;
+    font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
     outline: none;
-    transition: border 0.3s;
+    flex: 1; /* 确保 input 占满整个容器宽度 */
+
+    &:focus {
+      border-color: #0073e6;
     }
   }
 `;
 
 export const Button = styled.button`
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-  padding: 10px 15px;
-  font-size: 16px;
-  background-color: #007bff;
+  background-color: #0073e6;
   color: white;
+  padding: 10px;
   border: none;
   border-radius: 5px;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background-color 0.3s;
 
   &:hover {
-    background-color: #0056b3;
+    background-color: #005bb5;
   }
 `;
 
-export const LinkText = styled.p`
+export const Header = styled.h1`
+  font-size: 1.8rem;
+  color: #333;
   text-align: center;
-  font-size: 14px;
-  color: #007bff;
+`;
+
+export const DescriptionText = styled.p`
+  font-size: 1rem;
+  color: #555;
+  text-align: center;
+`;
+
+export const FooterText = styled.p`
+  font-size: 0.9rem;
+  text-align: center;
+  color: gray;
+`;
+
+export const AuthContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: rgb(0, 42, 62);
+  background: radial-gradient(
+    circle,
+    rgba(0, 42, 62, 1) 0%,
+    rgba(0, 45, 64, 1) 7%,
+    rgba(1, 43, 63, 1) 12%,
+    rgba(255, 184, 124, 1) 100%
+  );
+  font-family: Arial, sans-serif;
+`;
+
+export const NavBar = styled.nav`
+  margin-bottom: 20px;
 
   a {
-    color: #007bff;
+    margin: 0 15px;
     text-decoration: none;
+    color: #0073e6;
     font-weight: bold;
+    position: relative;
 
     &:hover {
       text-decoration: underline;
+    }
+
+    /* Active link styling */
+    &.active {
+      color: #005bb5; /* Darker blue for active link */
+      font-weight: bold;
+
+      /* Optional underline or indicator */
+      &:after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background: #005bb5;
+        bottom: -5px; /* Position underline below the link */
+        left: 0;
+      }
     }
   }
 `;
