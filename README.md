@@ -1,10 +1,23 @@
-This is a social app featuring a home page and a profile page. 
-It is designed for the young people who need a privacy space to share their mental issues.
+GHOST APP
 
-<img width="1096" alt="截屏2024-11-11 00 16 18" src="https://github.com/user-attachments/assets/0f1b4e7d-0098-44f2-9bb0-0cadd5126ddd">
+This is a social app featuring a home page, a profile page and signup/login page. 
+Currently, users can create posts, comment on posts, change post group and update their profile. 
+The web app is also responsive to both desktop and mobile screens,
 
-<img width="1090" alt="截屏2024-11-11 00 18 08" src="https://github.com/user-attachments/assets/2052910d-8e4e-4f7e-bfba-4ca38522052b">
+![截屏2024-11-20 15 08 35](https://github.com/user-attachments/assets/a7643ddf-79d6-4397-bc47-30b64d1f669d)
 
-<img width="1106" alt="截屏2024-11-11 00 18 49" src="https://github.com/user-attachments/assets/30184c83-4ae6-4d33-bd54-c49c5fca63af">
+![截屏2024-11-20 15 08 26](https://github.com/user-attachments/assets/3def1551-027a-42e9-9e6e-a98fb0280679)
 
-<img width="1091" alt="截屏2024-11-11 00 17 06" src="https://github.com/user-attachments/assets/b40e6c90-0687-4133-85d8-7b9aa6edc339">
+![截屏2024-11-20 15 06 35](https://github.com/user-attachments/assets/b71a1af5-0831-454c-af15-78b49469a4b6)
+
+![截屏2024-11-20 15 06 19](https://github.com/user-attachments/assets/a9704763-14d4-4af9-996d-f3efe208140f)
+
+![截屏2024-11-20 15 06 59](https://github.com/user-attachments/assets/70b52c12-57ac-4441-82b3-f1da8607b54a)
+
+![截屏2024-11-20 15 21 06](https://github.com/user-attachments/assets/6bb69868-75cc-4aaf-bcb5-396d22dff546)
+
+![截屏2024-11-20 15 21 19](https://github.com/user-attachments/assets/dd140f51-2e1f-4944-b4fe-4c969ed9597b)
+
+![截屏2024-11-20 15 07 52](https://github.com/user-attachments/assets/d8173101-2b4b-4fcf-b636-f294c3718aad)
+
+![截屏2024-11-20 15 08 09](https://github.com/user-attachments/assets/af18d8ee-94a6-4e7a-a188-d86ef353d3e6)
