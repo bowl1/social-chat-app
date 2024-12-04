@@ -4,20 +4,20 @@ This is a social app featuring a home page, a profile page and signup/login page
 Currently, users can create posts, comment on posts, change post group and update their profile. 
 The web app is also responsive to both desktop and mobile screens,
 
-![截屏2024-11-20 15 08 35](https://github.com/user-attachments/assets/a7643ddf-79d6-4397-bc47-30b64d1f669d)
+![截屏2024-12-04 18 48 15](https://github.com/user-attachments/assets/de640963-5cd6-470f-9b8d-40f777879513)
+![截屏2024-12-04 18 48 06](https://github.com/user-attachments/assets/4b01abee-d573-4b83-aa8c-621dd4a1ceb1)
+![截屏2024-12-04 18 44 16](https://github.com/user-attachments/assets/11064f3f-312a-433c-80b9-05254a07687a)
+![截屏2024-12-04 18 44 30](https://github.com/user-attachments/assets/cc11d4b4-4bde-4f15-ad55-e1da6a4956a9)
+![截屏2024-12-04 18 44 59](https://github.com/user-attachments/assets/28905693-7682-4fb1-aa35-8f5f94f0ffbb)
+![截屏2024-12-04 18 45 12](https://github.com/user-attachments/assets/0e86cbc4-5908-4082-805f-83968cef8c5e)
 
-![截屏2024-11-20 15 08 26](https://github.com/user-attachments/assets/3def1551-027a-42e9-9e6e-a98fb0280679)
+![截屏2024-12-04 18 47 54](https://github.com/user-attachments/assets/8f734c03-613e-4fed-aa17-8f9f9d01e89f)
+![截屏2024-12-04 18 47 47](https://github.com/user-attachments/assets/6af3f55e-4df2-4105-bdc6-20d7d5ffc877)
+![截屏2024-12-04 18 45 56](https://github.com/user-attachments/assets/a5192b64-47fd-4f62-87eb-bdf4d0d1a4e8)
+![截屏2024-12-04 18 46 17](https://github.com/user-attachments/assets/42140df3-c3c8-440c-a712-e5590a3bffa0)
+![截屏2024-12-04 18 46 48](https://github.com/user-attachments/assets/3cc67ce8-ea91-4a6c-9c36-dc8f4c34d451)
+![截屏2024-12-04 18 46 26](https://github.com/user-attachments/assets/42b3bc8d-8604-45bf-85bb-1b5c03fef269)
 
-![截屏2024-11-20 15 06 35](https://github.com/user-attachments/assets/b71a1af5-0831-454c-af15-78b49469a4b6)
 
-![截屏2024-11-20 15 06 19](https://github.com/user-attachments/assets/a9704763-14d4-4af9-996d-f3efe208140f)
 
-![截屏2024-11-20 15 06 59](https://github.com/user-attachments/assets/70b52c12-57ac-4441-82b3-f1da8607b54a)
 
-![截屏2024-11-20 15 21 06](https://github.com/user-attachments/assets/6bb69868-75cc-4aaf-bcb5-396d22dff546)
-
-![截屏2024-11-20 15 21 19](https://github.com/user-attachments/assets/dd140f51-2e1f-4944-b4fe-4c969ed9597b)
-
-![截屏2024-11-20 15 07 52](https://github.com/user-attachments/assets/d8173101-2b4b-4fcf-b636-f294c3718aad)
-
-![截屏2024-11-20 15 08 09](https://github.com/user-attachments/assets/af18d8ee-94a6-4e7a-a188-d86ef353d3e6)
