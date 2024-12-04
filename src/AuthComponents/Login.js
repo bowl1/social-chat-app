@@ -9,29 +9,49 @@ import {
   FooterText,
 } from "./AuthStyle";
 import { UserContext } from "../hooks/UserContext";
+import Parse from "parse";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { loginUser } = useContext(UserContext); // 从上下文中获取登录方法
-  const navigate = useNavigate(); // 导航功能
+  const { setUser, setAvatar, restoreOrFetchDefaultGroup } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const loginUser = async (email, password) => {
+    try {
+      // 登录用户
+      const currentUser = await Parse.User.logIn(email, password);
+      setUser(currentUser);
+
+      // 更新头像
+      const avatarFile = currentUser.get("avatar");
+      if (avatarFile instanceof Parse.File) {
+        setAvatar(`${avatarFile.url()}?${Date.now()}`);
+      } else {
+        setAvatar("https://via.placeholder.com/50");
+      }
+
+      // 恢复或设置默认分组
+      await restoreOrFetchDefaultGroup();
+    } catch (error) {
+      throw error; // 抛出错误供调用者处理
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // 防止页面刷新
 
     try {
-      // 调用上下文中的登录方法
+      // 调用登录逻辑
       await loginUser(email, password);
 
       // 弹出登录成功提示，并导航到首页
       alert("Login successful!");
       navigate("/home");
     } catch (error) {
-      console.error("Error logging in:", error);
       alert(`Error: ${error.message}`);
     }
   };
-
   return (
     <div>
       <Header>👋 Hello again, GHOST</Header>
@@ -44,6 +64,7 @@ function Login() {
             placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            autoComplete="email"
             required
           />
         </InputField>
@@ -54,6 +75,7 @@ function Login() {
             placeholder="Enter your password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            autoComplete="current-password"
             required
           />
         </InputField>

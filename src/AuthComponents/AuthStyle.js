@@ -20,7 +20,6 @@ export const FormContainer = styled.div`
     width: 90%; /* 使容器宽度适应小屏幕 */
   }
   }
-
 `;
 
 export const Form = styled.form`
@@ -108,7 +107,9 @@ export const NavBar = styled.nav`
     position: relative;
 
     &:hover {
-      text-decoration: underline;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+      transform: scale(1.1);
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
     }
 
     /* Active link styling */
@@ -116,7 +117,7 @@ export const NavBar = styled.nav`
       color: #005bb5; /* Darker blue for active link */
       font-weight: bold;
 
-      /* Optional underline or indicator */
+      /* underline or indicator */
       &:after {
         content: "";
         position: absolute;

@@ -5,7 +5,7 @@ export const PostArea = styled.article`
   max-width: 100%;
   flex-direction: column;
   color: rgba(15, 25, 26, 0.5);
-  font: 400 13px Avenir Next, -apple-system, Roboto, Helvetica, sans-serif;
+
   align-items: center;
   justify-content: center;
 `;
@@ -19,7 +19,7 @@ export const PostContainer = styled.div`
   border: 5px solid #f0f2f5;
   margin: 10px;
   border-radius: 20px;
-   box-sizing: border-box;  /* 包括边框和内边距 */
+  box-sizing: border-box;  /* 包括边框和内边距 */
 `;
 
 export const InputWrapper = styled.div`
@@ -36,6 +36,7 @@ export const InputField = styled.textarea`
   line-height: 1.5;
   resize: none;
   border: none;
+  border-radius: 18px;
 `;
 
 export const ActionIcon = styled.img`
@@ -63,40 +64,60 @@ export const PostItem = styled.div`
 
 export const PostHeader = styled.div`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   margin-bottom: 10px;
 `;
 
 export const PostAvatar = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   margin-right: 10px;
 `;
 
-export const ContentContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`;
-
 export const PostUsername = styled.span`
   font-weight: bold;
-  font-size: 16px;
+  font-size: 20px;
+`;
+
+export const ContentContainer = styled.div`
+ margin-left: 70px;
 `;
 
 export const PostContent = styled.div`
-  font-size: 14px;
+  font-size: 20px;
   color: #333;
-  margin-top: 30px;
+  
+   @media (max-width: 480px) {
+    font-size: 16px; /* 小屏幕字体大小 */
 `;
 
-export const UploadedMedia = styled.img`
-  max-width: 100%;
-  max-height: 300px;
-  object-fit: cover;
+export const UploadedMedia = styled.div`
   border-radius: 8px;
   margin-top: 10px;
+
+  /* 图片 */
+  ${(props) => props.as === "img" && `
+    width: 100%;
+    max-width: 500px; 
+    max-height: 300px; /* 限制最大高度 */
+    height: auto; /* 保持图片的纵横比 */
+    object-fit: contain; /* 保证图片不会被拉伸或压缩 */
+  `}
+
+  /* 视频 */
+  ${(props) => props.as === "video" && `
+    width: 100%;
+    max-width: 500px; 
+    max-height: 300px; /* 限制最大高度 */
+    height: auto; /* 保持视频的纵横比 */
+    max-height: 300px;  /* 最大高度，确保视频不会太大 */
+  `}
+
+  @media (max-width: 768px) {
+    width: 80%; /* 小屏幕下的宽度 */
+    height: auto;
+  }
 `;
 
 export const PostActions = styled.div`
@@ -108,12 +129,24 @@ export const PostActions = styled.div`
 `;
 
 export const ActionButton = styled.button`
-  all: unset;
+  border: none;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  font-size: 16px;
+
+   @media (max-width: 480px) {
+    font-size: 14px; /* 小屏幕字体大小 */
 `;
 
 export const IconImage = styled.img`
-  width: 16px;
-  height: 16px;
+  width: 30px;
+  height: 30px;
   margin-right: 5px;
+
+  @media (max-width: 480px) {
+    width: 10px;
+    height: 10px;
+ }
 `;
 

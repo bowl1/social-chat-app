@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const CommentContainer = styled.div`
-  margin-bottom: 10px;
+  margin-bottom: 70px;
 `;
 
 export const CommentContent = styled.div`
   display: flex;
-  align-items: flex-start;
   margin-left: 10px;
+  flex-direction: column;
 `;
 
 export const CommentAvatar = styled.img`
@@ -16,37 +16,47 @@ export const CommentAvatar = styled.img`
   border-radius: 50%;
 `;
 
-export const CommentText = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-left: 10px;
+export const CommentAuthor = styled.span`
+  font-weight: bold;
 `;
 
 export const CommentHeader = styled.div`
   display: flex;
-  flex-direction: column;
+  align-items: center;
 `;
 
-export const CommentAuthor = styled.span`
-  font-weight: bold;
-  margin-bottom: 18px;
+export const CommentBody = styled.p`
+ color: black;
+`;
+
+export const CommentText = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 40px;
+  font-size: 18px;
 `;
 
 export const ReplyTo = styled.span`
   font-weight: normal;
 `;
 
-export const CommentBody = styled.p`
-  margin: 0;
-`;
-
 export const ButtonsInReply = styled.div`
   margin-top: 8px;
+  display: flex;
+  direction: row;
+  gap: 40px;
 `;
 
 export const ActionButton = styled.button`
-  all: unset;
+  border: none;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  font-size: 16px;
+
+  @media (max-width: 480px) {
+    font-size: 13px; /* 小屏幕字体大小 */
 `;
 
 export const IconImage = styled.img`
@@ -68,7 +78,7 @@ export const ReplyInputField = styled.input`
   border-radius: 8px;
   outline: none;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  font-size: 10px;
+  font-size: 16px;
 
   &:focus {
     border-color: #007bff;
@@ -84,9 +94,9 @@ export const ReplyButton = styled.button`
   border: none;
   cursor: pointer;
   border-radius: 8px;
+  font-size: 18px;
 `;
 
 export const ReplyList = styled.div`
-  margin-left: 20px;
-  margin-top: 5px;
+  margin-top: 30px;
 `;

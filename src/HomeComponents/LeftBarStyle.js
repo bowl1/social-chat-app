@@ -6,11 +6,12 @@ export const Sidebar = styled.aside`
   box-shadow: -3px 0 50px rgba(169, 222, 249, 0.25);
   display: flex;
   flex-direction: column;
-  font-family: Avenir Next, sans-serif;
+  font-family: Avenir Next;
   color: #0f191a;
-  padding: clamp(10px, 2vw, 29px) clamp(10px, 2vw, 26px); /* 动态内边距 */
-  width: clamp(100px, 15%, 300px); /* 动态宽度 */
-  font-size: clamp(12px, 1vw, 16px); /* 动态字体大小 */
+  padding: 20px; 
+  width: 200px;
+  font-size: 18px;
+  height: 100%;
 
   @media (max-width: 768px) {
     width: 50px; /* 折叠宽度 */
@@ -18,18 +19,13 @@ export const Sidebar = styled.aside`
 `;
 
 export const ProfileImage = styled.img`
-  aspect-ratio: 1.06;
-  object-fit: contain;
   width: 93px;
   border-radius: 32px;
   align-self: center;
+  cursor: pointer;
 
   @media (max-width: 768px) {
     width: 70px; /* 调整小屏幕下的宽度 */
-  }
-
-  @media (max-width: 480px) {
-    width: 50px; /* 进一步调整小屏幕下的宽度 */
   }
 `;
 
@@ -68,16 +64,19 @@ export const GroupSwitcher = styled.button`
   display: flex;
   margin-top: 20px;
   gap: 12px;
-  font-size: 16px;
- align-items: center;
+  font-size: 18px;
+  align-items: center;
   border: transparent;
- justify-content: flex-start;
+  justify-content: flex-start;
   padding: 10px 12px;
   border-radius: 10px;
   cursor: pointer;
   position: relative;
   background: none;
   flex-direction: column;
+
+   @media (max-width: 480px) {
+    font-size: 14px; /* 小屏幕字体大小 */
  
   }
 `;
@@ -107,3 +106,4 @@ export const DropdownItem = styled.div`
     background-color: #f0f0f0;
   }
 `;
+

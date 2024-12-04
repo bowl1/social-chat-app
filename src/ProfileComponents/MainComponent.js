@@ -1,11 +1,28 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import { UserContext } from "../hooks/UserContext";
 import Parse from "parse";
-import {Container, Main,  ProfileContainer,  AvatarContainer,  ProfileImage,  ChangeButton,  UserInfo,  UserName,  
-  UserEmail,  EditButton,  Form,  InputGroup,  Label,  Input,} from "./MainComponentStyle";
+import {
+  Container, Main, ProfileContainer, AvatarContainer, ProfileImage, ChangeButton, UserInfo, UserName, UserEmail, EditButton, Form, InputGroup, Label, Input,
+} from "./MainComponentStyle";
+
+// 提取通用表单字段组件
+function FormField({ label, type, name, value, onChange, readOnly }) {
+  return (
+    <InputGroup>
+      <Label>{label}</Label>
+      <Input
+        type={type}
+        name={name}
+        value={value || ""}
+        onChange={onChange}
+        readOnly={readOnly}
+      />
+    </InputGroup>
+  );
+}
 
 function MainContent() {
-  const { user, setUser, avatar, setAvatar, email } = useContext(UserContext);
+  const { user, setUser, avatar, setAvatar} = useContext(UserContext);
   const [isEditing, setIsEditing] = useState(false);
   const avatarPlaceholder = "https://via.placeholder.com/50";
   const [formData, setFormData] = useState({
@@ -47,10 +64,14 @@ function MainContent() {
     }));
   };
 
+  const triggerFileInput = () => {
+    fileInputRef.current.click();
+  };
+
   const handleAvatarChange = async (e) => {
     const file = e.target.files[0];
     if (file) {
-      const newAvatarUrl = URL.createObjectURL(file);
+      const newAvatarUrl = URL.createObjectURL(file); //虽然头像会在选择后立即上传，但上传过程需要时间。如果直接等待上传完成后再显示头像，
       setFormData((prevData) => ({
         ...prevData,
         avatar: newAvatarUrl,
@@ -59,10 +80,6 @@ function MainContent() {
 
       await handleAvatarUpdate(file);
     }
-  };
-
-  const triggerFileInput = () => {
-    fileInputRef.current.click();
   };
 
   const handleAvatarUpdate = async (file) => {
@@ -124,63 +141,54 @@ function MainContent() {
           />
           <UserInfo>
             <UserName>{formData.fullName}</UserName>
-            <UserEmail>{email}</UserEmail>
+            <UserEmail>{user ? user.get("email"): "No Email Available"}</UserEmail>
           </UserInfo>
-          <EditButton onClick={toggleEditMode}>
+          <EditButton data-edit-mode ={isEditing} onClick={toggleEditMode}>
             {isEditing ? "Save" : "Edit"}
           </EditButton>
         </ProfileContainer>
 
         <Form>
-          <InputGroup>
-            <Label>Name</Label>
-            <Input
-              type="text"
-              name="fullName"
-              value={formData.fullName}
-              onChange={handleInputChange}
-              readOnly={!isEditing}
-            />
-          </InputGroup>
-          <InputGroup>
-            <Label>Gender</Label>
-            <Input
-              type="text"
-              name="gender"
-              value={formData.gender || ""}
-              onChange={handleInputChange}
-              readOnly={!isEditing}
-            />
-          </InputGroup>
-          <InputGroup>
-            <Label>Language</Label>
-            <Input
-              type="text"
-              name="language"
-              value={formData.language || ""}
-              onChange={handleInputChange}
-              readOnly={!isEditing}
-            />
-          </InputGroup>
-          <InputGroup>
-            <Label>Email Address</Label>
-            <Input
-              type="text"
-              name="email"
-              value={formData.email || ""}
-              readOnly
-            />
-          </InputGroup>
-          <InputGroup>
-            <Label>Country</Label>
-            <Input
-              type="text"
-              name="country"
-              value={formData.country || ""}
-              onChange={handleInputChange}
-              readOnly={!isEditing}
-            />
-          </InputGroup>
+          <FormField
+            label="Name"
+            type="text"
+            name="fullName"
+            value={formData.fullName}
+            onChange={handleInputChange}
+            readOnly={!isEditing}
+          />
+          <FormField
+            label="Gender"
+            type="text"
+            name="gender"
+            value={formData.gender}
+            onChange={handleInputChange}
+            readOnly={!isEditing}
+          />
+          <FormField
+            label="Language"
+            type="text"
+            name="language"
+            value={formData.language}
+            onChange={handleInputChange}
+            readOnly={!isEditing}
+          />
+          <FormField
+            label="Email Address"
+            type="text"
+            name="email"
+            value={formData.email}
+            onChange={handleInputChange}
+            readOnly
+          />
+          <FormField
+            label="Country"
+            type="text"
+            name="country"
+            value={formData.country}
+            onChange={handleInputChange}
+            readOnly={!isEditing}
+          />
         </Form>
       </Main>
     </Container>

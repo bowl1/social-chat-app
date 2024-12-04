@@ -8,7 +8,7 @@ export const Container = styled.div`
   height: 100vh;
   width: 100vw;
   padding: 20px;
-   box-sizing: border-box;
+  box-sizing: border-box;
 `;
 
 // Main content wrapper
@@ -58,7 +58,7 @@ export const ProfileImage = styled.img`
 
     @media (max-width: 768px) {
     width: 80px;
-    height: 80px; // 在小屏幕上缩小头像
+    height: 80px; 
   }
 `;
 
@@ -68,10 +68,14 @@ export const ChangeButton = styled.button`
   color: #fff;
   border: none;
   border-radius: 20px;
-  padding: 5px 10px;
+  padding: 15px 15px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
   margin-top: 10px;
+
+    @media (max-width: 768px) {
+  font-size: 16px; 
+  padding: 8px 8px;
 `;
 
 // User info
@@ -85,7 +89,7 @@ export const UserName = styled.h2`
   margin: 0;
 
    @media (max-width: 768px) {
-    font-size: 24px; // 在小屏幕上字体更小
+    font-size: 24px; 
 `;
 
 export const UserEmail = styled.p`
@@ -94,22 +98,22 @@ export const UserEmail = styled.p`
   margin: 0;
   
  @media (max-width: 768px) {
-    font-size: 16px; // 在小屏幕上字体更小
+    font-size: 16px; 
   }
 `;
 
 // Edit button
 export const EditButton = styled.button`
-  background-color: #007bff;
+  background-color: ${(props) => (props["data-edit-mode"] ? "#FF910A" : "#007bff")};
   color: #fff;
   border: none;
   border-radius: 20px;
-  padding: 10px 20px;
+  padding: 15px 15px;
   cursor: pointer;
-  font-size: 25px;
+  font-size: 16px;
 
    @media (max-width: 768px) {
-    font-size: 18px; // 小屏幕字体更小
+    font-size: 16px; 
     padding: 8px 8px;
   }
 `;
@@ -122,7 +126,7 @@ export const Form = styled.div`
   width: 100%;
 
    @media (max-width: 768px) {
-    gap: 8px; // 小屏幕上的间距更紧凑
+    gap: 8px; 
   }
 `;
 
@@ -134,7 +138,7 @@ export const InputGroup = styled.div`
   gap: 20px;
 
    @media (max-width: 768px) {
-    gap: 8px; // 小屏幕上的间距更紧凑
+    gap: 8px; 
   }
 `;
 
