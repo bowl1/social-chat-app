@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const FooterSection = styled.footer`
   background-color: rgba(48, 114, 120, 1);
   display: flex;
-  font-family: Avenir Next, sans-serif;
+  font-family: Avenir Next;
   flex-wrap: wrap;
   padding: 1px 40px;
   justify-content: space-between;
@@ -55,26 +55,10 @@ export const BackToTopButton = styled.button`
     rgba(255, 255, 255, 0.5) 16.09%,
     rgba(255, 255, 255, 0.1) 105.27%
   );
-  backdrop-filter: blur(5px);
-  max-height: 3vmax;
+  max-height: 4vmax;
   font-size: 14px;
   color: #fff;
   font-weight: 400;
-  padding: 6px 23px;
+  padding: 10px 10px;
   cursor: pointer;
-
-  @media (max-width: 991px) {
-    padding: 0 20px;
-  }
-`;
-
-export const VisuallyHidden = styled.span`
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  border: 0;
 `;

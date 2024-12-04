@@ -20,3 +20,7 @@ export const LeftBarContainer = styled.div`
 export const PostContainer = styled.div`
   flex: 4; /* 主内容区域宽度 */
 `;
+
+export const FooterContainer = styled.footer`
+  z-index: 100;
+`;

@@ -18,7 +18,10 @@ export const CommentInput = styled.input`
   border-radius: 8px;
   outline: none;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  font-size: 10px;
+  font-size: 16px;
+
+     @media (max-width: 480px) {
+    font-size: 13px; /* 小屏幕字体大小 */
 `;
 
 export const AddCommentButton = styled.button`
@@ -29,15 +32,19 @@ export const AddCommentButton = styled.button`
   border: none;
   cursor: pointer;
   border-radius: 8px;
-  transition: background-color 0.3s;
+  font-size: 16px;
 
   &:hover {
     background-color: rgba(48, 114, 120, 0.8);
   }
+
+     @media (max-width: 480px) {
+    font-size: 12px; /* 小屏幕字体大小 */
 `;
 
 export const CommentsList = styled.div`
   margin-top: 10px;
+  
 `;
 
 export const RepliesContainer = styled.div`

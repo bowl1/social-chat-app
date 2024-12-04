@@ -44,7 +44,7 @@ function CommentSection({ comments = [], onAddComment, onReplySubmit, onDelete }
           type="text"
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
-          placeholder="Write your comment..."
+          placeholder="Write here..."
         />
         <AddCommentButton onClick={handleAddComment}>Add Comment</AddCommentButton>
       </AddCommentContainer>

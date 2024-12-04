@@ -32,6 +32,7 @@ function useUpload() {
     } catch (error) {
       console.error("Error uploading video:", error);
       alert("Failed to upload video. Please try again.");
+
     }
   };
 
