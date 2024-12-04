@@ -7,6 +7,7 @@ The web app is also responsive to both desktop and mobile screens,
 ![截屏2024-12-04 18 48 15](https://github.com/user-attachments/assets/de640963-5cd6-470f-9b8d-40f777879513)
 ![截屏2024-12-04 18 48 06](https://github.com/user-attachments/assets/4b01abee-d573-4b83-aa8c-621dd4a1ceb1)
 ![截屏2024-12-04 18 44 16](https://github.com/user-attachments/assets/11064f3f-312a-433c-80b9-05254a07687a)
+![截屏2024-12-04 18 43 35](https://github.com/user-attachments/assets/3d57e697-30ec-4f51-9f5d-e1a6e3d18b81)
 ![截屏2024-12-04 18 44 30](https://github.com/user-attachments/assets/cc11d4b4-4bde-4f15-ad55-e1da6a4956a9)
 ![截屏2024-12-04 18 44 59](https://github.com/user-attachments/assets/28905693-7682-4fb1-aa35-8f5f94f0ffbb)
 ![截屏2024-12-04 18 45 12](https://github.com/user-attachments/assets/0e86cbc4-5908-4082-805f-83968cef8c5e)
