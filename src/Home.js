@@ -6,7 +6,7 @@ import Post from "./HomeComponents/Post";
 import useUpload from "./HomeComponents/Posts/upload";
 import {fetchGroupData} from "./HomeComponents/Service/backend";
 import {UserContext} from "./hooks/UserContext";
-import {HomeContainer,ContentContainer,LeftBarContainer,PostContainer} from "./HomeStyles"; 
+import {HomeContainer,ContentContainer,LeftBarContainer,PostContainer,FooterContainer } from "./HomeStyles"; 
 
 function Home() {
   const {
@@ -27,14 +27,14 @@ function Home() {
       try {
         const groups = await fetchGroupData(); // 从后端获取分组数据
         setGroupData(groups);
-
-        // 如果 localStorage 有保存的分组，优先加载保存的分组
+  
         const savedGroup = localStorage.getItem("selectedGroup");
         if (savedGroup) {
-          const parsedGroup = JSON.parse(savedGroup);
-          setSelectedGroup(parsedGroup);
-        } else if (!selectedGroup) {
-          // 如果没有保存的分组且未选择分组，选择默认分组
+          setSelectedGroup(JSON.parse(savedGroup));
+          return;
+        }
+  
+        if (!selectedGroup) {
           const defaultGroup = groups.find((group) => group.isDefault);
           if (defaultGroup) {
             setSelectedGroup(defaultGroup);
@@ -44,7 +44,7 @@ function Home() {
         console.error("Error fetching group data:", error);
       }
     };
-
+  
     fetchData();
   }, [setSelectedGroup, selectedGroup]);
 
@@ -66,7 +66,9 @@ function Home() {
           />
         </PostContainer>
       </ContentContainer>
+      <FooterContainer>
       <Footer />
+      </FooterContainer>
     </HomeContainer>
   );
 }

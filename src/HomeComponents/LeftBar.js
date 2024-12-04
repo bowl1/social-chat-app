@@ -2,11 +2,10 @@ import React, { useState, useContext } from "react";
 import switchGroup from "../Assets/switch-group.png";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../hooks/UserContext";
-import {Sidebar,ProfileImage,Username,GroupTitle,GroupSwitcher,GroupIcon,Dropdown,DropdownItem,} from "./LeftBarStyle";
+import {Sidebar,ProfileImage,Username,GroupTitle,GroupSwitcher,GroupIcon,Dropdown,DropdownItem} from "./LeftBarStyle";
 
 function LeftBar({ groupData }) {
-  const { user, selectedGroup, setSelectedGroup, currentGroup, avatar } =
-    useContext(UserContext);
+  const { user, selectedGroup, setSelectedGroup, avatar } = useContext(UserContext);
   const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
 
@@ -18,7 +17,7 @@ function LeftBar({ groupData }) {
   const toggleDropdown = () => setShowDropdown(!showDropdown);
 
   const groupToDisplay =
-    selectedGroup?.name || currentGroup?.name || "No group selected";
+    selectedGroup?.name ||  "No group selected";
 
   const handleAvatarClick = () => {
     navigate("/profile");
@@ -29,13 +28,11 @@ function LeftBar({ groupData }) {
       <ProfileImage
         src={avatar}
         alt="User profile"
-        loading="lazy"
         onClick={handleAvatarClick}
-        style={{ cursor: "pointer" }}
       />
       <Username>{user ? user.get("username") : "Guest"}</Username>
       <GroupTitle>{groupToDisplay}</GroupTitle>
-      <GroupSwitcher onClick={toggleDropdown} tabIndex="0">
+      <GroupSwitcher onClick={toggleDropdown}>
         <GroupIcon src={switchGroup} alt="Change group icon" />
         <span>Change Group</span>
         {showDropdown && (

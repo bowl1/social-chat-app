@@ -1,30 +1,25 @@
 import React, { useState, useContext, useEffect} from "react";
-import PostUI from "./PostUI"; 
+import PostSection from "./PostSection"; 
 import { sendPostToDatabase, addCommentToDatabase, deletePostFromDatabase,deleteCommentFromDatabase } from './Service/backend'; 
 import { UserContext } from '../hooks/UserContext'; 
 import { loadPostsFromDatabase, loadCommentsFromDatabase } from './Service/fetchData'; 
 
 function Post({ uploadedImage, uploadedVideo, clearUploads }) {
-  const { user, avatar, selectedGroup } = useContext(UserContext); 
+  const { user, selectedGroup } = useContext(UserContext); 
   const [postContent, setPostContent] = useState("");
   const [postsByGroup, setPostsByGroup] = useState({});
   const [showCommentSection, setShowCommentSection] = useState({});
   const [commentsByPost, setCommentsByPost] = useState({});
 
-
   useEffect(() => {
     if (!selectedGroup?.objectId) {
-      console.log("No selected group. Skipping fetch.");
       return; // 如果没有选中的分组，直接跳过
     }
   
     const fetchPostsForGroup = async () => {
       try {
-        console.log("Fetching posts for group:", selectedGroup.objectId);
-  
         // 加载当前分组的帖子
         const groupPosts = await loadPostsFromDatabase(selectedGroup.objectId);
-        console.log("Loaded posts:", groupPosts);
   
         // 更新帖子数据到 state
         setPostsByGroup((prev) => ({
@@ -51,7 +46,6 @@ function Post({ uploadedImage, uploadedVideo, clearUploads }) {
   
         // 更新评论数据到 state
         setCommentsByPost(newCommentsByPost);
-        console.log("Updated commentsByPost:", newCommentsByPost);
       } catch (error) {
         console.error("Error loading posts or comments:", error);
       }
@@ -75,7 +69,7 @@ function Post({ uploadedImage, uploadedVideo, clearUploads }) {
         const newPost = {
           objectId: savedPost.id,
           userName: user.get("username"),
-          userAvatar: avatar,
+          userAvatar: user.get("avatar") ? user.get("avatar").url() + "?" + Date.now() : null, //	+ "?" + Date.now() 的作用是在 URL 后追加一个独特的查询字符串（基于当前时间的时间戳），使得每次 URL 都是唯一的，从而强制浏览器重新加载最新的图片，而不是从缓存中取旧图片。
           content: newPostContent,
           likes: savedPost.likes,
           group: selectedGroup.objectId,
@@ -99,8 +93,7 @@ function Post({ uploadedImage, uploadedVideo, clearUploads }) {
   const handleDeletePost = async (postId) => {
     try {
       await deletePostFromDatabase(postId);
-      console.log("Deleted post:", postId);
-
+  
       setPostsByGroup((prevPostsByGroup) => {
         const updatedPosts = { ...prevPostsByGroup };
         if (selectedGroup?.objectId && Array.isArray(updatedPosts[selectedGroup.objectId])) {
@@ -119,11 +112,10 @@ function Post({ uploadedImage, uploadedVideo, clearUploads }) {
   const addCommentOrReply = async (postId, content, parentId = null) => {
     try {
       const savedComment = await addCommentToDatabase(content, postId, selectedGroup.objectId, parentId);
-      console.log("Saved comment:", savedComment);
       const newComment = {
         id: savedComment.id,
         author: user.get("username"),
-        avatar: avatar || "https://via.placeholder.com/50",
+        avatar: user.get("avatar") ? `${user.get("avatar").url()}?${Date.now()}` : null, // 添加头像并加时间戳
         content: content,
         replies: [],
       };
@@ -134,15 +126,13 @@ function Post({ uploadedImage, uploadedVideo, clearUploads }) {
           ? addNestedReply(postComments, parentId, newComment)
           : [...postComments, newComment];
 
-        console.log(`Updated comments for post ${postId}:`, updatedPostComments);
-
         return {
           ...prevCommentsByPost,
           [postId]: updatedPostComments,
         };
       });
     } catch (error) {
-      console.error("Error adding comment:", error);
+      console.error("Error adding comment to database:", error)
     }
   };
 
@@ -168,9 +158,7 @@ function Post({ uploadedImage, uploadedVideo, clearUploads }) {
         ...prevCommentsByPost,
         [postId]: deleteNestedComment(prevCommentsByPost[postId] || [], commentId),
       }));
-      console.log("Comment deleted successfully from both database and state.");
     } catch (error) {
-      console.error("Error deleting comment from database:", error);
       alert("Failed to delete comment. Please try again.");
     }
   };
@@ -184,7 +172,6 @@ function Post({ uploadedImage, uploadedVideo, clearUploads }) {
       .filter((comment) => comment !== null); // 过滤掉被标记为 null 的评论
   };
   
-
   const toggleCommentSection = (postId) => {
     setShowCommentSection((prev) => ({ ...prev, [postId]: !prev[postId] }));
   };
@@ -192,19 +179,17 @@ function Post({ uploadedImage, uploadedVideo, clearUploads }) {
   const currentGroupPosts = selectedGroup ? (postsByGroup[selectedGroup.objectId] || []) : [];
 
   return (
-    <PostUI
+    <PostSection
       postContent={postContent}
       setPostContent={setPostContent}
       sendPost={sendPost}
-      currentGroupPosts={currentGroupPosts}
-      showCommentSection={showCommentSection}
-      toggleCommentSection={toggleCommentSection}
       handleDeletePost={handleDeletePost}
+      currentGroupPosts={currentGroupPosts}
       commentsByPost={commentsByPost}
       addCommentOrReply={addCommentOrReply}
       deleteCommentOrReply={deleteCommentOrReply}
-      user={user}
-      selectedGroup={selectedGroup}
+      showCommentSection={showCommentSection}
+      toggleCommentSection={toggleCommentSection}
     />
   );
 }

@@ -5,9 +5,9 @@ import CommentSection from "./Posts/CommentSection";
 import trashIcon from "../Assets/delete.png";
 import commentIcon from "../Assets/comment.png";
 import {PostArea,PostContainer,InputWrapper,InputField,ActionIcon,PostsList,PostItem,PostHeader,PostAvatar,ContentContainer,
-  PostUsername,PostContent,UploadedMedia,PostActions, IconImage,ActionButton,} from "./PostUIStyle";
+  PostUsername,PostContent,UploadedMedia,PostActions, IconImage,ActionButton,} from "./PostSectionStyle";
 
-function PostUI({
+function PostSection({
   postContent,
   setPostContent,
   sendPost,
@@ -24,8 +24,8 @@ function PostUI({
     return (
       <div>
         {text && <p>{text}</p>}
-        {imageUrl && <UploadedMedia src={imageUrl} alt="" />}
-        {videoUrl && <UploadedMedia as="video" controls src={videoUrl} />}
+        {imageUrl && !videoUrl && <UploadedMedia as="img" src={imageUrl} alt="" />}
+        {videoUrl && !imageUrl && <UploadedMedia as="video" controls src={videoUrl} />}
       </div>
     );
   }
@@ -49,18 +49,20 @@ function PostUI({
           <PostItem key={post.objectId}>
             <PostHeader>
               <PostAvatar src={post.userAvatar} alt={`${post.userName}'s avatar`} />
-              <ContentContainer>
-                <PostUsername>{post.userName}</PostUsername>
-                <PostContent>{renderPostContent(post.content)}</PostContent>
-              </ContentContainer>
+              <PostUsername>{post.userName}</PostUsername>
             </PostHeader>
+            <ContentContainer>
+              <PostContent>{renderPostContent(post.content)}</PostContent>
+              </ContentContainer>
             <PostActions>
               <Like initialLikes={post.likes} objectId={post.objectId} />
               <ActionButton onClick={() => toggleCommentSection(post.objectId)}>
                 <IconImage src={commentIcon} alt="Comment" />
+                Comment
               </ActionButton>
               <ActionButton onClick={() => handleDeletePost(post.objectId)}>
                 <IconImage src={trashIcon} alt="Delete" />
+                Delete
               </ActionButton>
             </PostActions>
             {showCommentSection[post.objectId] && (
@@ -84,4 +86,4 @@ function PostUI({
   );
 }
 
-export default PostUI;
+export default PostSection;
