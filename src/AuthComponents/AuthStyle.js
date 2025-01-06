@@ -14,11 +14,9 @@ export const FormContainer = styled.div`
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
 
-
   @media (max-width: 768px) {
     padding: 8px; /* 调整小屏幕上的内边距 */
     width: 90%; /* 使容器宽度适应小屏幕 */
-  }
   }
 `;
 

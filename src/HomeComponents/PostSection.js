@@ -19,7 +19,8 @@ function PostSection({
   deleteCommentOrReply,
   commentsByPost,
 }) {
-  function renderPostContent(content) {
+
+  const renderPostContent =(content) =>{
     const { text, imageUrl, videoUrl } = content || {};
     return (
       <div>
@@ -30,6 +31,22 @@ function PostSection({
     );
   }
 
+  const countTotalComments = (comments) => {
+    let count = 0;
+
+    const countComments = (commentsArray) => {
+      commentsArray.forEach(comment => {
+        count += 1; // 计数当前评论
+        if (comment.replies && comment.replies.length > 0) {
+          countComments(comment.replies); // 递归计数回复
+        }
+      });
+    }
+
+    countComments(comments);
+    return count;
+  }
+
   return (
     <PostArea>
       <PostContainer>
@@ -37,7 +54,7 @@ function PostSection({
           <InputField
             value={postContent}
             onChange={(e) => setPostContent(e.target.value)}
-            placeholder="Write something here..."
+            placeholder="What's on your mind?"
             rows={4}
           />
         </InputWrapper>
@@ -45,42 +62,41 @@ function PostSection({
       </PostContainer>
 
       <PostsList>
-        {currentGroupPosts.map((post) => (
-          <PostItem key={post.objectId}>
-            <PostHeader>
-              <PostAvatar src={post.userAvatar} alt={`${post.userName}'s avatar`} />
-              <PostUsername>{post.userName}</PostUsername>
-            </PostHeader>
-            <ContentContainer>
-              <PostContent>{renderPostContent(post.content)}</PostContent>
+        {currentGroupPosts.map((post) => {
+          const postComments = commentsByPost[post.objectId] || [];
+          const totalComments = countTotalComments(postComments);
+
+          return (
+            <PostItem key={post.objectId}>
+              <PostHeader>
+                <PostAvatar src={post.userAvatar} alt={`${post.userName}'s avatar`} />
+                <PostUsername>{post.userName}</PostUsername>
+              </PostHeader>
+              <ContentContainer>
+                <PostContent>{renderPostContent(post.content)}</PostContent>
               </ContentContainer>
-            <PostActions>
-              <Like initialLikes={post.likes} objectId={post.objectId} />
-              <ActionButton onClick={() => toggleCommentSection(post.objectId)}>
-                <IconImage src={commentIcon} alt="Comment" />
-                Comment
-              </ActionButton>
-              <ActionButton onClick={() => handleDeletePost(post.objectId)}>
-                <IconImage src={trashIcon} alt="Delete" />
-                Delete
-              </ActionButton>
-            </PostActions>
-            {showCommentSection[post.objectId] && (
-              <CommentSection
-                comments={commentsByPost[post.objectId] || []}
-                onAddComment={(content) =>
-                  addCommentOrReply(post.objectId, content)
-                }
-                onReplySubmit={(content, parentId) =>
-                  addCommentOrReply(post.objectId, content, parentId)
-                }
-                onDelete={(commentId) =>
-                  deleteCommentOrReply(post.objectId, commentId)
-                }
-              />
-            )}
-          </PostItem>
-        ))}
+              <PostActions>
+                <Like objectId={post.objectId} />
+                <ActionButton onClick={() => toggleCommentSection(post.objectId)}>
+                  <IconImage src={commentIcon} alt="Comment" />
+                  Comment ({totalComments})
+                </ActionButton>
+                <ActionButton onClick={() => handleDeletePost(post.objectId)}>
+                  <IconImage src={trashIcon} alt="Delete" />
+                  Delete
+                </ActionButton>
+              </PostActions>
+              {showCommentSection[post.objectId] && (
+                <CommentSection
+                  comments={postComments}
+                  onAddComment={(content) => addCommentOrReply(post.objectId, content)}
+                  onReplySubmit={(content, parentId) => addCommentOrReply(post.objectId, content, parentId)}
+                  onDelete={(commentId) => deleteCommentOrReply(post.objectId, commentId)}
+                />
+              )}
+            </PostItem>
+          );
+        })}
       </PostsList>
     </PostArea>
   );

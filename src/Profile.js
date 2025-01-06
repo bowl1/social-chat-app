@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './ProfileComponents/Header';
-import MainContent from './ProfileComponents/MainComponent';
+import MainContent from './ProfileComponents/MainContent';
 import Footer from './ProfileComponents/Footer';
 
 function Profile() {

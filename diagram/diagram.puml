@@ -1,0 +1,128 @@
+@startuml Ghostapp Class Diagram
+class "App.js" {
+}
+"App.js" --> "Auth.js"
+"App.js" --> "Context_UserContext.js"
+"App.js" --> "Home.js"
+"App.js" --> "Profile.js"
+class "Auth.js" {
+    + Navigation()
+}
+"Auth.js" --> "AuthComponents_Login.js"
+"Auth.js" --> "AuthComponents_Signup.js"
+class "AuthComponents_Login.js" {
+    + LoginUser()
+    + handleSubmit()
+}
+"AuthComponents_Login.js" --> "Context_UserContext.js"
+class "Context_UserContext.js" {
+    + initUser()
+    + logoutUser()
+    + restoreOrFetchDefaultGroup()
+}
+"Context_UserContext.js" --> "Service_Backend.js"
+class "Service_Backend.js" {
+    + fetchGroupData()
+    + sendPostToDatabase()
+    + addCommentToDatabase()
+    + deletePostFromDatabase()
+    + deleteCommentFromDatabase()
+}
+class "AuthComponents_Signup.js" {
+    + handleSignup()
+    + handleSubmit()
+}
+"AuthComponents_Signup.js" --> "Context_UserContext.js"
+class "Home.js" {
+    + toggleLeftBar()
+  
+}
+"Home.js" --> "HomeComponents_Footer.js"
+"Home.js" --> "HomeComponents_LeftBar.js"
+"Home.js" --> "HomeComponents_Post.js"
+"Home.js" --> "HomeComponents_Posts_useUpload.js"
+"Home.js" --> "HomeComponents_TopBar.js"
+class "HomeComponents_Footer.js" {
+    + handleBackToTop()
+}
+class "HomeComponents_LeftBar.js" {
+    + handleGroupSelect()
+    + toggleDropdown()
+    + groupToDisplay()
+    + handleAvatarClick()
+}
+"HomeComponents_LeftBar.js" --> "Context_UserContext.js"
+class "HomeComponents_Post.js" {
+    + fetchPostsForGroup()
+    + sendPost()
+    + handleDeletePost()
+    + addCommentOrReply()
+    + addNestedReply()
+    + deleteCommentOrReply()
+    + deleteNestedComment()
+}
+"HomeComponents_Post.js" --> "Context_UserContext.js"
+"HomeComponents_Post.js" --> "Service_Backend.js"
+"HomeComponents_Post.js" --> "Service_FetchData.js"
+"HomeComponents_Post.js" --> "HomeComponents_PostSection.js"
+class "Service_FetchData.js" {
+    + loadPostsFromDatabase()
+    + loadCommentsFromDatabase()
+}
+class "HomeComponents_PostSection.js" {
+    + renderPostContent()
+    + countTotalComments()
+}
+"HomeComponents_PostSection.js" --> "HomeComponents_Posts_CommentSection.js"
+"HomeComponents_PostSection.js" --> "HomeComponents_Posts_Like.js"
+class "HomeComponents_Posts_CommentSection.js" {
+    +  handleAddComment()
+}
+"HomeComponents_Posts_CommentSection.js" --> "HomeComponents_Posts_Comment.js"
+class "HomeComponents_Posts_Comment.js" {
+    + handleReplySubmit()
+}
+"HomeComponents_Posts_Comment.js" --> "Context_UserContext.js"
+class "HomeComponents_Posts_Like.js" {
+    + fetchInitialLikes()
+    + handleLike()
+}
+"HomeComponents_Posts_Like.js" --> "Context_UserContext.js"
+class "HomeComponents_Posts_useUpload.js" {
+    + handlePhotoUpload()
+    + handleVideoUpload()
+    + clearUploads()
+}
+class "HomeComponents_TopBar.js" {
+    + handlePhotoChange()
+    + handleVideoChange()
+    + handleLogout()
+}
+"HomeComponents_TopBar.js" --> "Context_UserContext.js"
+class "Profile.js" {
+}
+"Profile.js" --> "ProfileComponents_Footer.js"
+"Profile.js" --> "ProfileComponents_Header.js"
+"Profile.js" --> "ProfileComponents_MainContent.js"
+class "ProfileComponents_Footer.js" {
+}
+class "ProfileComponents_Header.js" {
+    + handleLogout()
+    + toggleEditMode()
+    + handleInputChange()
+}
+"ProfileComponents_Header.js" --> "Context_UserContext.js"
+class "ProfileComponents_MainContent.js" {
+    + initFormData()
+    + toggleEditMode()
+    + handleInputChange()
+    + triggerFileInput()
+    + handleAvatarChange()
+    + handleAvatarUpdate()
+    + handleSubmit()
+}
+"ProfileComponents_MainContent.js" --> "Context_UserContext.js"
+class "index.js" {
+}
+"index.js" --> "App.js"
+@enduml

@@ -8,13 +8,13 @@ import {
   DescriptionText,
   FooterText,
 } from "./AuthStyle";
-import { UserContext } from "../hooks/UserContext";
+import { UserContext } from "../Context/UserContext";
 import Parse from "parse";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setUser, setAvatar, restoreOrFetchDefaultGroup } = useContext(UserContext);
+  const {setUser, setAvatar, restoreOrFetchDefaultGroup } = useContext(UserContext);
   const navigate = useNavigate();
 
   const loginUser = async (email, password) => {
@@ -52,6 +52,7 @@ function Login() {
       alert(`Error: ${error.message}`);
     }
   };
+  
   return (
     <div>
       <Header>👋 Hello again, GHOST</Header>
