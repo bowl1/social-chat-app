@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
 export const CommentContainer = styled.div`
-  margin-bottom: 70px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-top: 10px;
 `;
 
 export const CommentContent = styled.div`
@@ -18,6 +21,12 @@ export const CommentAvatar = styled.img`
 
 export const CommentAuthor = styled.span`
   font-weight: bold;
+  font-size: 20px;
+  margin-left: 10px;
+
+   @media (max-width: 768px) {
+    font-size: 16px; 
+
 `;
 
 export const CommentHeader = styled.div`
@@ -33,7 +42,11 @@ export const CommentText = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 40px;
-  font-size: 18px;
+  font-size: 20px;
+
+   @media (max-width: 768px) {
+    font-size: 16px; 
+
 `;
 
 export const ReplyTo = styled.span`
@@ -53,10 +66,10 @@ export const ActionButton = styled.button`
   display: flex;
   align-items: center;
   background-color: transparent;
-  font-size: 16px;
+  font-size: 20px;
 
-  @media (max-width: 480px) {
-    font-size: 13px; /* 小屏幕字体大小 */
+  @media (max-width: 768px) {
+    font-size: 13px; 
 `;
 
 export const IconImage = styled.img`
@@ -78,7 +91,7 @@ export const ReplyInputField = styled.input`
   border-radius: 8px;
   outline: none;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  font-size: 16px;
+  font-size: 20px;
 
   &:focus {
     border-color: #007bff;
@@ -94,7 +107,7 @@ export const ReplyButton = styled.button`
   border: none;
   cursor: pointer;
   border-radius: 8px;
-  font-size: 18px;
+  font-size: 20px;
 `;
 
 export const ReplyList = styled.div`

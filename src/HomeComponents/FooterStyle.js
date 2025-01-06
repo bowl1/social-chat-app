@@ -3,31 +3,27 @@ import styled from "styled-components";
 export const FooterSection = styled.footer`
   background-color: rgba(48, 114, 120, 1);
   display: flex;
-  font-family: Avenir Next;
-  flex-wrap: wrap;
-  padding: 1px 40px;
+  padding: 0 30px;
   justify-content: space-between;
-  bottom: 0;
-  max-height: 8vh;
-  min-height: fit-content;
-  align-items: center;
-  box-sizing: border-box; //如果未设置 box-sizing: border-box，元素宽度会加上 padding 和 border，导致宽度超出父容器。
+`;
 
-  @media (max-width: 991px) {
-    padding: 0 20px;
-  }
+export const LogoContainer = styled.div`
+  display: flex;
 `;
 
 export const Logo = styled.img`
-  object-fit: contain;
-  width: 60px;
-  align-self: center;
+  width: 70px;
+  filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.5));
 `;
 
 export const BrandContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const BrandName = styled.h2`
@@ -42,7 +38,6 @@ export const Copyright = styled.p`
   color: #fff;
   font-size: 14px;
   font-weight: 400;
-  opacity: 0.5;
   margin-top: 0px;
 `;
 
@@ -55,10 +50,43 @@ export const BackToTopButton = styled.button`
     rgba(255, 255, 255, 0.5) 16.09%,
     rgba(255, 255, 255, 0.1) 105.27%
   );
-  max-height: 4vmax;
   font-size: 14px;
   color: #fff;
   font-weight: 400;
   padding: 10px 10px;
   cursor: pointer;
+`;
+
+export const MenuIcon = styled.img`
+  height: 25px;
+  cursor: pointer;
+  background-color: #ffef94;
+  border-radius: 30%;
+
+  /* 在小屏幕下显示图标 */
+  @media (max-width: 768px) {
+    display: flex;
+  }
+`;
+export const MenuContainer = styled.div`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  flex-direction: column;
+
+  /* 默认隐藏图标 */
+  display: none;
+
+  /* 在小屏幕下显示图标 */
+  @media (max-width: 768px) {
+    display: flex;
+    align-self: center;
+    gap: 3px;
+    margin-bottom: -8px;
+  }
+
+  span {
+    font-size: 13px;
+    color: #fff;
+  }
 `;

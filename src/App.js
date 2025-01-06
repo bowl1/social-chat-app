@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Home from "./Home";
 import Profile from "./Profile";
-import { UserProvider} from './hooks/UserContext';
+import { UserProvider} from './Context/UserContext';
 import { GlobalStyles } from "./AppStyle";
 import Auth from "./Auth";
 

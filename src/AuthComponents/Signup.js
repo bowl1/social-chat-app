@@ -8,16 +8,15 @@ import {
   DescriptionText,
   FooterText,
 } from "./AuthStyle";
-import { UserContext } from "../hooks/UserContext";
+import { UserContext } from "../Context/UserContext";
 import Parse from "parse";
-
 
 export default function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const {setUser } = useContext(UserContext); // 只需 setUser，分组逻辑统一处理
+  const {setUser } = useContext(UserContext); 
   const navigate = useNavigate();
 
   const handleSignup = async (username, email, password) => {
@@ -27,16 +26,9 @@ export default function Signup() {
       newUser.set("username", username);
       newUser.set("email", email);
       newUser.set("password", password);
-
-      // 保存用户
-      const savedUser = await newUser.signUp();
-
-      // 配置默认 ACL
-      const acl = new Parse.ACL();
-      acl.setPublicReadAccess(true); // 允许所有人读取
-      acl.setWriteAccess(savedUser, true); // 仅允许用户自己写入
-      newUser.setACL(acl);
-      await savedUser.save();
+ 
+       // 保存用户,后端自动设置ACL
+       const savedUser = await newUser.signUp();
 
       // 更新全局用户状态
       setUser(savedUser);

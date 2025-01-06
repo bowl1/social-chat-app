@@ -1,23 +1,48 @@
-GHOST APP
+### 1.How to run the code: 
 
-This is a social app featuring a home page, a profile page and signup/login page. 
-Currently, users can create posts, comment on posts, change post group and update their profile. 
-The web app is also responsive to both desktop and mobile screens,
+- After downloading the code from GitHub, first run "npm i", then run "npm start". This will take you to the registration/login page. <br>
+- You can use our test account: Username: 123@123.com, Password: 123.  <br>
+- You are also welcomed to create your own username and password to register and log in.
 
-![截屏2024-12-04 18 48 15](https://github.com/user-attachments/assets/de640963-5cd6-470f-9b8d-40f777879513)
-![截屏2024-12-04 18 48 06](https://github.com/user-attachments/assets/4b01abee-d573-4b83-aa8c-621dd4a1ceb1)
-![截屏2024-12-04 18 44 16](https://github.com/user-attachments/assets/11064f3f-312a-433c-80b9-05254a07687a)
-![截屏2024-12-04 18 43 35](https://github.com/user-attachments/assets/3d57e697-30ec-4f51-9f5d-e1a6e3d18b81)
-![截屏2024-12-04 18 44 30](https://github.com/user-attachments/assets/cc11d4b4-4bde-4f15-ad55-e1da6a4956a9)
-![截屏2024-12-04 18 44 59](https://github.com/user-attachments/assets/28905693-7682-4fb1-aa35-8f5f94f0ffbb)
-![截屏2024-12-04 18 45 12](https://github.com/user-attachments/assets/0e86cbc4-5908-4082-805f-83968cef8c5e)
+### 2.Introduction:
 
-![截屏2024-12-04 18 47 54](https://github.com/user-attachments/assets/8f734c03-613e-4fed-aa17-8f9f9d01e89f)
-![截屏2024-12-04 18 47 47](https://github.com/user-attachments/assets/6af3f55e-4df2-4105-bdc6-20d7d5ffc877)
-![截屏2024-12-04 18 45 56](https://github.com/user-attachments/assets/a5192b64-47fd-4f62-87eb-bdf4d0d1a4e8)
-![截屏2024-12-04 18 46 17](https://github.com/user-attachments/assets/42140df3-c3c8-440c-a712-e5590a3bffa0)
-![截屏2024-12-04 18 46 48](https://github.com/user-attachments/assets/3cc67ce8-ea91-4a6c-9c36-dc8f4c34d451)
-![截屏2024-12-04 18 46 26](https://github.com/user-attachments/assets/42b3bc8d-8604-45bf-85bb-1b5c03fef269)
+Ghost - Social Sharing Platform
+
+- Ghost is a social network for young adults dealing with anxiety, depression, or other mental health struggles. It’s a safe, anonymous space where users can share their thoughts, connect with others who understand, and feel supported. The platform includes features like posting, group selecting, and personalized profiles based on mental health experiences. Ghost aims to help users feel heard, build connections, and better understand their mental health in a simple, supportive way.  <br>
+- Currently, users can create posts, comment on posts, change post group and update their profile. 
+
+- The backend database of the project is developed using Parse and hosted on Back4App.
+
+- The web app is also responsive to both desktop and mobile screens,
+
+### 3.Video and screenshots
+
+- Video
+
+![Demo GIF](./images/demo.gif)
+
+
+- Web UI
+
+<img src="images/screenshot1.png" alt="Description" width="300">    
+<img src="images/screenshot2.png" alt="Description" width="300">    
+<img src="images/screenshot3.png" alt="Description" width="300">    
+<img src="images/screenshot4.png" alt="Description" width="300">    
+<img src="images/screenshot5.png" alt="Description" width="300">    
+<img src="images/screenshot6.png" alt="Description" width="300">    
+<img src="images/screenshot7.png" alt="Description" width="300">    
+
+---
+
+- Mobile UI
+
+<img src="images/screenshot_m1.png" alt="Description" width="150">    
+<img src="images/screenshot_m2.png" alt="Description" width="150">    
+<img src="images/screenshot_m3.png" alt="Description" width="150">    
+<img src="images/screenshot_m4.png" alt="Description" width="150">    
+<img src="images/screenshot_m5.png" alt="Description" width="150">    
+<img src="images/screenshot_m6.png" alt="Description" width="150">    
+
 
 
 
