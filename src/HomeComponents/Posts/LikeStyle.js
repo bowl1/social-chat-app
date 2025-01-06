@@ -12,27 +12,28 @@ export const LikeButton = styled.button`
   display: flex; 
   align-items: center; 
   background-color: transparent;
-  font-size: 16px;
+  font-size: 20px;
   gap: 4px;
 
-     @media (max-width: 480px) {
+     @media (max-width: 768px) {
     font-size: 14px; 
+`;
+
+
+export const LikeCount = styled.span`
+  font-size: 16px; 
+  color: #333;
+
+     @media (max-width: 768px) {
+    font-size: 13px; 
 `;
 
 export const IconImage = styled.img`
   width: 30px;
   height: 30px;
 
-  @media (max-width: 480px) {
+  @media (max-width: 768px) {
     width: 10px;
     height: 10px;
-  }
-`;
-
-export const LikeCount = styled.span`
-  font-size: 16px; 
-  color: #333;
-
-     @media (max-width: 480px) {
-    font-size: 13px; 
+ }
 `;

@@ -1,12 +1,17 @@
-import React, { useState,useEffect,useContext} from "react";
+import React, { useState } from "react";
 import Footer from "./HomeComponents/Footer";
 import LeftBar from "./HomeComponents/LeftBar";
 import TopBar from "./HomeComponents/TopBar";
 import Post from "./HomeComponents/Post";
-import useUpload from "./HomeComponents/Posts/upload";
-import {fetchGroupData} from "./HomeComponents/Service/backend";
-import {UserContext} from "./hooks/UserContext";
-import {HomeContainer,ContentContainer,LeftBarContainer,PostContainer,FooterContainer } from "./HomeStyles"; 
+import useUpload from "./HomeComponents/Posts/useUpload";
+import {
+  HomeContainer,
+  TopBarContainer,
+  ContentContainer,
+  LeftBarContainer,
+  PostContainer,
+  FooterContainer,
+} from "./HomeStyle";
 
 function Home() {
   const {
@@ -17,48 +22,26 @@ function Home() {
     clearUploads,
   } = useUpload();
 
-  const { setSelectedGroup,selectedGroup } = useContext(UserContext);
-  const [groupData, setGroupData] = useState([]); 
-
-
-  // 获取分组数据
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const groups = await fetchGroupData(); // 从后端获取分组数据
-        setGroupData(groups);
+  const [isLeftBarVisible, setIsLeftBarVisible] = useState(false);
   
-        const savedGroup = localStorage.getItem("selectedGroup");
-        if (savedGroup) {
-          setSelectedGroup(JSON.parse(savedGroup));
-          return;
-        }
-  
-        if (!selectedGroup) {
-          const defaultGroup = groups.find((group) => group.isDefault);
-          if (defaultGroup) {
-            setSelectedGroup(defaultGroup);
-          }
-        }
-      } catch (error) {
-        console.error("Error fetching group data:", error);
-      }
-    };
-  
-    fetchData();
-  }, [setSelectedGroup, selectedGroup]);
+  // 切换 LeftBar 的显示状态
+  const toggleLeftBar = () => {
+    setIsLeftBarVisible((prev) => !prev);
+  };
 
   return (
     <HomeContainer>
+      <TopBarContainer>
         <TopBar
           onPhotoUpload={handlePhotoUpload}
           onVideoUpload={handleVideoUpload}
         />
+      </TopBarContainer>
       <ContentContainer>
-        <LeftBarContainer>
-          <LeftBar groupData={groupData} />
+        <LeftBarContainer $isLeftBarExpanded={isLeftBarVisible}>
+          <LeftBar/>
         </LeftBarContainer>
-        <PostContainer>
+        <PostContainer $isLeftBarExpanded={isLeftBarVisible}>
           <Post
             uploadedImage={uploadedImage}
             uploadedVideo={uploadedVideo}
@@ -67,7 +50,7 @@ function Home() {
         </PostContainer>
       </ContentContainer>
       <FooterContainer>
-      <Footer />
+        <Footer toggleLeftBar={toggleLeftBar} />
       </FooterContainer>
     </HomeContainer>
   );

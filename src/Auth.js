@@ -10,30 +10,21 @@ import {
   Logo,
 } from "./AuthComponents/AuthStyle";
 
-const Navigation = () => {
-  const location = useLocation(); // Detect current route
-
-  return (
-    <NavBar>
-      <Link to="/" className={location.pathname === "/" ? "active" : ""}>
-        Login
-      </Link>
-      <Link
-        to="/signup"
-        className={location.pathname === "/signup" ? "active" : ""}
-      >
-        Signup
-      </Link>
-    </NavBar>
-  );
-};
-
 function Auth({ path }) {
+  const location = useLocation(); 
+
   return (
     <AuthContainer>
       <Logo src={LogoImage} alt="Logo" />
       <FormContainer>
-        <Navigation />
+        <NavBar>
+          <Link to="/" className={location.pathname === "/" ? "active" : ""}>
+            Login
+          </Link>
+          <Link to="/signup" className={location.pathname === "/signup" ? "active" : ""}>
+            Signup
+          </Link> 
+        </NavBar>
         {path === "/" ? <Login /> : <Signup />}
       </FormContainer>
     </AuthContainer>

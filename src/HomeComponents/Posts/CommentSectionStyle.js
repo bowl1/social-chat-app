@@ -20,8 +20,9 @@ export const CommentInput = styled.input`
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   font-size: 16px;
 
-     @media (max-width: 480px) {
-    font-size: 13px; /* 小屏幕字体大小 */
+     @media (max-width: 768px) {
+    font-size: 13px; 
+}
 `;
 
 export const AddCommentButton = styled.button`
@@ -38,16 +39,10 @@ export const AddCommentButton = styled.button`
     background-color: rgba(48, 114, 120, 0.8);
   }
 
-     @media (max-width: 480px) {
-    font-size: 12px; /* 小屏幕字体大小 */
+     @media (max-width: 768px) {
+    font-size: 12px; 
 `;
 
 export const CommentsList = styled.div`
-  margin-top: 10px;
-  
-`;
-
-export const RepliesContainer = styled.div`
-  margin-left: 20px; /* 缩进显示子评论 */
-  margin-top: 5px;
+  margin-top: 10px; 
 `;

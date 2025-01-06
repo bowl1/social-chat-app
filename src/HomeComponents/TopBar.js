@@ -1,10 +1,9 @@
 import React, { useState, useContext } from "react";
-import {DashboardHeader,TopBarContainer,WelcomeSection,GreetingContainer,WelcomeHeading,WelcomeSubheading,
-  UploadSection,UploadLabel,LogoutContainer,} from "./TopBarStyle"; 
+import {TopBarContainer,WelcomeSection,WelcomeHeading,UploadSection,UploadLabel,LogoutContainer,} from "./TopBarStyle"; 
 import uploadPhotos from "../Assets/uploadPhotos.png";
 import uploadVideos from "../Assets/uploadVideos.png";
 import logoutIcon from "../Assets/logout.png";
-import { UserContext } from "../hooks/UserContext";
+import { UserContext } from "../Context/UserContext";
 import { useNavigate } from "react-router-dom";
 
 function TopBar({ onPhotoUpload, onVideoUpload }) {
@@ -36,15 +35,12 @@ function TopBar({ onPhotoUpload, onVideoUpload }) {
   };
 
   return (
-    <DashboardHeader>
       <TopBarContainer>
         <WelcomeSection>
-          <GreetingContainer>
             <WelcomeHeading>
-              Welcome back, {user ? user.get("username") : "Guest"}!
+              Welcome back Little Ghost {user ? user.get("username") : "Guest"}!<br />
+              You’re not alone &#10084;
             </WelcomeHeading>
-            <WelcomeSubheading>Here is what you've missed</WelcomeSubheading>
-          </GreetingContainer>
         </WelcomeSection>
 
         <UploadSection>
@@ -58,7 +54,7 @@ function TopBar({ onPhotoUpload, onVideoUpload }) {
           />
           <UploadLabel htmlFor="upload-photo">
             <img src={uploadPhotos} alt="Upload" />
-            <span>Upload Photo</span>
+            <span>Photo</span>
           </UploadLabel>
 
           <input
@@ -71,7 +67,7 @@ function TopBar({ onPhotoUpload, onVideoUpload }) {
           />
           <UploadLabel htmlFor="upload-video">
             <img src={uploadVideos} alt="Upload Video" />
-            <span>Upload Video</span>
+            <span>Video</span>
           </UploadLabel>
         </UploadSection>
 
@@ -80,7 +76,6 @@ function TopBar({ onPhotoUpload, onVideoUpload }) {
           <span>Log out</span>
         </LogoutContainer>
       </TopBarContainer>
-    </DashboardHeader>
   );
 }
 

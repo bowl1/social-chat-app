@@ -5,7 +5,6 @@ export const PostArea = styled.article`
   max-width: 100%;
   flex-direction: column;
   color: rgba(15, 25, 26, 0.5);
-
   align-items: center;
   justify-content: center;
 `;
@@ -19,7 +18,7 @@ export const PostContainer = styled.div`
   border: 5px solid #f0f2f5;
   margin: 10px;
   border-radius: 20px;
-  box-sizing: border-box;  /* 包括边框和内边距 */
+  box-sizing: border-box;
 `;
 
 export const InputWrapper = styled.div`
@@ -27,16 +26,21 @@ export const InputWrapper = styled.div`
   display: flex;
   gap: 9px;
   width: 100%;
+
 `;
 
 export const InputField = styled.textarea`
   width: 100%;
   padding: 10px;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 1.5;
   resize: none;
   border: none;
   border-radius: 18px;
+
+   @media (max-width: 768px) {
+    font-size: 16px; 
+
 `;
 
 export const ActionIcon = styled.img`
@@ -55,9 +59,9 @@ export const PostsList = styled.div`
 
 export const PostItem = styled.div`
   background-color: #f0f2f5;
-  padding: 10px;
-  margin-top: 10px;
-  border-radius: 20px;
+  padding: 20px;
+  margin-top: 30px;
+  border-radius: 40px;
   width: 100%;
   box-sizing: border-box;
 `;
@@ -77,7 +81,11 @@ export const PostAvatar = styled.img`
 
 export const PostUsername = styled.span`
   font-weight: bold;
-  font-size: 20px;
+  font-size: 25px;
+
+  @media (max-width: 768px) {
+    font-size: 18px; 
+
 `;
 
 export const ContentContainer = styled.div`
@@ -88,8 +96,8 @@ export const PostContent = styled.div`
   font-size: 20px;
   color: #333;
   
-   @media (max-width: 480px) {
-    font-size: 16px; /* 小屏幕字体大小 */
+   @media (max-width: 768px) {
+    font-size: 16px; 
 `;
 
 export const UploadedMedia = styled.div`
@@ -111,7 +119,7 @@ export const UploadedMedia = styled.div`
     max-width: 500px; 
     max-height: 300px; /* 限制最大高度 */
     height: auto; /* 保持视频的纵横比 */
-    max-height: 300px;  /* 最大高度，确保视频不会太大 */
+    max-height: 300px;  
   `}
 
   @media (max-width: 768px) {
@@ -133,10 +141,10 @@ export const ActionButton = styled.button`
   display: flex;
   align-items: center;
   background-color: transparent;
-  font-size: 16px;
+  font-size: 20px;
 
-   @media (max-width: 480px) {
-    font-size: 14px; /* 小屏幕字体大小 */
+   @media (max-width: 768px) {
+    font-size: 14px; 
 `;
 
 export const IconImage = styled.img`
@@ -144,9 +152,11 @@ export const IconImage = styled.img`
   height: 30px;
   margin-right: 5px;
 
-  @media (max-width: 480px) {
+  @media (max-width: 768px) {
     width: 10px;
     height: 10px;
  }
 `;
+
+
 
