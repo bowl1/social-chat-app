@@ -1,3 +1,4 @@
+# Ghost - Social Sharing Platform
 ### 1.How to run the code: 
 
 - After downloading the code from GitHub, first run "npm i", then run "npm start". This will take you to the registration/login page. <br>
@@ -18,31 +19,35 @@ Ghost - Social Sharing Platform
 ### 3.Video and screenshots
 
 - Video
+<p align = "center">
+  <img src="./images/demo.gif" alt="Description" width="800">  
+</p>
 
-![Demo GIF](./images/demo.gif)
-
+---
 
 - Web UI
 
+<p align = "center">
 <img src="images/screenshot1.png" alt="Description" width="300">    
 <img src="images/screenshot2.png" alt="Description" width="300">    
 <img src="images/screenshot3.png" alt="Description" width="300">    
 <img src="images/screenshot4.png" alt="Description" width="300">    
 <img src="images/screenshot5.png" alt="Description" width="300">    
 <img src="images/screenshot6.png" alt="Description" width="300">    
-<img src="images/screenshot7.png" alt="Description" width="300">    
+<img src="images/screenshot7.png" alt="Description" width="300"> 
+</p>
 
 ---
 
 - Mobile UI
-
+<p align = "center">
 <img src="images/screenshot_m1.png" alt="Description" width="150">    
 <img src="images/screenshot_m2.png" alt="Description" width="150">    
 <img src="images/screenshot_m3.png" alt="Description" width="150">    
 <img src="images/screenshot_m4.png" alt="Description" width="150">    
 <img src="images/screenshot_m5.png" alt="Description" width="150">    
 <img src="images/screenshot_m6.png" alt="Description" width="150">    
-
+</p>
 
 
 
