@@ -1,6 +1,6 @@
 # Ghost - Social Sharing Platform
 ### 1.How to run the code: 
-
+- It is developed with React. The backend database is supported by back4app.
 - After downloading the code from GitHub, first run "npm i", then run "npm start". This will take you to the registration/login page. <br>
 - You can use our test account: Username: 123@123.com, Password: 123.  <br>
 - You are also welcomed to create your own username and password to register and log in.
