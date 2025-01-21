@@ -47,7 +47,7 @@ function Login() {
 
       // 弹出登录成功提示，并导航到首页
       alert("Login successful!");
-      navigate("/home");
+      navigate("/");
     } catch (error) {
       alert(`Error: ${error.message}`);
     }

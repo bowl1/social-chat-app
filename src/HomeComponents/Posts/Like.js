@@ -3,51 +3,44 @@ import heartIcon from "../../Assets/heart.png";
 import heartPlusIcon from "../../Assets/heart_plus.png";
 import Parse from "parse";
 import { LikeContainer, LikeButton, IconImage, LikeCount } from "./LikeStyle";
-import { UserContext } from "../../Context/UserContext"; // 导入 UserContext
+import { UserContext } from "../../Context/UserContext"; 
 
 function Like({ objectId }) {
-  const {user } = useContext(UserContext); // 获取当前用户信息
-  const userId = user?.id; // 获取当前用户的唯一标识符
-  const [likes, setLikes] = useState([]); // 初始为空数组
-  const [liked, setLiked] = useState(false); // 初始状态是否已点赞
+  const { user } = useContext(UserContext); 
+  const userId = user?.id; 
+  const [likes, setLikes] = useState([]); // 存储点赞用户 ID 的数组
+  const [liked, setLiked] = useState(false); // 当前用户是否已点赞
 
-  // 获取帖子初始点赞状态
   const fetchInitialLikes = async () => {
     if (!objectId) return; // 如果没有帖子 ID，直接返回
-  
-    const PostObject = Parse.Object.extend("Post");
-    const postQuery = new Parse.Query(PostObject);
-  
+
     try {
-      const post = await postQuery.get(objectId);
-      const currentLikes = post.get("likes") || [];
-      setLikes(currentLikes); // 直接使用组件的状态更新函数
-  
-      const userAlreadyLiked = currentLikes.includes(userId);
-      setLiked(userAlreadyLiked); // 直接更新状态
+      const result = await Parse.Cloud.run("fetchInitialLikes", { postId: objectId });
+      const currentLikes = result.likes || [];
+      setLikes(currentLikes); // 更新点赞用户数组
+      setLiked(currentLikes.includes(userId)); // 检查当前用户是否已点赞
     } catch (error) {
-      console.error("Error fetching likes:", error);
+      console.error("Error fetching likes:", error.message);
     }
   };
-  
+
   useEffect(() => {
     fetchInitialLikes();
-  }, [objectId, userId]); // 每次 objectId 或 userId 改变时重新加载点赞数据
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [objectId, userId]); // 当 objectId 或 userId 变化时重新获取点赞数据
 
   const handleLike = async () => {
+    if (!user) {
+      alert("Please log in to like posts!");
+      return;
+    }
+
     try {
-      const response = await Parse.Cloud.run("updateLikes", {
-        postId: objectId,
-        userId: user.id,
-      });
-  
-      if (response.success) {
-        setLikes(response.likesCount); // 更新点赞数
-        setLiked(!liked); // 切换点赞状态
-      }
+      const result = await Parse.Cloud.run("updateLikes", { postId: objectId, userId });
+      setLikes(result.likes); // 更新最新点赞数据
+      setLiked(result.likes.includes(userId)); // 更新点赞状态
     } catch (error) {
-      console.error("Failed to toggle like:", error);
-      alert(`Failed to toggle like: ${error.message}`);
+      console.error("Error updating likes:", error.message);
     }
   };
 
@@ -55,9 +48,9 @@ function Like({ objectId }) {
     <LikeContainer>
       <LikeButton onClick={handleLike}>
         <IconImage src={liked ? heartPlusIcon : heartIcon} alt="Like" />
-        Likes
+        {liked ? "Unlike" : "Like"}
       </LikeButton>
-      <LikeCount>{likes}</LikeCount>
+      <LikeCount>{likes.length}</LikeCount> 
     </LikeContainer>
   );
 }

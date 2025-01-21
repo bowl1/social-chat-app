@@ -18,14 +18,14 @@ function Auth({ path }) {
       <Logo src={LogoImage} alt="Logo" />
       <FormContainer>
         <NavBar>
-          <Link to="/" className={location.pathname === "/" ? "active" : ""}>
+          <Link to="/login" className={location.pathname === "/login" ? "active" : ""}>
             Login
           </Link>
           <Link to="/signup" className={location.pathname === "/signup" ? "active" : ""}>
             Signup
           </Link> 
         </NavBar>
-        {path === "/" ? <Login /> : <Signup />}
+        {path === "/login" ? <Login /> : <Signup />}
       </FormContainer>
     </AuthContainer>
   );

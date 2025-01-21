@@ -1,10 +1,19 @@
 import React, { useState, useContext } from "react";
-import {TopBarContainer,WelcomeSection,WelcomeHeading,UploadSection,UploadLabel,LogoutContainer,} from "./TopBarStyle"; 
+import {
+  TopBarContainer,
+  WelcomeSection,
+  WelcomeHeading,
+  UploadSection,
+  UploadLabel,
+  LogoutContainer,
+  SignInContainer,
+} from "./TopBarStyle";
 import uploadPhotos from "../Assets/uploadPhotos.png";
 import uploadVideos from "../Assets/uploadVideos.png";
 import logoutIcon from "../Assets/logout.png";
 import { UserContext } from "../Context/UserContext";
 import { useNavigate } from "react-router-dom";
+import signInIcon from "../Assets/signin.png";
 
 function TopBar({ onPhotoUpload, onVideoUpload }) {
   const { user, logoutUser } = useContext(UserContext);
@@ -34,48 +43,64 @@ function TopBar({ onPhotoUpload, onVideoUpload }) {
     }
   };
 
+  const handleSignIn = () => {
+    navigate("/login");
+  };
+
   return (
-      <TopBarContainer>
-        <WelcomeSection>
-            <WelcomeHeading>
-              Welcome back Little Ghost {user ? user.get("username") : "Guest"}!<br />
-              You’re not alone &#10084;
-            </WelcomeHeading>
-        </WelcomeSection>
+    <TopBarContainer>
+      <WelcomeSection>
+        <WelcomeHeading>
+          <span className="desktop">
+            Welcome back Little Ghost {user ? user.get("username") : "Guest"}!
+            <br />
+            You’re not alone &#10084;
+          </span>
+          <span className="mobile">
+            <p>Welcome</p> 
+            <p>{user ? user.get("username") : "Guest"}!</p>
+          </span>
+        </WelcomeHeading>
+      </WelcomeSection>
 
-        <UploadSection>
-          <input
-            key={`photo-${photoInputKey}`}
-            type="file"
-            accept="image/*"
-            onChange={handlePhotoChange}
-            style={{ display: "none" }}
-            id="upload-photo"
-          />
-          <UploadLabel htmlFor="upload-photo">
-            <img src={uploadPhotos} alt="Upload" />
-            <span>Photo</span>
-          </UploadLabel>
+      <UploadSection>
+        <input
+          key={`photo-${photoInputKey}`}
+          type="file"
+          accept="image/*"
+          onChange={handlePhotoChange}
+          style={{ display: "none" }}
+          id="upload-photo"
+        />
+        <UploadLabel htmlFor="upload-photo">
+          <img src={uploadPhotos} alt="Upload" />
+          <span>Photo</span>
+        </UploadLabel>
 
-          <input
-            key={`video-${videoInputKey}`}
-            type="file"
-            accept="video/*"
-            onChange={handleVideoChange}
-            style={{ display: "none" }}
-            id="upload-video"
-          />
-          <UploadLabel htmlFor="upload-video">
-            <img src={uploadVideos} alt="Upload Video" />
-            <span>Video</span>
-          </UploadLabel>
-        </UploadSection>
+        <input
+          key={`video-${videoInputKey}`}
+          type="file"
+          accept="video/*"
+          onChange={handleVideoChange}
+          style={{ display: "none" }}
+          id="upload-video"
+        />
+        <UploadLabel htmlFor="upload-video">
+          <img src={uploadVideos} alt="Upload Video" />
+          <span>Video</span>
+        </UploadLabel>
+      </UploadSection>
 
-        <LogoutContainer onClick={handleLogout}>
-          <img src={logoutIcon} alt="Log out" />
-          <span>Log out</span>
-        </LogoutContainer>
-      </TopBarContainer>
+      <SignInContainer onClick={handleSignIn}>
+        <img src={signInIcon} alt="Sign In" />
+        <span>Sign In</span>
+      </SignInContainer>
+
+      <LogoutContainer onClick={handleLogout}>
+        <img src={logoutIcon} alt="Log out" />
+        <span>Log out</span>
+      </LogoutContainer>
+    </TopBarContainer>
   );
 }
 

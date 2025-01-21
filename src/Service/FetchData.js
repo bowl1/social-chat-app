@@ -2,11 +2,11 @@ import Parse from "parse";
 
 // 工具函数：提取用户信息
 const extractAuthorInfo = (author) => {
-  if (!author) return { username: "Guest", avatarUrl: "https://via.placeholder.com/50" };
+  if (!author) return { username: "Guest", avatarUrl: "https://avatar.iran.liara.run/public"};
   
   const username = author.get("username") || "Guest";
   const avatarFile = author.get("avatar");
-  const avatarUrl = avatarFile?.url() || "https://via.placeholder.com/50";
+  const avatarUrl = avatarFile?.url() ||"https://avatar.iran.liara.run/public";;
   
   return { username, avatarUrl };
 };
@@ -81,12 +81,12 @@ export const loadCommentsFromDatabase = async (postId) => {
     const nestedComments = [];
     comments.forEach((comment) => {
       if (comment.parentId) {
-        // // 子评论：将其添加到父评论的 replies 数组中
+        // 子评论：将其添加到父评论的 replies 数组中
         if (commentMap[comment.parentId]) {
           commentMap[comment.parentId].replies.push(comment);
         }
       } else {
-        // // 顶级评论：直接添加到 nestedComments 数组
+        // 顶级评论：直接添加到 nestedComments 数组
         nestedComments.push(comment);
       }
     });

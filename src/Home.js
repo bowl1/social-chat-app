@@ -24,7 +24,6 @@ function Home() {
 
   const [isLeftBarVisible, setIsLeftBarVisible] = useState(false);
   
-  // 切换 LeftBar 的显示状态
   const toggleLeftBar = () => {
     setIsLeftBarVisible((prev) => !prev);
   };

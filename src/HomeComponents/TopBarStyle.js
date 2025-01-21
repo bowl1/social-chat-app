@@ -6,7 +6,7 @@ export const TopBarContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
-  box-sizing: border-box; /* 包括内边距和边框 */
+  box-sizing: border-box; 
   width: 100%;
 
 `;
@@ -26,11 +26,28 @@ export const WelcomeHeading = styled.h1`
   line-height: 1.5;
   letter-spacing: 0.2px;
 
-   @media (max-width: 768px) {
-    font-size: 16px; 
-    font-weight: 500;
+  .desktop {
+    display: block;
+  }
+
+  .mobile {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 18px; 
+    font-weight: 700;
+    line-height: 0.5;
+
+    .desktop {
+      display: none;
+    }
+    .mobile {
+      display: block;
+    }
   }
 `;
+
 
 export const UploadSection = styled.section`
 display: flex;
@@ -88,6 +105,39 @@ export const LogoutContainer = styled.div`
     width: 40px; 
     height: 40px;
     margin-bottom: 5px;
+
+    @media (max-width: 768px) {
+      width: 30px; 
+      height: 30px; 
+    }
+  }
+
+  span {
+    font-size: 20px; 
+
+    @media (max-width: 768px) {
+      font-size: 10px; 
+    }
+  }
+`;
+
+export const SignInContainer = styled.div`
+display: flex;
+  flex-direction: column; 
+  align-items: center;
+  cursor: pointer;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  width: 10%;
+ 
+
+  img {
+    width: 40px; 
+    height: 40px;
+    margin-bottom: 5px;
+    background-color: #fff;
+    border-radius: 50%;
 
     @media (max-width: 768px) {
       width: 30px; 

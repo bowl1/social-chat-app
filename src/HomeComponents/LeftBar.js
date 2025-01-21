@@ -15,7 +15,8 @@ import {
 } from "./LeftBarStyle";
 
 function LeftBar() {
-  const {user, selectedGroup, setSelectedGroup, avatar, groupData } = useContext(UserContext);
+  const { user, selectedGroup, setSelectedGroup, avatar, groupData } =
+    useContext(UserContext);
   const [showDropdown, setShowDropdown] = useState(false);
   const navigate = useNavigate();
 
@@ -40,7 +41,16 @@ function LeftBar() {
           alt="User profile"
           onClick={handleAvatarClick}
         />
-        <Username>{user ? user.get("username") : "Guest"}</Username>
+        <Username>
+          {user ? (
+            user.get("username")
+          ) : (
+            <>
+              <p>Guest</p>
+              <small>please sign in</small>
+            </>
+          )}
+        </Username>
         <GroupTitle>{groupToDisplay}</GroupTitle>
         <GroupSwitcher onClick={toggleDropdown}>
           <GroupIcon src={switchGroup} alt="Change group icon" />

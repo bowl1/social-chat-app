@@ -20,7 +20,7 @@ function Header() {
   const handleLogout = async () => {
     try {
       await logoutUser();
-      navigate("/"); 
+      navigate("/login"); 
     } catch (error) {
       console.error("Error logging out:", error);
       alert("Failed to log out. Please try again.");
@@ -29,7 +29,7 @@ function Header() {
 
   return (
     <HeaderContainer>
-      <BackButtonContainer onClick={() => navigate("/home")}>
+      <BackButtonContainer onClick={() => navigate("/")}>
         <Icon src={backIcon} alt="Back Icon" />
         <BackButton>Back</BackButton>
       </BackButtonContainer>
