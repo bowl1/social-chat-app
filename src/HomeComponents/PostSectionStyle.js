@@ -104,26 +104,24 @@ export const UploadedMedia = styled.div`
   border-radius: 8px;
   margin-top: 10px;
 
-  /* 图片 */
   ${(props) => props.as === "img" && `
     width: 100%;
     max-width: 500px; 
-    max-height: 300px; /* 限制最大高度 */
-    height: auto; /* 保持图片的纵横比 */
+    max-height: 300px; 
+    height: auto; 
     object-fit: contain; /* 保证图片不会被拉伸或压缩 */
   `}
 
-  /* 视频 */
   ${(props) => props.as === "video" && `
     width: 100%;
     max-width: 500px; 
-    max-height: 300px; /* 限制最大高度 */
-    height: auto; /* 保持视频的纵横比 */
+    max-height: 300px; 
+    height: auto; 
     max-height: 300px;  
   `}
 
   @media (max-width: 768px) {
-    width: 80%; /* 小屏幕下的宽度 */
+    width: 80%; 
     height: auto;
   }
 `;

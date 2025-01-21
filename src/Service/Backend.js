@@ -1,11 +1,10 @@
 import Parse from "parse";
 
-// 通用工具函数
 const createPointer = (className, objectId) => {
   const ObjectClass = Parse.Object.extend(className); // 动态生成类
-  const pointer = new ObjectClass(); // 创建一个新对象
+  const pointer = new ObjectClass(); 
   pointer.id = objectId; // 设置 ID 以指向已有对象
-  return pointer; // 返回指针
+  return pointer; 
 };
 
 const createDefaultACL = (user) => {
@@ -15,10 +14,14 @@ const createDefaultACL = (user) => {
   return acl;
 };
 
-// 加载分组数据
-export const fetchGroupData = async () => {
+
+export const fetchGroupData = async (isLoggedIn) => {
   const Group = Parse.Object.extend("Group");
   const query = new Parse.Query(Group);
+
+  if (!isLoggedIn) {
+    query.equalTo("isDefault", true);
+  }
 
   try {
     const groups = await query.find();
@@ -32,7 +35,7 @@ export const fetchGroupData = async () => {
   }
 };
 
-// 保存帖子
+
 export const sendPostToDatabase = async (postContent, selectedGroup) => {
   if (!selectedGroup) {
     throw new Error("Invalid selectedGroup");
@@ -41,6 +44,11 @@ export const sendPostToDatabase = async (postContent, selectedGroup) => {
   const PostObject = Parse.Object.extend("Post");
   const post = new PostObject();
   const currentUser = Parse.User.current();
+
+  if (!currentUser) {
+    alert("Please log in to post.");
+    throw new Error("Please log in to post.");
+  }
 
   post.set("content", {
     text: postContent.text || "",
@@ -59,7 +67,7 @@ export const sendPostToDatabase = async (postContent, selectedGroup) => {
   }
 };
 
-// 保存评论
+
 export const addCommentToDatabase = async (
   content,
   postId,
@@ -71,6 +79,7 @@ export const addCommentToDatabase = async (
   const currentUser = Parse.User.current();
 
   if (!currentUser) {
+    alert("Please log in to comment.");
     throw new Error("User is not logged in.");
   }
 
@@ -95,7 +104,7 @@ export const addCommentToDatabase = async (
   }
 };
 
-// 删除帖子
+
 export const deletePostFromDatabase = async (postId) => {
   const PostObject = Parse.Object.extend("Post");
   const query = new Parse.Query(PostObject);
@@ -114,7 +123,7 @@ export const deletePostFromDatabase = async (postId) => {
   }
 };
 
-// 删除评论
+
 export const deleteCommentFromDatabase = async (commentId) => {
   const CommentObject = Parse.Object.extend("Comment");
   const query = new Parse.Query(CommentObject);

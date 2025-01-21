@@ -48,6 +48,7 @@ function MainContent() {
 
   useEffect(() => {
     initFormData();
+    // eslint-disable-next-line
   }, [user, avatar,isEditing]); 
 
   const toggleEditMode = async (e) => {

@@ -71,6 +71,7 @@ function Post({ uploadedImage, uploadedVideo, clearUploads }) {
 
   useEffect(() => {
     fetchPostsForGroup(selectedGroup, setPostsByGroup, setCommentsByPost);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedGroup?.objectId]); // 仅在分组 ID 发生变化时重新加载帖子和评论
 
   const sendPost = async () => {
@@ -117,6 +118,10 @@ function Post({ uploadedImage, uploadedVideo, clearUploads }) {
   };
 
   const handleDeletePost = async (postId) => {
+    if (!user) {
+      alert("please log in to delete!");
+      return;
+    }
     try {
       await deletePostFromDatabase(postId);
 
@@ -134,7 +139,7 @@ function Post({ uploadedImage, uploadedVideo, clearUploads }) {
       });
     } catch (error) {
       console.error("Error deleting post from database:", error);
-      alert("Error deleting post: " + error.message);
+      alert(error.message);
     }
   };
 
@@ -151,7 +156,7 @@ function Post({ uploadedImage, uploadedVideo, clearUploads }) {
         author: user.get("username"),
         avatar: user.get("avatar")
           ? `${user.get("avatar").url()}?${Date.now()}`
-          : null, // 添加头像并加时间戳
+          : null, 
         content: content,
         replies: [],
       };
@@ -188,7 +193,6 @@ function Post({ uploadedImage, uploadedVideo, clearUploads }) {
 
   const deleteCommentOrReply = async (postId, commentId) => {
     try {
-      // 调用数据库删除函数
       await deleteCommentFromDatabase(commentId);
 
       // 如果成功，从前端状态中删除评论
@@ -200,7 +204,7 @@ function Post({ uploadedImage, uploadedVideo, clearUploads }) {
         ),
       }));
     } catch (error) {
-      alert("Failed to delete comment. Please try again.");
+      alert("Failed to delete comment.");
     }
   };
 

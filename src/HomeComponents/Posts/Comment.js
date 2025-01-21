@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
-import commentIcon from "../../Assets/comment.png"; // 评论图标
-import trashIcon from "../../Assets/delete.png"; // 删除图标
+import commentIcon from "../../Assets/comment.png"; 
+import trashIcon from "../../Assets/delete.png"; 
 import { CommentContainer, CommentContent, CommentAvatar, CommentText, CommentHeader, CommentAuthor, ReplyTo, CommentBody, 
   ButtonsInReply, ReplyInputContainer, ReplyInputField, ReplyButton, ReplyList, ActionButton, IconImage, } from "./CommentStyle";
 import { UserContext } from "../../Context/UserContext";
@@ -11,6 +11,10 @@ function Comment({ commentData, onReplySubmit, onDelete }) {
   const {user, avatar } = useContext(UserContext);
 
   const handleReplySubmit = () => {
+    if (!user) {
+      alert("Please log in to reply!");
+      return;
+    }
     if (replyContent.trim()) {
       onReplySubmit(
         {
@@ -48,7 +52,6 @@ function Comment({ commentData, onReplySubmit, onDelete }) {
       return content.content || "no content";
     }
   
-    // 默认返回值
     return "no content";
   }
 

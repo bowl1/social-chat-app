@@ -44,8 +44,8 @@ export const GroupTitle = styled.h1`
   word-wrap: break-word;
   word-break: break-word;
   white-space: normal;
-  justify-content: center; /* 水平居中 */
-  text-align: center; /* 确保文字内容居中 */
+  justify-content: center; 
+  text-align: center;
 `;
 
 export const GroupSwitcher = styled.button`
@@ -77,6 +77,7 @@ export const Dropdown = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   padding: 10px;
   border-radius: 5px;
+  visibility: ${({ hasItems }) => (hasItems ? "visible" : "hidden")}; 
 `;
 
 export const DropdownItem = styled.div`
@@ -88,5 +89,6 @@ export const DropdownItem = styled.div`
   &:hover {
     background-color: #f0f0f0;
   }
+
 `;
 

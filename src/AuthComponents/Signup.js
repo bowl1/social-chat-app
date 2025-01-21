@@ -54,7 +54,7 @@ export default function Signup() {
 
       // 注册成功后，分组逻辑由 UserContext 的 `useEffect` 自动处理
       alert("Registration successful!");
-      navigate("/home");
+      navigate("/");
     } catch (error) {
       console.error("Error signing up:", error);
       alert(`Error: ${error.message}`);
