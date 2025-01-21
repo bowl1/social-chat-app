@@ -87,7 +87,7 @@ export const UserName = styled.h2`
   margin: 0;
 
    @media (max-width: 768px) {
-    font-size: 24px; 
+    font-size: 24px;  
 `;
 
 export const UserEmail = styled.p`
@@ -159,4 +159,8 @@ export const Input = styled.input`
   border-radius: 20px;
   border: 1px solid #ccc;
   font-size: 20px;
+`;
+
+export const HiddenInput = styled.input`
+  display: none;
 `;

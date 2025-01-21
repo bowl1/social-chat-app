@@ -77,7 +77,6 @@ export const Dropdown = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   padding: 10px;
   border-radius: 5px;
-  visibility: ${({ hasItems }) => (hasItems ? "visible" : "hidden")}; 
 `;
 
 export const DropdownItem = styled.div`

@@ -37,16 +37,20 @@ export const UserProvider = ({ children }) => {
 
   const logoutUser = async () => {
     try {
-      const savedGroup = localStorage.getItem("selectedGroup"); // 备份分组信息
+        // 备份当前分组信息
+    const savedGroup = localStorage.getItem("selectedGroup");
       await Parse.User.logOut();
       setUser(null);
       setAvatar(defaultAvatar);
       setSelectedGroup(null);
 
       localStorage.clear();
-      if (savedGroup) {
-        localStorage.setItem("selectedGroup", savedGroup);
-      }
+
+    // 恢复备份的分组信息
+    if (savedGroup) {
+      localStorage.setItem("selectedGroup", savedGroup);
+    }
+      
       // 加载默认分组数据
       await fetchDefaultGroup();
 

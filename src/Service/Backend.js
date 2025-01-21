@@ -56,7 +56,7 @@ export const sendPostToDatabase = async (postContent, selectedGroup) => {
     videoUrl: postContent.videoUrl || null,
   });
   post.set("author", currentUser);
-  post.set("likes", 0);
+  post.set("likes", []);
   post.set("group", createPointer("Group", selectedGroup));
   post.setACL(createDefaultACL(currentUser));
 
