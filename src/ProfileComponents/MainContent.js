@@ -16,6 +16,7 @@ import {
   InputGroup,
   Label,
   Input,
+  HiddenInput
 } from "./MainContentStyle";
 
 function MainContent() {
@@ -132,7 +133,7 @@ function MainContent() {
             <ProfileImage src={avatar || avatarPlaceholder} alt="Profile" />
             <ChangeButton onClick={triggerFileInput}>Change</ChangeButton>
           </AvatarContainer>
-          <input
+          <HiddenInput
             type="file"
             accept="image/*"
             ref={fileInputRef}
