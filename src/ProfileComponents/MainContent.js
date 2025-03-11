@@ -59,6 +59,7 @@ function MainContent() {
     setIsEditing(!isEditing);
   };
 
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -137,7 +138,6 @@ function MainContent() {
             type="file"
             accept="image/*"
             ref={fileInputRef}
-            style={{ display: "none" }}
             onChange={handleAvatarChange}
           />
           <UserInfo>
@@ -154,53 +154,49 @@ function MainContent() {
         <Form onSubmit={handleSubmit}>
           <InputGroup>
             <Label>Name</Label>
-            <Input
+            {isEditing ?<Input
               type="text"
               name="fullName"
               value={formData.fullName}
               onChange={handleInputChange}
               readOnly={!isEditing}
-            />
+            /> :<div>{formData.fullName}</div>}
           </InputGroup>
           <InputGroup>
             <Label>Gender</Label>
-            <Input
+            {isEditing ?<Input
               type="text"
               name="gender"
               value={formData.gender}
               onChange={handleInputChange}
               readOnly={!isEditing}
-            />
+            />:<div>{formData.gender}</div>}
           </InputGroup>
           <InputGroup>
             <Label>Language</Label>
+            {isEditing ?
             <Input
               type="text"
               name="language"
               value={formData.language}
               onChange={handleInputChange}
               readOnly={!isEditing}
-            />
+            />:<div>{formData.language}</div>}
           </InputGroup>
           <InputGroup>
             <Label>Email Address</Label>
-            <Input
-              type="text"
-              name="email"
-              value={formData.email}
-              onChange={handleInputChange}
-              readOnly
-            />
+             {formData.email}
           </InputGroup>
           <InputGroup>
             <Label>Country</Label>
+            {isEditing ?
             <Input
               type="text"
               name="country"
               value={formData.country}
               onChange={handleInputChange}
               readOnly={!isEditing}
-            />
+            />:<div>{formData.country}</div>}
           </InputGroup>
         </Form>
       </Main>

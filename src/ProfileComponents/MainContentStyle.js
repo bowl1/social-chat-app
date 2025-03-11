@@ -135,9 +135,11 @@ export const InputGroup = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 20px;
+  font-size: 20px;
 
   @media (max-width: 768px) {
     gap: 8px;
+    font-size: 14px;
   }
 `;
 
