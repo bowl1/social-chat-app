@@ -16,6 +16,7 @@ function Login() {
   const [password, setPassword] = useState("");
   const {setUser, setAvatar, restoreOrFetchDefaultGroup } = useContext(UserContext);
   const navigate = useNavigate();
+  const [loginStatus, setLoginStatus] = useState(""); 
 
   const loginUser = async (email, password) => {
     try {
@@ -46,10 +47,10 @@ function Login() {
       await loginUser(email, password);
 
       // 弹出登录成功提示，并导航到首页
-      alert("Login successful!");
+      setLoginStatus("Login successful!");
       navigate("/");
     } catch (error) {
-      alert(`Error: ${error.message}`);
+      setLoginStatus(`login failed! ${error.message}`);
     }
   };
   
@@ -80,6 +81,7 @@ function Login() {
             required
           />
         </InputField>
+        <DescriptionText>{loginStatus}</DescriptionText>
         <Button type="submit">Log In</Button>
       </Form>
       <FooterText>© 2024 GHOST Team. All rights reserved.</FooterText>

@@ -112,4 +112,5 @@ export const ReplyButton = styled.button`
 
 export const ReplyList = styled.div`
   margin-top: 30px;
+  margin-left: 40px;
 `;

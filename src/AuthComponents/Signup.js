@@ -18,6 +18,7 @@ export default function Signup() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const {setUser } = useContext(UserContext); 
   const navigate = useNavigate();
+  const [signupStatus, setSignupStatus] = useState("");
 
   const handleSignup = async (username, email, password) => {
     try {
@@ -44,7 +45,7 @@ export default function Signup() {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      alert("Passwords do not match! Please try again.");
+      setSignupStatus("Passwords do not match! Please try again.");
       return;
     }
 
@@ -57,7 +58,7 @@ export default function Signup() {
       navigate("/");
     } catch (error) {
       console.error("Error signing up:", error);
-      alert(`Error: ${error.message}`);
+      setSignupStatus(`Error: ${error.message}`);
     }
   };
 
@@ -102,6 +103,7 @@ export default function Signup() {
           required
         />
         </InputField>
+        <FooterText>{signupStatus}</FooterText>
         <Button type="submit">Sign Up</Button>
       </Form>
       <FooterText>© 2024 GHOST Team. All rights reserved.</FooterText>
