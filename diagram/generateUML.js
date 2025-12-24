@@ -2,10 +2,10 @@ const fs = require("fs");
 
 // 手动为每个模块添加方法（可编辑）
 const moduleMethods = {
-  "App": ["render()", "handleClick()"],
-  "Header": ["renderHeader()"],
-  "Footer": ["renderFooter()"],
-  "Utils": ["formatDate()"],
+  App: ["render()", "handleClick()"],
+  Header: ["renderHeader()"],
+  Footer: ["renderFooter()"],
+  Utils: ["formatDate()"],
 };
 
 // 读取 Dependency Cruiser 的依赖关系数据
