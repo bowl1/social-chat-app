@@ -8,10 +8,7 @@
           "moduleSystem": "es6",
           "dynamic": false,
           "exoticallyRequired": false,
-          "dependencyTypes": [
-            "local",
-            "import"
-          ],
+          "dependencyTypes": ["local", "import"],
           "resolved": "src/Auth.js",
           "coreModule": false,
           "followable": true,
@@ -25,10 +22,7 @@
           "moduleSystem": "es6",
           "dynamic": false,
           "exoticallyRequired": false,
-          "dependencyTypes": [
-            "local",
-            "import"
-          ],
+          "dependencyTypes": ["local", "import"],
           "resolved": "src/Context/UserContext.js",
           "coreModule": false,
           "followable": true,
@@ -42,10 +36,7 @@
           "moduleSystem": "es6",
           "dynamic": false,
           "exoticallyRequired": false,
-          "dependencyTypes": [
-            "local",
-            "import"
-          ],
+          "dependencyTypes": ["local", "import"],
           "resolved": "src/Home.js",
           "coreModule": false,
           "followable": true,
@@ -59,10 +50,7 @@
           "moduleSystem": "es6",
           "dynamic": false,
           "exoticallyRequired": false,
-          "dependencyTypes": [
-            "local",
-            "import"
-          ],
+          "dependencyTypes": ["local", "import"],
           "resolved": "src/Profile.js",
           "coreModule": false,
           "followable": true,
@@ -72,9 +60,7 @@
           "valid": true
         }
       ],
-      "dependents": [
-        "src/index.js"
-      ],
+      "dependents": ["src/index.js"],
       "orphan": false,
       "valid": true
     },
@@ -86,10 +72,7 @@
           "moduleSystem": "es6",
           "dynamic": false,
           "exoticallyRequired": false,
-          "dependencyTypes": [
-            "local",
-            "import"
-          ],
+          "dependencyTypes": ["local", "import"],
           "resolved": "src/AuthComponents/Login.js",
           "coreModule": false,
           "followable": true,
@@ -103,10 +86,7 @@
           "moduleSystem": "es6",
           "dynamic": false,
           "exoticallyRequired": false,
-          "dependencyTypes": [
-            "local",
-            "import"
-          ],
+          "dependencyTypes": ["local", "import"],
           "resolved": "src/AuthComponents/Signup.js",
           "coreModule": false,
           "followable": true,
@@ -116,9 +96,7 @@
           "valid": true
         }
       ],
-      "dependents": [
-        "src/App.js"
-      ],
+      "dependents": ["src/App.js"],
       "orphan": false,
       "valid": true
     },
@@ -130,10 +108,7 @@
           "moduleSystem": "es6",
           "dynamic": false,
           "exoticallyRequired": false,
-          "dependencyTypes": [
-            "local",
-            "import"
-          ],
+          "dependencyTypes": ["local", "import"],
           "resolved": "src/Context/UserContext.js",
           "coreModule": false,
           "followable": true,
@@ -143,9 +118,7 @@
           "valid": true
         }
       ],
-      "dependents": [
-        "src/Auth.js"
-      ],
+      "dependents": ["src/Auth.js"],
       "orphan": false,
       "valid": true
     },
@@ -157,10 +130,7 @@
           "moduleSystem": "es6",
           "dynamic": false,
           "exoticallyRequired": false,
-          "dependencyTypes": [
-            "local",
-            "import"
-          ],
+          "dependencyTypes": ["local", "import"],
           "resolved": "src/Service/Backend.js",
           "coreModule": false,
           "followable": true,
@@ -188,10 +158,7 @@
     {
       "source": "src/Service/Backend.js",
       "dependencies": [],
-      "dependents": [
-        "src/Context/UserContext.js",
-        "src/HomeComponents/Post.js"
-      ],
+      "dependents": ["src/Context/UserContext.js", "src/HomeComponents/Post.js"],
       "orphan": false,
       "valid": true
     },
@@ -203,10 +170,7 @@
           "moduleSystem": "es6",
           "dynamic": false,
           "exoticallyRequired": false,
-          "dependencyTypes": [
-            "local",
-            "import"
-          ],
+          "dependencyTypes": ["local", "import"],
           "resolved": "src/Context/UserContext.js",
           "coreModule": false,
           "followable": true,
@@ -216,9 +180,7 @@
           "valid": true
         }
       ],
-      "dependents": [
-        "src/Auth.js"
-      ],
+      "dependents": ["src/Auth.js"],
       "orphan": false,
       "valid": true
     },
@@ -230,10 +192,7 @@
           "moduleSystem": "es6",
           "dynamic": false,
           "exoticallyRequired": false,
-          "dependencyTypes": [
-            "local",
-            "import"
-          ],
+          "dependencyTypes": ["local", "import"],
           "resolved": "src/HomeComponents/Footer.js",
           "coreModule": false,
           "followable": true,
@@ -247,10 +206,7 @@
           "moduleSystem": "es6",
           "dynamic": false,
           "exoticallyRequired": false,
-          "dependencyTypes": [
-            "local",
-            "import"
-          ],
+          "dependencyTypes": ["local", "import"],
           "resolved": "src/HomeComponents/LeftBar.js",
           "coreModule": false,
           "followable": true,
@@ -264,10 +220,7 @@
           "moduleSystem": "es6",
           "dynamic": false,
           "exoticallyRequired": false,
-          "dependencyTypes": [
-            "local",
-            "import"
-          ],
+          "dependencyTypes": ["local", "import"],
           "resolved": "src/HomeComponents/Post.js",
           "coreModule": false,
           "followable": true,
@@ -281,10 +234,7 @@
           "moduleSystem": "es6",
           "dynamic": false,
           "exoticallyRequired": false,
-          "dependencyTypes": [
-            "local",
-            "import"
-          ],
+          "dependencyTypes": ["local", "import"],
           "resolved": "src/HomeComponents/Posts/useUpload.js",
           "coreModule": false,
           "followable": true,
@@ -298,10 +248,7 @@
           "moduleSystem": "es6",
           "dynamic": false,
           "exoticallyRequired": false,
-          "dependencyTypes": [
-            "local",
-            "import"
-          ],
+          "dependencyTypes": ["local", "import"],
           "resolved": "src/HomeComponents/TopBar.js",
           "coreModule": false,
           "followable": true,
@@ -311,18 +258,14 @@
           "valid": true
         }
       ],
-      "dependents": [
-        "src/App.js"
-      ],
+      "dependents": ["src/App.js"],
       "orphan": false,
       "valid": true
     },
     {
       "source": "src/HomeComponents/Footer.js",
       "dependencies": [],
-      "dependents": [
-        "src/Home.js"
-      ],
+      "dependents": ["src/Home.js"],
       "orphan": false,
       "valid": true
     },
@@ -334,10 +277,7 @@
           "moduleSystem": "es6",
           "dynamic": false,
           "exoticallyRequired": false,
-          "dependencyTypes": [
-            "local",
-            "import"
-          ],
+          "dependencyTypes": ["local", "import"],
           "resolved": "src/Context/UserContext.js",
           "coreModule": false,
           "followable": true,
@@ -347,9 +287,7 @@
           "valid": true
         }
       ],
-      "dependents": [
-        "src/Home.js"
-      ],
+      "dependents": ["src/Home.js"],
       "orphan": false,
       "valid": true
     },
@@ -361,10 +299,7 @@
           "moduleSystem": "es6",
           "dynamic": false,
           "exoticallyRequired": false,
-          "dependencyTypes": [
-            "local",
-            "import"
-          ],
+          "dependencyTypes": ["local", "import"],
           "resolved": "src/Context/UserContext.js",
           "coreModule": false,
           "followable": true,
@@ -378,10 +313,7 @@
           "moduleSystem": "es6",
           "dynamic": false,
           "exoticallyRequired": false,
-          "dependencyTypes": [
-            "local",
-            "import"
-          ],
+          "dependencyTypes": ["local", "import"],
           "resolved": "src/Service/Backend.js",
           "coreModule": false,
           "followable": true,
@@ -395,10 +327,7 @@
           "moduleSystem": "es6",
           "dynamic": false,
           "exoticallyRequired": false,
-          "dependencyTypes": [
-            "local",
-            "import"
-          ],
+          "dependencyTypes": ["local", "import"],
           "resolved": "src/Service/FetchData.js",
           "coreModule": false,
           "followable": true,
@@ -412,10 +341,7 @@
           "moduleSystem": "es6",
           "dynamic": false,
           "exoticallyRequired": false,
-          "dependencyTypes": [
-            "local",
-            "import"
-          ],
+          "dependencyTypes": ["local", "import"],
           "resolved": "src/HomeComponents/PostSection.js",
           "coreModule": false,
           "followable": true,
@@ -425,18 +351,14 @@
           "valid": true
         }
       ],
-      "dependents": [
-        "src/Home.js"
-      ],
+      "dependents": ["src/Home.js"],
       "orphan": false,
       "valid": true
     },
     {
       "source": "src/Service/FetchData.js",
       "dependencies": [],
-      "dependents": [
-        "src/HomeComponents/Post.js"
-      ],
+      "dependents": ["src/HomeComponents/Post.js"],
       "orphan": false,
       "valid": true
     },
@@ -448,10 +370,7 @@
           "moduleSystem": "es6",
           "dynamic": false,
           "exoticallyRequired": false,
-          "dependencyTypes": [
-            "local",
-            "import"
-          ],
+          "dependencyTypes": ["local", "import"],
           "resolved": "src/HomeComponents/Posts/CommentSection.js",
           "coreModule": false,
           "followable": true,
@@ -465,10 +384,7 @@
           "moduleSystem": "es6",
           "dynamic": false,
           "exoticallyRequired": false,
-          "dependencyTypes": [
-            "local",
-            "import"
-          ],
+          "dependencyTypes": ["local", "import"],
           "resolved": "src/HomeComponents/Posts/Like.js",
           "coreModule": false,
           "followable": true,
@@ -478,9 +394,7 @@
           "valid": true
         }
       ],
-      "dependents": [
-        "src/HomeComponents/Post.js"
-      ],
+      "dependents": ["src/HomeComponents/Post.js"],
       "orphan": false,
       "valid": true
     },
@@ -492,10 +406,7 @@
           "moduleSystem": "es6",
           "dynamic": false,
           "exoticallyRequired": false,
-          "dependencyTypes": [
-            "local",
-            "import"
-          ],
+          "dependencyTypes": ["local", "import"],
           "resolved": "src/HomeComponents/Posts/Comment.js",
           "coreModule": false,
           "followable": true,
@@ -505,9 +416,7 @@
           "valid": true
         }
       ],
-      "dependents": [
-        "src/HomeComponents/PostSection.js"
-      ],
+      "dependents": ["src/HomeComponents/PostSection.js"],
       "orphan": false,
       "valid": true
     },
@@ -519,10 +428,7 @@
           "moduleSystem": "es6",
           "dynamic": false,
           "exoticallyRequired": false,
-          "dependencyTypes": [
-            "local",
-            "import"
-          ],
+          "dependencyTypes": ["local", "import"],
           "resolved": "src/Context/UserContext.js",
           "coreModule": false,
           "followable": true,
@@ -532,9 +438,7 @@
           "valid": true
         }
       ],
-      "dependents": [
-        "src/HomeComponents/Posts/CommentSection.js"
-      ],
+      "dependents": ["src/HomeComponents/Posts/CommentSection.js"],
       "orphan": false,
       "valid": true
     },
@@ -546,10 +450,7 @@
           "moduleSystem": "es6",
           "dynamic": false,
           "exoticallyRequired": false,
-          "dependencyTypes": [
-            "local",
-            "import"
-          ],
+          "dependencyTypes": ["local", "import"],
           "resolved": "src/Context/UserContext.js",
           "coreModule": false,
           "followable": true,
@@ -559,18 +460,14 @@
           "valid": true
         }
       ],
-      "dependents": [
-        "src/HomeComponents/PostSection.js"
-      ],
+      "dependents": ["src/HomeComponents/PostSection.js"],
       "orphan": false,
       "valid": true
     },
     {
       "source": "src/HomeComponents/Posts/useUpload.js",
       "dependencies": [],
-      "dependents": [
-        "src/Home.js"
-      ],
+      "dependents": ["src/Home.js"],
       "orphan": false,
       "valid": true
     },
@@ -582,10 +479,7 @@
           "moduleSystem": "es6",
           "dynamic": false,
           "exoticallyRequired": false,
-          "dependencyTypes": [
-            "local",
-            "import"
-          ],
+          "dependencyTypes": ["local", "import"],
           "resolved": "src/Context/UserContext.js",
           "coreModule": false,
           "followable": true,
@@ -595,9 +489,7 @@
           "valid": true
         }
       ],
-      "dependents": [
-        "src/Home.js"
-      ],
+      "dependents": ["src/Home.js"],
       "orphan": false,
       "valid": true
     },
@@ -609,10 +501,7 @@
           "moduleSystem": "es6",
           "dynamic": false,
           "exoticallyRequired": false,
-          "dependencyTypes": [
-            "local",
-            "import"
-          ],
+          "dependencyTypes": ["local", "import"],
           "resolved": "src/ProfileComponents/Footer.js",
           "coreModule": false,
           "followable": true,
@@ -626,10 +515,7 @@
           "moduleSystem": "es6",
           "dynamic": false,
           "exoticallyRequired": false,
-          "dependencyTypes": [
-            "local",
-            "import"
-          ],
+          "dependencyTypes": ["local", "import"],
           "resolved": "src/ProfileComponents/Header.js",
           "coreModule": false,
           "followable": true,
@@ -643,10 +529,7 @@
           "moduleSystem": "es6",
           "dynamic": false,
           "exoticallyRequired": false,
-          "dependencyTypes": [
-            "local",
-            "import"
-          ],
+          "dependencyTypes": ["local", "import"],
           "resolved": "src/ProfileComponents/MainContent.js",
           "coreModule": false,
           "followable": true,
@@ -656,18 +539,14 @@
           "valid": true
         }
       ],
-      "dependents": [
-        "src/App.js"
-      ],
+      "dependents": ["src/App.js"],
       "orphan": false,
       "valid": true
     },
     {
       "source": "src/ProfileComponents/Footer.js",
       "dependencies": [],
-      "dependents": [
-        "src/Profile.js"
-      ],
+      "dependents": ["src/Profile.js"],
       "orphan": false,
       "valid": true
     },
@@ -679,10 +558,7 @@
           "moduleSystem": "es6",
           "dynamic": false,
           "exoticallyRequired": false,
-          "dependencyTypes": [
-            "local",
-            "import"
-          ],
+          "dependencyTypes": ["local", "import"],
           "resolved": "src/Context/UserContext.js",
           "coreModule": false,
           "followable": true,
@@ -692,9 +568,7 @@
           "valid": true
         }
       ],
-      "dependents": [
-        "src/Profile.js"
-      ],
+      "dependents": ["src/Profile.js"],
       "orphan": false,
       "valid": true
     },
@@ -706,10 +580,7 @@
           "moduleSystem": "es6",
           "dynamic": false,
           "exoticallyRequired": false,
-          "dependencyTypes": [
-            "local",
-            "import"
-          ],
+          "dependencyTypes": ["local", "import"],
           "resolved": "src/Context/UserContext.js",
           "coreModule": false,
           "followable": true,
@@ -719,9 +590,7 @@
           "valid": true
         }
       ],
-      "dependents": [
-        "src/Profile.js"
-      ],
+      "dependents": ["src/Profile.js"],
       "orphan": false,
       "valid": true
     },
@@ -733,10 +602,7 @@
           "moduleSystem": "es6",
           "dynamic": false,
           "exoticallyRequired": false,
-          "dependencyTypes": [
-            "local",
-            "import"
-          ],
+          "dependencyTypes": ["local", "import"],
           "resolved": "src/App.js",
           "coreModule": false,
           "followable": true,
@@ -767,21 +633,9 @@
         "path": "node_modules"
       },
       "enhancedResolveOptions": {
-        "exportsFields": [
-          "exports"
-        ],
-        "conditionNames": [
-          "import",
-          "require",
-          "node",
-          "default",
-          "types"
-        ],
-        "mainFields": [
-          "main",
-          "types",
-          "typings"
-        ]
+        "exportsFields": ["exports"],
+        "conditionNames": ["import", "require", "node", "default", "types"],
+        "mainFields": ["main", "types", "typings"]
       },
       "exclude": {
         "path": "^src/Assets|.*Style.*|node_modules"
@@ -789,12 +643,7 @@
       "exoticRequireStrings": [],
       "externalModuleResolutionStrategy": "node_modules",
       "metrics": false,
-      "moduleSystems": [
-        "es6",
-        "cjs",
-        "tsd",
-        "amd"
-      ],
+      "moduleSystems": ["es6", "cjs", "tsd", "amd"],
       "outputTo": "-",
       "outputType": "json",
       "preserveSymlinks": false,
@@ -842,9 +691,7 @@
           "severity": "warn",
           "from": {},
           "to": {
-            "dependencyTypes": [
-              "core"
-            ],
+            "dependencyTypes": ["core"],
             "path": "^v8/tools/codemap$|^v8/tools/consarray$|^v8/tools/csvparser$|^v8/tools/logreader$|^v8/tools/profile_view$|^v8/tools/profile$|^v8/tools/SourceMap$|^v8/tools/splaytree$|^v8/tools/tickprocessor-driver$|^v8/tools/tickprocessor$|^node-inspect/lib/_inspect$|^node-inspect/lib/internal/inspect_client$|^node-inspect/lib/internal/inspect_repl$|^async_hooks$|^punycode$|^domain$|^constants$|^sys$|^_linklist$|^_stream_wrap$"
           },
           "scope": "module"
@@ -855,9 +702,7 @@
           "severity": "warn",
           "from": {},
           "to": {
-            "dependencyTypes": [
-              "deprecated"
-            ]
+            "dependencyTypes": ["deprecated"]
           },
           "scope": "module"
         },
@@ -867,10 +712,7 @@
           "comment": "This module depends on an npm package that isn't in the 'dependencies' section of your package.json. That's problematic as the package either (1) won't be available on live (2 - worse) will be available on live with an non-guaranteed version. Fix it by adding the package to the dependencies in your package.json.",
           "from": {},
           "to": {
-            "dependencyTypes": [
-              "npm-no-pkg",
-              "npm-unknown"
-            ]
+            "dependencyTypes": ["npm-no-pkg", "npm-unknown"]
           },
           "scope": "module"
         },
@@ -891,9 +733,7 @@
           "from": {},
           "to": {
             "moreThanOneDependencyType": true,
-            "dependencyTypesNot": [
-              "type-only"
-            ]
+            "dependencyTypesNot": ["type-only"]
           },
           "scope": "module"
         },
@@ -916,12 +756,8 @@
             "pathNot": "[.](?:spec|test)[.](?:js|mjs|cjs|jsx|ts|mts|cts|tsx)$"
           },
           "to": {
-            "dependencyTypes": [
-              "npm-dev"
-            ],
-            "dependencyTypesNot": [
-              "type-only"
-            ],
+            "dependencyTypes": ["npm-dev"],
+            "dependencyTypesNot": ["type-only"],
             "pathNot": "node_modules/@types/"
           },
           "scope": "module"
@@ -932,9 +768,7 @@
           "comment": "This module depends on an npm package that is declared as an optional dependency in your package.json. As this makes sense in limited situations only, it's flagged here. If you're using an optional dependency here by design - add an exception to yourdependency-cruiser configuration.",
           "from": {},
           "to": {
-            "dependencyTypes": [
-              "npm-optional"
-            ]
+            "dependencyTypes": ["npm-optional"]
           },
           "scope": "module"
         },
@@ -944,9 +778,7 @@
           "severity": "warn",
           "from": {},
           "to": {
-            "dependencyTypes": [
-              "npm-peer"
-            ]
+            "dependencyTypes": ["npm-peer"]
           },
           "scope": "module"
         }
