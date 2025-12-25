@@ -10,12 +10,12 @@ import {
   LogoutContainer,
   SignInContainer,
 } from "./TopBarStyle";
-import uploadPhotos from "assets/uploadPhotos.png";
-import uploadVideos from "assets/uploadVideos.png";
-import logoutIcon from "assets/logout.png";
+const uploadPhotos = "/assets/uploadPhotos.png";
+const uploadVideos = "/assets/uploadVideos.png";
+const logoutIcon = "/assets/logout.png";
 import { useUserStore } from "store/useUserStore";
 import { useRouter } from "next/navigation";
-import signInIcon from "assets/signin.png";
+const signInIcon = "/assets/signin.png";
 
 function TopBar({ onPhotoUpload, onVideoUpload }) {
   const { user, logoutUser } = useUserStore();
@@ -83,7 +83,7 @@ function TopBar({ onPhotoUpload, onVideoUpload }) {
           id="upload-photo"
         />
         <UploadLabel htmlFor="upload-photo">
-          <img src={uploadPhotos.src} alt="Upload" />
+          <img src={uploadPhotos} alt="Upload" />
           <span>Photo</span>
         </UploadLabel>
 
@@ -96,19 +96,19 @@ function TopBar({ onPhotoUpload, onVideoUpload }) {
           id="upload-video"
         />
         <UploadLabel htmlFor="upload-video">
-          <img src={uploadVideos.src} alt="Upload Video" />
+          <img src={uploadVideos} alt="Upload Video" />
           <span>Video</span>
         </UploadLabel>
       </UploadSection>
 
       {user ? (
         <LogoutContainer onClick={handleLogout}>
-          <img src={logoutIcon.src} alt="Log out" />
+          <img src={logoutIcon} alt="Log out" />
           <span>Log out</span>
         </LogoutContainer>
       ) : (
         <SignInContainer onClick={handleSignIn}>
-          <img src={signInIcon.src} alt="Sign In" />
+          <img src={signInIcon} alt="Sign In" />
           <span>Sign In</span>
         </SignInContainer>
       )}

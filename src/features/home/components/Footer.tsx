@@ -1,6 +1,6 @@
 import React from "react";
-import logoIcon from "assets/logo-white.png";
-import menuIcon from "assets/menu.png";
+const logoIcon = "/assets/logo-white.png";
+const menuIcon = "/assets/menu.png";
 import {
   FooterSection,
   Logo,
@@ -21,11 +21,11 @@ function Footer({ toggleLeftBar }) {
   return (
     <FooterSection>
       <MenuContainer onClick={toggleLeftBar} aria-label="Toggle LeftBar">
-        <MenuIcon src={menuIcon.src} alt="Menu Icon" />
+        <MenuIcon src={menuIcon} alt="Menu Icon" />
         <span>Menu</span>
       </MenuContainer>
       <LogoContainer>
-        <Logo src={logoIcon.src} alt="Ghost company logo" />
+        <Logo src={logoIcon} alt="Ghost company logo" />
       </LogoContainer>
       <BrandContainer>
         <BrandName>GHOST</BrandName>

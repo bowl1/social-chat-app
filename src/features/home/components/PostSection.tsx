@@ -1,9 +1,9 @@
 import React from "react";
-import cursor from "assets/cursor.png";
+const cursor = "/assets/cursor.png";
 import Like from "./Posts/Like";
 import CommentSection from "./Posts/CommentSection";
-import trashIcon from "assets/delete.png";
-import commentIcon from "assets/comment.png";
+const trashIcon = "/assets/delete.png";
+const commentIcon = "/assets/comment.png";
 import {
   PostArea,
   PostContainer,
@@ -71,7 +71,7 @@ function PostSection({
             rows={4}
           />
         </InputWrapper>
-        <ActionIcon src={cursor.src} alt="send post" onClick={sendPost} />
+        <ActionIcon src={cursor} alt="send post" onClick={sendPost} />
       </PostContainer>
 
       <PostsList>
@@ -88,11 +88,11 @@ function PostSection({
               <PostActions>
                 <Like objectId={post.objectId} />
                 <ActionButton onClick={() => toggleCommentSection(post.objectId)}>
-                  <IconImage src={commentIcon.src} alt="Comment" />
+                  <IconImage src={commentIcon} alt="Comment" />
                   Comment
                 </ActionButton>
                 <ActionButton onClick={() => handleDeletePost(post.objectId)}>
-                  <IconImage src={trashIcon.src} alt="Delete" />
+                  <IconImage src={trashIcon} alt="Delete" />
                   Delete
                 </ActionButton>
               </PostActions>

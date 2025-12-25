@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import LoginForm from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";
-import LogoImage from "assets/logo-white.png";
+const LogoImage = "/assets/logo-white.png";
 import { FormContainer, AuthContainer, NavBar, Logo } from "./components/AuthStyle";
 
 type AuthPageProps = {
@@ -18,7 +18,7 @@ function AuthPage({ path }: AuthPageProps) {
 
   return (
     <AuthContainer>
-      <Logo src={LogoImage.src} alt="Logo" />
+      <Logo src={LogoImage} alt="Logo" />
       <FormContainer>
         <NavBar>
           <Link href="/login" className={currentPath === "/login" ? "active" : ""}>

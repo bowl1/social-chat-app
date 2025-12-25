@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import backIcon from "assets/arrow.png";
-import logout from "assets/logout.png";
+const backIcon = "/assets/arrow.png";
+const logout = "/assets/logout.png";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "store/useUserStore";
 import {
@@ -32,12 +32,12 @@ function Header() {
   return (
     <HeaderContainer>
       <BackButtonContainer onClick={() => router.push("/")}>
-        <Icon src={backIcon.src} alt="Back Icon" />
+        <Icon src={backIcon} alt="Back Icon" />
         <BackButton>Back</BackButton>
       </BackButtonContainer>
 
       <RightSection onClick={handleLogout}>
-        <LogoutIcon src={logout.src} alt="Logout Icon" />
+        <LogoutIcon src={logout} alt="Logout Icon" />
         <LogoutButton>Log out</LogoutButton>
       </RightSection>
     </HeaderContainer>

@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import commentIcon from "assets/comment.png";
-import trashIcon from "assets/delete.png";
+const commentIcon = "/assets/comment.png";
+const trashIcon = "/assets/delete.png";
 import {
   CommentContainer,
   CommentContent,
@@ -93,11 +93,11 @@ function Comment({ commentData, onReplySubmit, onDelete }: CommentProps) {
           <CommentBody>{renderCommentContent(commentData.content)}</CommentBody>
           <ButtonsInReply>
             <ActionButton onClick={() => setShowReplyInput(!showReplyInput)}>
-              <IconImage src={commentIcon.src} alt="Reply to comment" />
+              <IconImage src={commentIcon} alt="Reply to comment" />
               Reply
             </ActionButton>
             <ActionButton onClick={() => onDelete(commentData.id, commentData.parentId)}>
-              <IconImage src={trashIcon.src} alt="Delete comment" />
+              <IconImage src={trashIcon} alt="Delete comment" />
               Delete
             </ActionButton>
           </ButtonsInReply>

@@ -1,6 +1,6 @@
 import React from "react";
-import heartIcon from "assets/heart.png";
-import heartPlusIcon from "assets/heart_plus.png";
+const heartIcon = "/assets/heart.png";
+const heartPlusIcon = "/assets/heart_plus.png";
 import { LikeContainer, LikeButton, IconImage, LikeCount } from "./LikeStyle";
 import { useUserStore } from "store/useUserStore";
 import { useLikesQuery, useToggleLikeMutation } from "@hooks/usePostQueries";
@@ -35,7 +35,7 @@ function Like({ objectId }: LikeProps) {
   return (
     <LikeContainer>
       <LikeButton onClick={handleLike}>
-        <IconImage src={liked ? heartPlusIcon.src : heartIcon.src} alt="Like" />
+        <IconImage src={liked ? heartPlusIcon : heartIcon} alt="Like" />
         {liked ? "Unlike" : "Like"}
       </LikeButton>
       <LikeCount>{likes.length}</LikeCount>
