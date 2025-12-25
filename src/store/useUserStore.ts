@@ -20,6 +20,7 @@ type UserState = {
 
 const defaultAvatar = "/default-avatar.png";
 
+// Zustand store for user state management
 export const useUserStore = create<UserState>((set, get) => ({
   user: null,
   selectedGroup: null,
@@ -28,6 +29,7 @@ export const useUserStore = create<UserState>((set, get) => ({
   setUser: (user) => set({ user }),
   setSelectedGroup: (group) => set({ selectedGroup: group }),
   setAvatar: (avatar) => set({ avatar }),
+  // function to validate and pick a group, in case the saved group is invalid
   pickValidGroup: (groups: Group[], saved: string | null) => {
     let selected: Group | null = null;
     if (saved) {
@@ -39,6 +41,7 @@ export const useUserStore = create<UserState>((set, get) => ({
       }
     }
     if (!selected) {
+      // pick default group if saved group is invalid or not found
       selected = groups.find((g) => g.isDefault) || groups[0] || null;
     }
     if (selected) {
@@ -49,6 +52,7 @@ export const useUserStore = create<UserState>((set, get) => ({
     return selected;
   },
 
+  // function to restore selected group from localStorage or fetch default group
   restoreOrFetchDefaultGroup: async () => {
     const groups = await fetchGroups(true);
     set({ groupData: groups });
@@ -57,6 +61,7 @@ export const useUserStore = create<UserState>((set, get) => ({
     set({ selectedGroup: selected });
   },
 
+  // function to log out user and clear state
   logoutUser: async () => {
     const savedGroup = localStorage.getItem("selectedGroup");
     await signOut(auth);
@@ -80,9 +85,11 @@ export const useUserStore = create<UserState>((set, get) => ({
     }
   },
 
+  // function to start listening to auth state changes
   startAuthListener: () => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
+        //condition when user logs in
         try {
           const token = await firebaseUser.getIdToken();
           localStorage.setItem("authToken", token);
@@ -96,6 +103,7 @@ export const useUserStore = create<UserState>((set, get) => ({
           });
           const currentUser = res.user as UserProfile;
           set({
+            // set user info
             user: currentUser,
             avatar: currentUser.avatar || defaultAvatar,
           });
@@ -104,11 +112,13 @@ export const useUserStore = create<UserState>((set, get) => ({
           console.error("Error loading user:", error);
           localStorage.removeItem("authToken");
           set({
+            // clear user info on error
             user: null,
             avatar: defaultAvatar,
             selectedGroup: null,
           });
           try {
+            // fetch default group on error as well
             const groups = await fetchGroups(false);
             set({ groupData: groups });
             const defaultGroup = groups.find((g) => g.isDefault);
@@ -118,12 +128,14 @@ export const useUserStore = create<UserState>((set, get) => ({
           }
         }
       } else {
+        // condition when user logs out
         localStorage.removeItem("authToken");
         set({
           user: null,
           avatar: defaultAvatar,
           selectedGroup: null,
         });
+        // fetch default group on logout
         try {
           const groups = await fetchGroups(false);
           set({ groupData: groups });
