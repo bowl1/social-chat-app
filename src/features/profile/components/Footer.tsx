@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "assets/logo-white.png";
+const logo = "/assets/logo-white.png";
 import {
   FooterContainer,
   FooterContent,
@@ -15,7 +15,7 @@ function Footer() {
     <FooterContainer>
       <FooterContent>
         <LogoContainer>
-          <LogoImage src={logo.src} alt="Ghost Logo" />
+          <LogoImage src={logo} alt="Ghost Logo" />
         </LogoContainer>
         <FooterTextContainer>
           <FooterText>GHOST</FooterText>

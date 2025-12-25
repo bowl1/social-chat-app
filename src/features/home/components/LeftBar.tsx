@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import switchGroup from "assets/switch-group.png";
+const switchGroup = "/assets/switch-group.png";
 import { useRouter } from "next/navigation";
 import { useUserStore } from "store/useUserStore";
 import {
@@ -50,7 +50,7 @@ function LeftBar() {
         </Username>
         <GroupTitle>{groupToDisplay}</GroupTitle>
         <GroupSwitcher onClick={toggleDropdown}>
-          <GroupIcon src={switchGroup.src} alt="Change group icon" />
+          <GroupIcon src={switchGroup} alt="Change group icon" />
           <span>Change Group</span>
           {showDropdown && (
             <Dropdown>
