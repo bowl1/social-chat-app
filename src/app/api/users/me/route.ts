@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@lib/server/prisma";
 import { getAuthUser, unauthorized } from "@lib/server/appApiUtils";
-import { userUpdateSchema } from "@types/schemas";
+import { userUpdateSchema } from "../../../../types/schemas";
 
 export const dynamic = "force-dynamic";
 

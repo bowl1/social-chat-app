@@ -22,7 +22,7 @@ import {
   IconImage,
   ActionButton,
 } from "./PostSectionStyle";
-import type { Post as PostType } from "@types/models";
+import type { Post as PostType } from "../../../types/models";
 
 type PostSectionProps = {
   postContent: string;
