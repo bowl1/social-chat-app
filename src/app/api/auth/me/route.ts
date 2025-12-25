@@ -4,6 +4,7 @@ import { ensureDefaultGroup, getAuthUser, unauthorized } from "@lib/server/appAp
 import { authMeSchema } from "../../../../types/schemas";
 
 export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
 
 export async function POST(req: NextRequest) {
   const firebaseUser = await getAuthUser(req);
