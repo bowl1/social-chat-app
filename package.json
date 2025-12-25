@@ -36,6 +36,7 @@
     "build": "next build",
     "start": "next start",
     "prisma": "prisma",
+    "postinstall": "prisma generate",
     "lint": "next lint",
     "format": "prettier --write .",
     "db:seed": "ts-node prisma/seed.ts",
