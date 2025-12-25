@@ -2,7 +2,6 @@
 
 import React from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import LoginForm from "./components/LoginForm";
 import SignupForm from "./components/SignupForm";
 const LogoImage = "/assets/logo-white.png";
@@ -13,8 +12,7 @@ type AuthPageProps = {
 };
 
 function AuthPage({ path }: AuthPageProps) {
-  const router = useRouter();
-  const currentPath = router.pathname;
+  const currentPath = path;
 
   return (
     <AuthContainer>

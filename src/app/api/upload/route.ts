@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { nanoid } from "nanoid";
 import { put } from "@vercel/blob";
 import { getAuthUser, unauthorized } from "@lib/server/appApiUtils";
+import { randomUUID } from "crypto";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
 
   const arrayBuffer = await file.arrayBuffer();
   const ext = file.name?.includes(".") ? file.name.split(".").pop() || "" : "";
-  const filename = `${Date.now()}-${nanoid(6)}${ext ? `.${ext}` : ""}`;
+  const filename = `${Date.now()}-${randomUUID().slice(0, 6)}${ext ? `.${ext}` : ""}`;
 
   const blob = await put(filename, Buffer.from(arrayBuffer), {
     access: "public",

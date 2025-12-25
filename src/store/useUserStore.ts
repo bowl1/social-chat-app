@@ -3,7 +3,7 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "@lib/client/firebase";
 import { fetchGroups } from "@client/groupsApi";
 import { request } from "@client/httpClient";
-import { UserProfile, Group } from "@types/models";
+import { UserProfile, Group } from "../types/models";
 
 type UserState = {
   user: UserProfile | null;
