@@ -50,6 +50,7 @@ const addReplyNested = (
   });
 };
 
+// Query to fetch posts for a specific group
 export const usePostsQuery = (groupId?: string | null) =>
   useQuery({
     queryKey: ["posts", groupId],
@@ -99,6 +100,7 @@ export const useCommentsQuery = (postId: string, enabled: boolean) =>
     enabled: enabled && !!postId,
   });
 
+// Mutation to add a comment or reply to a post
 export const useAddCommentMutation = (
   postId: string,
   groupId: string,
