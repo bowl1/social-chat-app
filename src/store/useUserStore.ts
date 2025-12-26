@@ -92,6 +92,8 @@ export const useUserStore = create<UserState>((set, get) => ({
     }
     return selected;
   },
+
+  // function to generate or retrieve alias for a specific group
   getAliasForGroup: (groupId: string) => {
     if (!groupId) return { name: "Anonymous", avatar: defaultAvatar };
     const state = get();

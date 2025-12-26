@@ -53,7 +53,7 @@ export const ensureDefaultGroup = async () => {
 export const mapPost = (
   post:
     | (Post & { author: User; likes: PostLike[] })
-    | (Post & { author?: User; likes?: PostLike[] }),
+    | (Post & { author?: User; likes?: PostLike[] }), // for guest users
 ) => ({
   objectId: post.id,
   content: (post as any).content || {},
