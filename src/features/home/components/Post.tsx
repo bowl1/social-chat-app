@@ -74,6 +74,9 @@ function Post({ uploadedImage, uploadedVideo, clearUploads }: PostProps) {
       postContent={postContent}
       setPostContent={setPostContent}
       sendPost={sendPost}
+      uploadedImage={uploadedImage}
+      uploadedVideo={uploadedVideo}
+      clearUploads={clearUploads}
       handleDeletePost={handleDeletePost}
       currentGroupPosts={postsQuery.data || []}
       showCommentSection={showCommentSection}

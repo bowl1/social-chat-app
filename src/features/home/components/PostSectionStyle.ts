@@ -179,6 +179,75 @@ export const ActionButton = styled.button`
   }
 `;
 
+export const PreviewContainer = styled.div`
+  width: 100%;
+  background: #f5f9fb;
+  border: 1px solid #e4edef;
+  border-radius: 14px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+export const PreviewHeader = styled.div`
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #5a6b70;
+`;
+
+export const PreviewBody = styled.div`
+  font-size: 15px;
+  color: #1f2f32;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  p {
+    margin: 0;
+    white-space: pre-wrap;
+  }
+`;
+
+export const PreviewActions = styled.div`
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+`;
+
+export const PreviewButton = styled.button<{ variant?: "ghost" }>`
+  padding: 9px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  border: ${(props) => (props.variant === "ghost" ? "1px solid #cfd8db" : "none")};
+  color: ${(props) => (props.variant === "ghost" ? "#39555c" : "#fff")};
+  background: ${(props) =>
+    props.variant === "ghost" ? "transparent" : "linear-gradient(135deg, #2f7c84, #3ea7b0)"};
+  box-shadow: ${(props) =>
+    props.variant === "ghost" ? "none" : "0 10px 24px rgba(47, 124, 132, 0.2)"};
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: ${(props) =>
+      props.variant === "ghost"
+        ? "0 6px 18px rgba(0,0,0,0.08)"
+        : "0 12px 28px rgba(47, 124, 132, 0.3)"};
+  }
+  &:active {
+    transform: translateY(0);
+  }
+`;
+
 export const IconImage = styled.img`
   width: 20px;
   height: 20px;

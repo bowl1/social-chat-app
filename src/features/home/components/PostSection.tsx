@@ -21,6 +21,11 @@ import {
   PostActions,
   IconImage,
   ActionButton,
+  PreviewContainer,
+  PreviewHeader,
+  PreviewBody,
+  PreviewActions,
+  PreviewButton,
 } from "./PostSectionStyle";
 import type { Post as PostType } from "../../../types/models";
 
@@ -28,6 +33,9 @@ type PostSectionProps = {
   postContent: string;
   setPostContent: (v: string) => void;
   sendPost: () => void;
+  uploadedImage?: string | null;
+  uploadedVideo?: string | null;
+  clearUploads?: () => void;
   currentGroupPosts: PostType[];
   showCommentSection: Record<string, boolean>;
   toggleCommentSection: (id: string) => void;
@@ -41,6 +49,9 @@ function PostSection({
   postContent,
   setPostContent,
   sendPost,
+  uploadedImage,
+  uploadedVideo,
+  clearUploads,
   currentGroupPosts,
   showCommentSection,
   toggleCommentSection,
@@ -60,6 +71,11 @@ function PostSection({
     );
   };
 
+  const handleCancelPreview = () => {
+    setPostContent("");
+    clearUploads?.();
+  };
+
   return (
     <PostArea>
       <PostContainer>
@@ -71,6 +87,26 @@ function PostSection({
             rows={4}
           />
         </InputWrapper>
+        {(postContent.trim() || uploadedImage || uploadedVideo) && (
+          <PreviewContainer>
+            <PreviewHeader>Preview</PreviewHeader>
+            <PreviewBody>
+              {postContent.trim() && <p>{postContent}</p>}
+              {uploadedImage && !uploadedVideo && (
+                <UploadedMedia as="img" src={uploadedImage} alt="" />
+              )}
+              {uploadedVideo && !uploadedImage && (
+                <UploadedMedia as="video" controls src={uploadedVideo} />
+              )}
+            </PreviewBody>
+            <PreviewActions>
+              <PreviewButton variant="ghost" onClick={handleCancelPreview}>
+                Cancel
+              </PreviewButton>
+              <PreviewButton onClick={sendPost}>Post</PreviewButton>
+            </PreviewActions>
+          </PreviewContainer>
+        )}
         <ActionIcon src={cursor} alt="send post" onClick={sendPost} />
       </PostContainer>
 
