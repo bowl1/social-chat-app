@@ -56,17 +56,18 @@ export const mapPost = (
     | (Post & { author?: User; likes?: PostLike[] }),
 ) => ({
   objectId: post.id,
-  userName: post.author ? post.author.username : "Unknown",
-  userAvatar: post.author?.avatar || DEFAULT_AVATAR,
   content: (post as any).content || {},
+  userName: (post as any).content?.aliasName || (post.author ? post.author.username : "Unknown"),
+  userAvatar: (post as any).content?.aliasAvatar || post.author?.avatar || DEFAULT_AVATAR,
   group: post.groupId,
   likes: (post.likes || []).map((l) => l.userId),
+  createdAt: (post as any).createdAt,
 });
 
 export const mapComment = (comment: Comment & { author: User }) => ({
   id: comment.id,
-  author: comment.author.username,
-  avatar: comment.author.avatar || DEFAULT_AVATAR,
+  author: (comment as any).content?.aliasName || comment.author.username,
+  avatar: (comment as any).content?.aliasAvatar || comment.author.avatar || DEFAULT_AVATAR,
   content: (comment as any).content,
   parentId: comment.parentId,
 });

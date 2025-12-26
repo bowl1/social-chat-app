@@ -12,6 +12,12 @@ export const contentSchema = z.object({
     .optional()
     .nullable()
     .refine((v) => !v || v.startsWith("http") || v.startsWith("/"), "Invalid video url"),
+  aliasName: z.string().optional().nullable(),
+  aliasAvatar: z
+    .string()
+    .optional()
+    .nullable()
+    .refine((v) => !v || v.startsWith("http") || v.startsWith("/"), "Invalid avatar url"),
 });
 
 export const postCreateSchema = z.object({

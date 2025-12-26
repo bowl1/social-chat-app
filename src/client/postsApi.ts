@@ -33,6 +33,7 @@ export const fetchPosts = async (groupId: string): Promise<Post[]> => {
     content: post.content || {},
     group: post.group || groupId,
     likes: post.likes || [],
+    createdAt: post.createdAt,
   }));
 };
 

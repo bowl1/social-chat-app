@@ -12,14 +12,19 @@ type PostProps = {
 };
 
 function Post({ uploadedImage, uploadedVideo, clearUploads }: PostProps) {
-  const { user, selectedGroup, avatar } = useUserStore();
+  const { user, selectedGroup, avatar, getAliasForGroup } = useUserStore();
   const [postContent, setPostContent] = useState("");
   const [showCommentSection, setShowCommentSection] = useState<Record<string, boolean>>({});
 
   const groupId = selectedGroup?.objectId;
+  const alias = groupId ? getAliasForGroup(groupId) : { name: user?.username, avatar };
   const postsQuery = usePostsQuery(groupId);
 
-  const createPost = useCreatePostMutation(groupId, user?.username, avatar);
+  const createPost = useCreatePostMutation(
+    groupId,
+    alias?.name || user?.username,
+    alias?.avatar || avatar,
+  );
   const deletePost = useDeletePostMutation(groupId);
 
   const sendPost = async () => {
@@ -38,6 +43,8 @@ function Post({ uploadedImage, uploadedVideo, clearUploads }: PostProps) {
         text: postContent || "",
         imageUrl: uploadedImage || null,
         videoUrl: uploadedVideo || null,
+        aliasName: alias?.name || user?.username,
+        aliasAvatar: alias?.avatar || avatar,
       };
 
       try {
@@ -82,8 +89,8 @@ function Post({ uploadedImage, uploadedVideo, clearUploads }: PostProps) {
       showCommentSection={showCommentSection}
       toggleCommentSection={toggleCommentSection}
       groupId={groupId || ""}
-      userName={user?.username}
-      userAvatar={avatar}
+      userName={alias?.name || user?.username}
+      userAvatar={alias?.avatar || avatar}
     />
   );
 }

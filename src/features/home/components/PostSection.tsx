@@ -16,6 +16,7 @@ import {
   PostAvatar,
   ContentContainer,
   PostUsername,
+  PostTimestamp,
   PostContent,
   UploadedMedia,
   PostActions,
@@ -76,6 +77,20 @@ function PostSection({
     clearUploads?.();
   };
 
+  const formatTime = (iso?: string) => {
+    if (!iso) return "";
+    const date = new Date(iso);
+    if (Number.isNaN(date.getTime())) return "";
+    return new Intl.DateTimeFormat("en", {
+      year: "numeric",
+      month: "short",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    }).format(date);
+  };
+
   return (
     <PostArea>
       <PostContainer>
@@ -116,7 +131,10 @@ function PostSection({
             <PostItem key={post.objectId}>
               <PostHeader>
                 <PostAvatar src={post.userAvatar || ""} alt={`${post.userName}'s avatar`} />
-                <PostUsername>{post.userName}</PostUsername>
+                <div>
+                  <PostUsername>{post.userName}</PostUsername>
+                  <PostTimestamp>{formatTime(post.createdAt)}</PostTimestamp>
+                </div>
               </PostHeader>
               <ContentContainer>
                 <PostContent>{renderPostContent(post.content)}</PostContent>

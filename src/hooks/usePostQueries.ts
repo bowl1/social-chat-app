@@ -109,8 +109,13 @@ export const useAddCommentMutation = (
 ) => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: ({ content, parentId }: { content: any; parentId?: string | null }) =>
-      addComment(content, postId, groupId, parentId || null),
+    mutationFn: ({ content, parentId }: { content: any; parentId?: string | null }) => {
+      const payload =
+        typeof content === "object" && content !== null ? { ...content } : { content };
+      if (author) payload.aliasName = author;
+      if (avatar) payload.aliasAvatar = avatar;
+      return addComment(payload, postId, groupId, parentId || null);
+    },
     onSuccess: (savedComment, variables) => {
       const newComment: Comment = {
         id: savedComment.id,

@@ -10,15 +10,55 @@ type UserState = {
   selectedGroup: Group | null;
   groupData: Group[];
   avatar: string;
+  groupAliases: Record<
+    string,
+    {
+      name: string;
+      avatar: string;
+    }
+  >;
   setUser: (user: UserProfile | null) => void;
   setSelectedGroup: (group: Group | null) => void;
   setAvatar: (avatar: string) => void;
   restoreOrFetchDefaultGroup: () => Promise<void>;
   logoutUser: () => Promise<void>;
   startAuthListener: () => () => void;
+  getAliasForGroup: (groupId: string) => { name: string; avatar: string };
+  pickValidGroup: (groups: Group[], saved: string | null) => Group | null;
 };
 
 const defaultAvatar = "/default-avatar.png";
+
+const adjectives = ["Calm", "Brave", "Bright", "Mellow", "Gentle", "Quiet", "Cozy", "Soft"];
+const animals = ["Otter", "Robin", "Fox", "Panda", "Koala", "Finch", "Deer", "Lynx"];
+
+const hashString = (input: string) => {
+  let hash = 0;
+  for (let i = 0; i < input.length; i++) {
+    hash = (hash << 5) - hash + input.charCodeAt(i);
+    hash |= 0; // force int32
+  }
+  return Math.abs(hash);
+};
+
+const loadAliases = () => {
+  if (typeof window === "undefined") return {};
+  try {
+    const raw = localStorage.getItem("groupAliases");
+    return raw ? (JSON.parse(raw) as UserState["groupAliases"]) : {};
+  } catch {
+    return {};
+  }
+};
+
+const persistAliases = (aliases: UserState["groupAliases"]) => {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.setItem("groupAliases", JSON.stringify(aliases));
+  } catch {
+    // ignore
+  }
+};
 
 // Zustand store for user state management
 export const useUserStore = create<UserState>((set, get) => ({
@@ -26,6 +66,7 @@ export const useUserStore = create<UserState>((set, get) => ({
   selectedGroup: null,
   groupData: [],
   avatar: defaultAvatar,
+  groupAliases: loadAliases(),
   setUser: (user) => set({ user }),
   setSelectedGroup: (group) => set({ selectedGroup: group }),
   setAvatar: (avatar) => set({ avatar }),
@@ -51,6 +92,30 @@ export const useUserStore = create<UserState>((set, get) => ({
     }
     return selected;
   },
+  getAliasForGroup: (groupId: string) => {
+    if (!groupId) return { name: "Anonymous", avatar: defaultAvatar };
+    const state = get();
+    const userKey = state.user?.firebaseUid || state.user?.id || state.user?.email;
+    if (!userKey) return { name: "Anonymous", avatar: defaultAvatar };
+
+    const seedBase = `${userKey}:${groupId}`;
+    const hashed = hashString(seedBase);
+    const name = `${adjectives[hashed % adjectives.length]} ${
+      animals[(hashed >> 3) % animals.length]
+    }`;
+    const avatarUrl = `https://api.dicebear.com/7.x/pixel-art/svg?seed=${encodeURIComponent(
+      seedBase,
+    )}&backgroundColor=b6e3f4,c0aede,d1d4f9`;
+    const alias = { name, avatar: avatarUrl };
+
+    const existing = state.groupAliases[groupId];
+    if (!existing || existing.name !== alias.name || existing.avatar !== alias.avatar) {
+      const nextAliases = { ...state.groupAliases, [groupId]: alias };
+      set({ groupAliases: nextAliases });
+      persistAliases(nextAliases);
+    }
+    return alias;
+  },
 
   // function to restore selected group from localStorage or fetch default group
   restoreOrFetchDefaultGroup: async () => {
@@ -70,11 +135,10 @@ export const useUserStore = create<UserState>((set, get) => ({
       user: null,
       avatar: defaultAvatar,
       selectedGroup: null,
+      // keep aliases so guest retains same anon identity per group on this device
     });
-    localStorage.clear();
-    if (savedGroup) {
-      localStorage.setItem("selectedGroup", savedGroup);
-    }
+    localStorage.removeItem("selectedGroup");
+    if (savedGroup) localStorage.setItem("selectedGroup", savedGroup);
     try {
       const groups = await fetchGroups(false);
       set({ groupData: groups });

@@ -103,6 +103,16 @@ export const PostUsername = styled.span`
   `}
 `;
 
+export const PostTimestamp = styled.div`
+  font-size: 13px;
+  color: #4f666b;
+  margin-top: 2px;
+
+  ${media("md")`
+    font-size: 12px;
+  `}
+`;
+
 export const ContentContainer = styled.div`
   margin-left: 64px;
 `;

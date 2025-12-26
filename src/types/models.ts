@@ -19,6 +19,8 @@ export type PostContent = {
   text?: string | null;
   imageUrl?: string | null;
   videoUrl?: string | null;
+  aliasName?: string | null;
+  aliasAvatar?: string | null;
 };
 
 export type Post = {
@@ -28,6 +30,7 @@ export type Post = {
   content: PostContent;
   group: string;
   likes: string[];
+  createdAt?: string;
 };
 
 export type Comment = {
