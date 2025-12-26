@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { put } from "@vercel/blob";
 import { getAuthUser, unauthorized } from "@lib/server/appApiUtils";
-import { randomUUID } from "crypto";
+import { uploadBlob } from "@lib/server/blob";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -17,22 +16,11 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ message: "File is required" }, { status: 400 });
   }
 
-  const token = process.env.BLOB_READ_WRITE_TOKEN;
-  if (!token) {
-    return NextResponse.json(
-      { message: "BLOB_READ_WRITE_TOKEN is not configured" },
-      { status: 500 },
-    );
+  try {
+    const url = await uploadBlob(file, "uploads");
+    return NextResponse.json({ url }, { status: 201 });
+  } catch (err: any) {
+    console.error("Upload failed", err);
+    return NextResponse.json({ message: err.message || "Upload failed" }, { status: 500 });
   }
-
-  const arrayBuffer = await file.arrayBuffer();
-  const ext = file.name?.includes(".") ? file.name.split(".").pop() || "" : "";
-  const filename = `${Date.now()}-${randomUUID().slice(0, 6)}${ext ? `.${ext}` : ""}`;
-
-  const blob = await put(filename, Buffer.from(arrayBuffer), {
-    access: "public",
-    token,
-  });
-
-  return NextResponse.json({ url: blob.url }, { status: 201 });
 }
