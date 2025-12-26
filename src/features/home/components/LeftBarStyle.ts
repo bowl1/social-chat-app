@@ -41,15 +41,28 @@ export const Username = styled.h2`
 
 export const GroupTitle = styled.h1`
   display: flex;
-  color: #307278;
-  font-size: 18px;
-  font-weight: 600;
-  margin-top: 16px;
-  word-wrap: break-word;
-  word-break: break-word;
-  white-space: normal;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: #0f191a;
   text-align: center;
+  margin: 12px 0 0;
+
+  .label {
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(15, 25, 26, 0.6);
+  }
+
+  .name {
+    font-size: 20px;
+    font-weight: 800;
+    color: #2c6d74;
+    line-height: 1.2;
+    word-wrap: break-word;
+    word-break: break-word;
+  }
 `;
 
 export const GroupSwitcher = styled.button`

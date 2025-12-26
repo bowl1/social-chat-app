@@ -27,6 +27,10 @@ export const WelcomeHeading = styled.h1`
   font-weight: 700;
   line-height: 1.4;
   letter-spacing: 0.2px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 
   .desktop {
     display: block;
@@ -42,6 +46,39 @@ export const WelcomeHeading = styled.h1`
     line-height: 1.2;
     .desktop { display: none; }
     .mobile { display: block; }
+  `}
+`;
+
+export const WelcomeTitle = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  .eyebrow {
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+
+  .name {
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+  }
+
+  ${media("md")`
+    .name { font-size: 18px; }
+  `}
+`;
+
+export const WelcomeSubtitle = styled.div`
+  font-size: 15px;
+  font-weight: 500;
+  opacity: 0.9;
+
+  ${media("md")`
+    font-size: 13px;
   `}
 `;
 

@@ -5,6 +5,8 @@ import {
   TopBarContainer,
   WelcomeSection,
   WelcomeHeading,
+  WelcomeTitle,
+  WelcomeSubtitle,
   UploadSection,
   UploadLabel,
   LogoutContainer,
@@ -62,9 +64,11 @@ function TopBar({ onPhotoUpload, onVideoUpload }) {
       <WelcomeSection>
         <WelcomeHeading>
           <span className="desktop">
-            Welcome back Little Ghost {user ? user.username : "Guest"}!
-            <br />
-            You’re not alone &#10084;
+            <WelcomeTitle>
+              <span className="eyebrow">Welcome back</span>
+              <span className="name">Little Ghost {user ? user.username : "Guest"}!</span>
+            </WelcomeTitle>
+            <WelcomeSubtitle>You’re not alone &#10084;</WelcomeSubtitle>
           </span>
           <span className="mobile">
             <p>Welcome</p>

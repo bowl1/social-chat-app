@@ -17,12 +17,13 @@ export const PostContainer = styled.div`
   width: 90%;
   max-width: 760px;
   flex-direction: column;
-  padding: 16px;
-  border: 1px solid #eef2f5;
-  margin: 8px;
-  border-radius: 18px;
+  padding: 18px 20px;
+  border: 1px solid #e8eef1;
+  margin: 12px;
+  border-radius: 20px;
   box-sizing: border-box;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.07);
+  gap: 14px;
 `;
 
 export const InputWrapper = styled.div`
@@ -30,17 +31,26 @@ export const InputWrapper = styled.div`
   display: flex;
   gap: 9px;
   width: 100%;
+  background: #f5f9fb;
+  border: 1px solid #e4edef;
+  border-radius: 16px;
+  padding: 12px 14px;
 `;
 
 export const InputField = styled.textarea`
   width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  line-height: 1.4;
+  padding: 10px 2px;
+  font-size: 17px;
+  line-height: 1.5;
   resize: none;
   border: none;
-  border-radius: 18px;
-  background: #f5f8fa;
+  border-radius: 12px;
+  background: transparent;
+
+  &::placeholder {
+    color: #7c8b90;
+    font-weight: 500;
+  }
 
   ${media("md")`
     font-size: 15px;
@@ -141,6 +151,7 @@ export const PostActions = styled.div`
   justify-content: space-between;
   gap: 12px;
   margin-top: 10px;
+  flex-wrap: wrap;
 `;
 
 export const ActionButton = styled.button`
@@ -148,11 +159,24 @@ export const ActionButton = styled.button`
   display: flex;
   align-items: center;
   background-color: transparent;
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #2f7c84;
+  gap: 6px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
 
   ${media("md")`
     font-size: 14px;
   `}
+
+  &:hover {
+    background-color: rgba(47, 124, 132, 0.08);
+    transform: translateY(-1px);
+  }
 `;
 
 export const IconImage = styled.img`

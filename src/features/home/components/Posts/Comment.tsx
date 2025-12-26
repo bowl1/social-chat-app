@@ -26,12 +26,15 @@ type CommentProps = {
   commentData: any;
   onReplySubmit: (content: any, parentId?: string) => Promise<void> | void;
   onDelete: (commentId: string, parentId?: string | null) => Promise<void> | void;
+  depth?: number;
+  maxDepth?: number;
 };
 
-function Comment({ commentData, onReplySubmit, onDelete }: CommentProps) {
+function Comment({ commentData, onReplySubmit, onDelete, depth = 1, maxDepth = 2 }: CommentProps) {
   const [showReplyInput, setShowReplyInput] = useState(false);
   const [replyContent, setReplyContent] = useState("");
   const { user, avatar } = useUserStore();
+  const canReply = depth <= maxDepth; //control reply depth, if depth exceeds maxDepth, flatten replies
 
   const handleReplySubmit = () => {
     if (!user) {
@@ -53,24 +56,24 @@ function Comment({ commentData, onReplySubmit, onDelete }: CommentProps) {
   };
 
   const renderCommentContent = (content) => {
-    // 如果是数字或布尔值，直接转为字符串
+    // If it is a number or Boolean value, convert it directly to a string
     if (typeof content === "number" || typeof content === "boolean") {
       return content.toString();
     }
 
-    // 如果是字符串，尝试解析为 JSON
+    // If it's a string, try parsing it as JSON
     if (typeof content === "string") {
       try {
         const parsedContent = JSON.parse(content);
-        // 如果解析后的结果是对象且包含 content 字段
+        // If the parsed result is an object and contains the content field, in case of {"content": "actual comment"}
         return parsedContent?.content || parsedContent;
       } catch {
-        // 如果解析失败，返回原始字符串
+        // If parsing fails, return the original string
         return content;
       }
     }
 
-    // 如果是对象且不为 null，返回其 content 字段或默认值
+    // If it is an object and not null, return its content field or default value, in case [object object]
     if (content && typeof content === "object") {
       return content.content || "no content";
     }
@@ -92,17 +95,19 @@ function Comment({ commentData, onReplySubmit, onDelete }: CommentProps) {
         <CommentText>
           <CommentBody>{renderCommentContent(commentData.content)}</CommentBody>
           <ButtonsInReply>
-            <ActionButton onClick={() => setShowReplyInput(!showReplyInput)}>
-              <IconImage src={commentIcon} alt="Reply to comment" />
-              Reply
-            </ActionButton>
+            {canReply && (
+              <ActionButton onClick={() => setShowReplyInput(!showReplyInput)}>
+                <IconImage src={commentIcon} alt="Reply to comment" />
+                Reply
+              </ActionButton>
+            )}
             <ActionButton onClick={() => onDelete(commentData.id, commentData.parentId)}>
               <IconImage src={trashIcon} alt="Delete comment" />
               Delete
             </ActionButton>
           </ButtonsInReply>
 
-          {showReplyInput && (
+          {canReply && showReplyInput && (
             <ReplyInputContainer>
               <ReplyInputField
                 type="text"
@@ -117,20 +122,38 @@ function Comment({ commentData, onReplySubmit, onDelete }: CommentProps) {
       </CommentContent>
 
       <ReplyList>
-        {(commentData.replies || []).map((reply) => (
+        {(depth < maxDepth
+          ? commentData.replies || []
+          : flattenReplies(commentData.replies || [], commentData.author)
+        ).map((reply) => (
           <Comment
-            key={reply.id} //React 使用 key 来高效地更新 DOM，而不是重新渲染整个列表。如果没有 key 或 key 不唯一，React 无法判断哪些列表项需要更新，哪些可以复用，会导致性能下降。
+            key={reply.id}
             commentData={{
               ...reply,
-              parentAuthor: commentData.author,
+              parentAuthor: reply.parentAuthor || commentData.author,
+              replies: depth < maxDepth ? reply.replies : [],
             }}
             onReplySubmit={onReplySubmit}
             onDelete={onDelete}
+            depth={Math.min(depth + 1, maxDepth)}
+            maxDepth={maxDepth}
           />
         ))}
       </ReplyList>
     </CommentContainer>
   );
+}
+
+// Helper function to flatten replies beyond max depth
+function flattenReplies(replies: any[], parentAuthor?: string): any[] {
+  const result: any[] = [];
+  replies.forEach((reply) => {
+    result.push({ ...reply, parentAuthor: reply.parentAuthor || parentAuthor, replies: [] });
+    if (reply.replies && reply.replies.length) {
+      result.push(...flattenReplies(reply.replies, reply.author || parentAuthor));
+    }
+  });
+  return result;
 }
 
 export default Comment;

@@ -63,6 +63,8 @@ function CommentSection({ postId, groupId, authorName, authorAvatar }: CommentSe
             commentData={comment}
             onReplySubmit={handleReplySubmit}
             onDelete={handleDelete}
+            depth={1}
+            maxDepth={2}
           />
         ))}
       </CommentsList>

@@ -48,7 +48,10 @@ function LeftBar() {
             </>
           )}
         </Username>
-        <GroupTitle>{groupToDisplay}</GroupTitle>
+        <GroupTitle>
+          <span className="label">Current Group</span>
+          <span className="name">{groupToDisplay}</span>
+        </GroupTitle>
         <GroupSwitcher onClick={toggleDropdown}>
           <GroupIcon src={switchGroup} alt="Change group icon" />
           <span>Change Group</span>

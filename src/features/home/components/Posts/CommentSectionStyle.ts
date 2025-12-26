@@ -4,9 +4,10 @@ import { media } from "@styles/responsive";
 export const CommentSectionContainer = styled.div`
   width: 100%;
   margin-top: 10px;
-  background-color: #f7f7f7;
-  padding: 12px;
-  border-radius: 12px;
+  background-color: #f3f7f8;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid #e4edef;
 `;
 
 export const AddCommentContainer = styled.div`
@@ -37,17 +38,23 @@ export const CommentInput = styled.input`
 `;
 
 export const AddCommentButton = styled.button`
-  padding: 8px 14px;
-  background-color: rgb(48, 114, 120);
+  padding: 10px 16px;
+  background: linear-gradient(135deg, #2f7c84, #3ea7b0);
   color: #fff;
   border: none;
   cursor: pointer;
-  border-radius: 10px;
-  font-size: 15px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 700;
   align-self: flex-start;
+  box-shadow: 0 10px 24px rgba(47, 124, 132, 0.2);
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.2s ease;
 
   &:hover {
-    background-color: rgba(48, 114, 120, 0.85);
+    transform: translateY(-1px);
+    box-shadow: 0 12px 28px rgba(47, 124, 132, 0.3);
   }
 
   ${media("md")`
