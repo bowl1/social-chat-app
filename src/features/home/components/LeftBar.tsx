@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useUserStore } from "store/useUserStore";
 import {
   Sidebar,
+  AvatarWrapper,
   ProfileImage,
   Username,
   GroupTitle,
@@ -37,7 +38,9 @@ function LeftBar() {
   return (
     <Sidebar>
       <Sidecontainer>
-        <ProfileImage src={avatar} alt="User profile" onClick={handleAvatarClick} />
+        <AvatarWrapper onClick={handleAvatarClick}>
+          <ProfileImage src={avatar} alt="User profile" />
+        </AvatarWrapper>
         <Username>
           {user ? (
             user.username

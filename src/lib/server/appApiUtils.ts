@@ -52,8 +52,8 @@ export const ensureDefaultGroup = async () => {
 
 export const mapPost = (
   post:
-    | (Post & { author: User; likes: PostLike[] })
-    | (Post & { author?: User; likes?: PostLike[] }), // for guest users
+    | (Post & { author: User; likes: PostLike[]; _count?: { comments?: number } })
+    | (Post & { author?: User; likes?: PostLike[]; _count?: { comments?: number } }), // for guest users
 ) => ({
   objectId: post.id,
   content: (post as any).content || {},
@@ -62,6 +62,7 @@ export const mapPost = (
   group: post.groupId,
   likes: (post.likes || []).map((l) => l.userId),
   createdAt: (post as any).createdAt,
+  commentCount: (post as any)._count?.comments ?? 0,
 });
 
 export const mapComment = (comment: Comment & { author: User }) => ({

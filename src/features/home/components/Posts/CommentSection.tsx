@@ -26,7 +26,7 @@ function CommentSection({ postId, groupId, authorName, authorAvatar }: CommentSe
   const [newComment, setNewComment] = useState("");
   const commentsQuery = useCommentsQuery(postId, true);
   const addComment = useAddCommentMutation(postId, groupId, authorName, authorAvatar);
-  const deleteComment = useDeleteCommentMutation(postId);
+  const deleteComment = useDeleteCommentMutation(postId, groupId);
 
   const handleAddComment = async () => {
     if (newComment.trim()) {

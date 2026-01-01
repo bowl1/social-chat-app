@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
   const posts = await prisma.post.findMany({
     where: { groupId },
     orderBy: { createdAt: "desc" },
-    include: { author: true, likes: true },
+    include: { author: true, likes: true, _count: { select: { comments: true } } },
   });
   return NextResponse.json({ posts: posts.map(mapPost) });
 }
@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
       groupId,
       authorId: dbUser.id,
     },
-    include: { author: true, likes: true },
+    include: { author: true, likes: true, _count: { select: { comments: true } } },
   });
 
   return NextResponse.json({ post: mapPost(post) }, { status: 201 });

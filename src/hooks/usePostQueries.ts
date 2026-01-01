@@ -23,6 +23,7 @@ const buildNewPost = (
   content,
   likes: savedPost.likes || [],
   group: groupId,
+  commentCount: savedPost.commentCount ?? 0,
 });
 
 const removeNestedComment = (comments: Comment[], targetId: string): Comment[] =>
@@ -58,6 +59,7 @@ export const usePostsQuery = (groupId?: string | null) =>
     enabled: !!groupId,
   });
 
+// Mutation to create a new post
 export const useCreatePostMutation = (
   groupId: string | undefined | null,
   userName: string | undefined,
@@ -66,6 +68,7 @@ export const useCreatePostMutation = (
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (content: any) => sendPost(content, groupId as string),
+    // if successful in the backend mutation, update the posts cache on the client side
     onSuccess: (savedPost, content) => {
       if (!groupId) return;
       const nextPost = buildNewPost(
@@ -108,6 +111,15 @@ export const useAddCommentMutation = (
   avatar: string | null | undefined,
 ) => {
   const queryClient = useQueryClient();
+  const bumpCommentCount = (delta: number) => {
+    queryClient.setQueryData<Post[]>(["posts", groupId], (prev = []) =>
+      prev.map((p) =>
+        p.objectId === postId
+          ? { ...p, commentCount: Math.max(0, (p.commentCount || 0) + delta) }
+          : p,
+      ),
+    );
+  };
   return useMutation({
     mutationFn: ({ content, parentId }: { content: any; parentId?: string | null }) => {
       const payload =
@@ -128,18 +140,30 @@ export const useAddCommentMutation = (
       queryClient.setQueryData<Comment[]>(["comments", postId], (prev = []) =>
         addReplyNested(prev, variables.parentId || null, newComment),
       );
+      bumpCommentCount(1);
     },
   });
 };
 
-export const useDeleteCommentMutation = (postId: string) => {
+export const useDeleteCommentMutation = (postId: string, groupId?: string) => {
   const queryClient = useQueryClient();
+  const bumpCommentCount = (delta: number) => {
+    if (!groupId) return;
+    queryClient.setQueryData<Post[]>(["posts", groupId], (prev = []) =>
+      prev.map((p) =>
+        p.objectId === postId
+          ? { ...p, commentCount: Math.max(0, (p.commentCount || 0) + delta) }
+          : p,
+      ),
+    );
+  };
   return useMutation({
     mutationFn: (commentId: string) => deleteComment(postId, commentId),
     onSuccess: (_res, commentId) => {
       queryClient.setQueryData<Comment[]>(["comments", postId], (prev = []) =>
         removeNestedComment(prev, commentId),
       );
+      bumpCommentCount(-1);
     },
   });
 };

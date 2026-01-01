@@ -31,6 +31,7 @@ export type Post = {
   group: string;
   likes: string[];
   createdAt?: string;
+  commentCount?: number;
 };
 
 export type Comment = {

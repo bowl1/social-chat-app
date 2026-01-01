@@ -143,7 +143,7 @@ function PostSection({
                 <Like objectId={post.objectId} />
                 <ActionButton onClick={() => toggleCommentSection(post.objectId)}>
                   <IconImage src={commentIcon} alt="Comment" />
-                  Comment
+                  Comment ({post.commentCount ?? 0})
                 </ActionButton>
                 <ActionButton onClick={() => handleDeletePost(post.objectId)}>
                   <IconImage src={trashIcon} alt="Delete" />

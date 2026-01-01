@@ -1,0 +1,21 @@
+flowchart LR
+  Browser["Client Browser / Next.js UI"];
+  Auth["Firebase Auth client"];
+  API["Next.js API Routes (app/api/*)"];
+  Admin["Firebase Admin"];
+  DB[("PostgreSQL")];
+  Blob["Vercel Blob Storage"];
+  Cache["React Query cache"];
+  Store["Zustand + localStorage"];
+
+  Browser -->|ID token via Firebase JS SDK| Auth;
+  Browser -->|HTTP via client APIs src/client/*.ts| API;
+  Auth -->|Bearer token| API;
+  API -->|Verify token| Admin;
+  Admin --> API;
+  API -->|Prisma ORM| DB;
+  API -->|Upload endpoint| Blob;
+  Browser -->|Cache updates| Cache;
+  Browser -->|Group + alias state| Store;
+  Store --> Browser;
+  Cache --> Browser;

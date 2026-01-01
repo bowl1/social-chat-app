@@ -34,6 +34,7 @@ export const fetchPosts = async (groupId: string): Promise<Post[]> => {
     group: post.group || groupId,
     likes: post.likes || [],
     createdAt: post.createdAt,
+    commentCount: post.commentCount ?? post._count?.comments ?? 0,
   }));
 };
 

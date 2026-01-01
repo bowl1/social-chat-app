@@ -29,9 +29,11 @@ type UserState = {
 
 const defaultAvatar = "/default-avatar.png";
 
+// Arrays of adjectives and animals for generating anonymous aliases
 const adjectives = ["Calm", "Brave", "Bright", "Mellow", "Gentle", "Quiet", "Cozy", "Soft"];
 const animals = ["Otter", "Robin", "Fox", "Panda", "Koala", "Finch", "Deer", "Lynx"];
 
+// helper function: Simple hash function to generate a number from a string
 const hashString = (input: string) => {
   let hash = 0;
   for (let i = 0; i < input.length; i++) {
@@ -68,7 +70,21 @@ export const useUserStore = create<UserState>((set, get) => ({
   avatar: defaultAvatar,
   groupAliases: loadAliases(),
   setUser: (user) => set({ user }),
-  setSelectedGroup: (group) => set({ selectedGroup: group }),
+  setSelectedGroup: (group) => {
+    set({ selectedGroup: group });
+    // window is checked to ensure code runs only in browser environment
+    if (typeof window !== "undefined") {
+      try {
+        if (group) {
+          localStorage.setItem("selectedGroup", JSON.stringify(group));
+        } else {
+          localStorage.removeItem("selectedGroup");
+        }
+      } catch {
+        // ignore storage errors
+      }
+    }
+  },
   setAvatar: (avatar) => set({ avatar }),
   // function to validate and pick a group, in case the saved group is invalid
   pickValidGroup: (groups: Group[], saved: string | null) => {
