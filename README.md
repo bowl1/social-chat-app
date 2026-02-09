@@ -14,16 +14,16 @@ Live: https://social-chat-dk.vercel.app/
 
 ## Tech Stack
 
-| Layer        | Tech                                                            | Notes                                                 |
-| ------------ | --------------------------------------------------------------- | ----------------------------------------------------- |
-| Framework    | Next.js 14 (App Router), React 18                               | Hybrid server/client rendering                        |
-| UI           | Styled Components                                               | Styling and animations                                |
-| State & Data | React Query, Zustand                                            | TanStack Query (server state), Zustand (client state) |
-| Backend      | Prisma ORM + PostgreSQL                                         | Database hosted on Neon                               |
-| Auth         | Firebase Auth + Firebase Admin                                  |                                                       |
-| Storage      | Vercel Blob                                                     |                                                       |
-| Deployment   | Vercel (app), Neon (DB), Firebase (auth), Vercel Blob (storage) | Hosting/infra                                         |
-| CI/CD        | GitHub Actions                                                  | Build/deploy automation                               |
+| Layer        | Tech                                                            |
+| ------------ | --------------------------------------------------------------- |
+| Framework    | Next.js 14 (App Router), React 18                               |
+| UI           | Styled Components                                               |
+| State & Data | React Query, Zustand                                            |
+| Backend      | Prisma ORM + PostgreSQL                                         |
+| Auth         | Firebase Auth + Firebase Admin                                  |
+| Storage      | Vercel Blob                                                     |
+| Deployment   | Vercel (app), Neon (DB), Firebase (auth), Vercel Blob (storage) |
+| CI/CD        | GitHub Actions                                                  |
 
 ## Data Flow
 
@@ -104,27 +104,26 @@ The schema uses Postgres with Prisma models
 
 ### Web
 
-- Demo GIF: ![Demo GIF](./images/demo.gif)
+- Demo GIF:
+
+![Demo GIF](./images/demo.gif)
 
 - Web UI:
 
-  <img src="images/screenshot7.png" alt="Description" width="300">
-  <img src="images/screenshot8.png" alt="Description" width="300">
-  <img src="images/screenshot1.png" alt="Description" width="300">
-  <img src="images/screenshot2.png" alt="Description" width="300">
   <img src="images/screenshot4.png" alt="Description" width="300">
   <img src="images/screenshot3.png" alt="Description" width="300">
-  <img src="images/screenshot5.png" alt="Description" width="300">
+  <img src="images/screenshot1.png" alt="Description" width="300">
+  <img src="images/screenshot2.png" alt="Description" width="300">
   <img src="images/screenshot6.png" alt="Description" width="300">
+  <img src="images/screenshot5.png" alt="Description" width="300">
 
 ### Mobile
 
-- Demo GIF: ![Demo GIF](./images/demo_mobile.gif)
-
 - Mobile UI:
 
-  <img src="images/screenshot_m4.png" alt="Description" width="200">
-  <img src="images/screenshot_m5.png" alt="Description" width="200">
   <img src="images/screenshot_m1.png" alt="Description" width="200">
   <img src="images/screenshot_m2.png" alt="Description" width="200">
+  <img src="images/screenshot_m4.png" alt="Description" width="200">
   <img src="images/screenshot_m3.png" alt="Description" width="200">
+  <img src="images/screenshot_m6.png" alt="Description" width="200">
+  <img src="images/screenshot_m7.png" alt="Description" width="200">
